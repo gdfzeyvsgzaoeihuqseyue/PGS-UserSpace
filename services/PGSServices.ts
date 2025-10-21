@@ -3,7 +3,7 @@ import { useRuntimeConfig } from 'nuxt/app';
 
 export function PGSServices() {
   const config = useRuntimeConfig();
-  const API = config.public.pgsApiBase;
+  const API = config.public.pgsBaseAPI;
   const USER = `${API}/user`;
   const CRSL_SLD = `${API}/carousel-slide`;
 

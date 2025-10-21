@@ -90,7 +90,7 @@ async function onSubmit() {
 
   try {
     const res = await fetch(
-      `${useRuntimeConfig().public.pgsApiBase}/supa/auth/reset-password/${route.params.token}`,
+      `${useRuntimeConfig().public.pgsBaseAPI}/supa/auth/reset-password/${route.params.token}`,
       {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
