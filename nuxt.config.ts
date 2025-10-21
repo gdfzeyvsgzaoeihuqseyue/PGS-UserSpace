@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      pgsApiBase: process.env.PGS_API
+      pgsBaseAPI: process.env.PGS_API_URL,
     }
   },
 
