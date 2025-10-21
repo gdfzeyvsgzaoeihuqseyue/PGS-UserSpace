@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #0284c7;
+  --color-secondary: #0c4a6e;
+  --color-text: #323C4F;
+  --color-danger: #ff0000;
+  --color-dangerAct: #dc2626;
+  --color-background: #CCE3FF;
+  --color-WtB: #FFFFFF;
+  --color-WtBAct: #f1f5f9;
+  --color-BtW: #000000;
+  --color-BtWAct: #333232;
+  --color-ash: #f3f4f6;
+  --color-ashAct: #d1d5db;
+  --color-hsa: #374151;
+  --color-hsaAct: #111827;
+}
+
+.dark {
+  --color-primary: #FFEA00;
+  --color-secondary: #c2b30c;
+  --color-text: #d8d6d6;
+  --color-danger: #ef4444;
+  --color-dangerAct: #b91c1c;
+  --color-background: #051cac;
+  --color-WtB: #111827;
+  --color-WtBAct: #1F2937;
+  --color-BtW: #FFFFFF;
+  --color-BtWAct: #cfcdcd;
+  --color-ash: #374151;
+  --color-ashAct: #111827;
+  --color-hsa: #f3f4f6;
+  --color-hsaAct: #d1d5db;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-textClr font-sans;
+  }
+
+  .auth-bg {
+    @apply bg-gradient-to-br from-primary to-secondary;
+  }
+
+  .auth-bg2 {
+    @apply bg-gradient-to-br from-secondary to-primary;
+  }
+  
+}
+
+@layer components {
+ 
+
+  .btn-primary {
+    @apply bg-primary hover:bg-secondary text-WtB font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 cursor-pointer;
+  }
+  
+  .sidebar-item.active {
+    @apply bg-blue-50 text-blue-700 border-r-2 border-blue-600;
+  }
+}

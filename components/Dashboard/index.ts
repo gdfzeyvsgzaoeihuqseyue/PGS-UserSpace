@@ -1,0 +1,8 @@
+export { default as Confidentialite } from './Confidentialite.vue' 
+export { default as Notifications } from './Notifications.vue' 
+export { default as NotificationToast } from './NotificationToast.vue' 
+export { default as Profil } from './Profil.vue' 
+export { default as Securite } from './Securite.vue' 
+export { default as Services } from './Services.vue' 
+export { default as Sidebar } from './Sidebar.vue'  
+export { default as Supprimer } from './Supprimer.vue' 
