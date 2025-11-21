@@ -192,6 +192,7 @@
 
 <script setup lang="ts">
 import type { UpdateProfileData } from '~/types'
+import { useProfileStore } from '~/stores/profile'
 
 definePageMeta({
   layout: 'dashboard',
