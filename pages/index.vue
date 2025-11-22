@@ -23,9 +23,7 @@
       <div class="grid md:grid-cols-3 gap-8 mb-16">
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+            <IconLock class="w-8 h-8 text-primary-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Secure Authentication</h3>
           <p class="text-gray-600">Industry-standard security with HTTP-only cookies and JWT tokens</p>
@@ -33,9 +31,7 @@
 
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
+            <IconLayoutGridAdd class="w-8 h-8 text-primary-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Multiple Services</h3>
           <p class="text-gray-600">Access Templix, Suitops, EQT, Hire, and more with one account</p>
@@ -43,35 +39,35 @@
 
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+            <IconBolt class="w-8 h-8 text-primary-600" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Lightning Fast</h3>
           <p class="text-gray-600">Instant authentication and seamless service switching</p>
         </div>
       </div>
 
-      <!-- Services Showcase -->
-      <div class="card">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Connected Services</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg mb-3"></div>
-            <span class="font-medium text-gray-900">Suitops</span>
-          </div>
-          <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors">
-            <div class="w-12 h-12 bg-purple-600 rounded-lg mb-3"></div>
-            <span class="font-medium text-gray-900">Templix</span>
-          </div>
-          <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors">
-            <div class="w-12 h-12 bg-green-600 rounded-lg mb-3"></div>
-            <span class="font-medium text-gray-900">EQT</span>
-          </div>
-          <div class="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors">
-            <div class="w-12 h-12 bg-orange-600 rounded-lg mb-3"></div>
-            <span class="font-medium text-gray-900">Hire</span>
-          </div>
+      <!-- Solutions Showcase -->
+      <div class="space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Solutions de l'Écosystème PGS</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Découvrez nos solutions innovantes avec authentification SSO intégrée
+          </p>
+        </div>
+
+        <!-- Solutions Grid -->
+        <SolutionsGrid :solutions="solutionsStore.authEnabledSolutions" :loading="solutionsStore.loading"
+          :error="solutionsStore.error" :show-features="false"
+          empty-message="Aucune solution avec SSO n'est actuellement disponible." />
+
+        <!-- View All Link -->
+        <div v-if="solutionsStore.authEnabledSolutions.length > 0" class="text-center">
+          <p class="text-sm text-gray-600">
+            {{ solutionsStore.authEnabledSolutions.length }} solution{{ solutionsStore.authEnabledSolutions.length > 1 ?
+              's' : '' }} disponible{{ solutionsStore.authEnabledSolutions.length > 1 ? 's' : '' }} avec authentification
+            unique
+          </p>
         </div>
       </div>
     </div>
@@ -79,8 +75,21 @@
 </template>
 
 <script setup lang="ts">
+import { IconBolt, IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
+
 definePageMeta({
   layout: 'default',
   middleware: 'guest'
+})
+
+const solutionsStore = useSolutionsStore()
+
+// Charger les solutions au montage
+onMounted(async () => {
+  try {
+    await solutionsStore.fetchAuthEnabledSolutions()
+  } catch (error) {
+    console.error('Failed to load solutions:', error)
+  }
 })
 </script>

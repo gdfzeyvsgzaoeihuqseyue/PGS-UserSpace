@@ -77,3 +77,21 @@ export interface UpdateProfileData {
   email?: string
   password?: string
 }
+
+export interface Solution {
+  id: string
+  slug: string
+  name: string
+  logo: string
+  logoDesk: string
+  category: string
+  description: string
+  content: string
+  disabled: boolean
+  allowAuth: boolean
+  ctaText: string
+  ctaLink: string
+  features: string[]
+  createdAt: string
+  updatedAt: string
+}

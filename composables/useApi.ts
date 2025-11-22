@@ -11,12 +11,12 @@ export const useApi = () => {
     return await useFetch<T>(endpoint, {
       baseURL,
       credentials: 'include',
+      ...options,
       headers: {
         'Content-Type': 'application/json',
         ...options.headers,
       },
-      ...options,
-    })
+    } as any)
   }
 
   return {
