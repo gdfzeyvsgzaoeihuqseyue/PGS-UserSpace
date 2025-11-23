@@ -9,10 +9,7 @@
     <!-- Success Message -->
     <div v-if="profileStore.updateSuccess" class="card bg-green-50 border-green-200">
       <div class="flex items-center">
-        <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        <IconCircleCheck class="w-5 h-5 text-green-600 mr-3" />
         <span class="text-sm text-green-800 font-medium">Profile updated successfully!</span>
       </div>
     </div>
@@ -22,10 +19,7 @@
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-xl font-bold text-gray-900">Personal Information</h2>
         <button v-if="!editMode" @click="enableEditMode" class="btn btn-secondary">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
+          <IconEdit class="w-4 h-4 mr-2" />
           Edit Profile
         </button>
       </div>
@@ -34,10 +28,7 @@
         <!-- Error Message -->
         <div v-if="profileStore.error" class="bg-red-50 border border-red-200 rounded-lg p-4">
           <div class="flex items-center">
-            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconAlertCircle class="w-5 h-5 text-red-600 mr-2" />
             <span class="text-sm text-red-800">{{ profileStore.error }}</span>
           </div>
         </div>
@@ -91,12 +82,7 @@
           <button type="submit" class="btn btn-primary" :disabled="profileStore.loading">
             <span v-if="!profileStore.loading">Save Changes</span>
             <span v-else class="flex items-center">
-              <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                </path>
-              </svg>
+              <IconLoader2 class="animate-spin h-4 w-4 mr-2" />
               Saving...
             </span>
           </button>
@@ -113,20 +99,14 @@
       <form @submit.prevent="handleChangePassword" class="space-y-6">
         <div v-if="passwordError" class="bg-red-50 border border-red-200 rounded-lg p-4">
           <div class="flex items-center">
-            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconAlertCircle class="w-5 h-5 text-red-600 mr-2" />
             <span class="text-sm text-red-800">{{ passwordError }}</span>
           </div>
         </div>
 
         <div v-if="passwordSuccess" class="bg-green-50 border border-green-200 rounded-lg p-4">
           <div class="flex items-center">
-            <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconCircleCheck class="w-5 h-5 text-green-600 mr-2" />
             <span class="text-sm text-green-800">Password changed successfully!</span>
           </div>
         </div>
@@ -151,12 +131,7 @@
         <button type="submit" class="btn btn-primary" :disabled="changingPassword">
           <span v-if="!changingPassword">Change Password</span>
           <span v-else class="flex items-center">
-            <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-              </path>
-            </svg>
+            <IconLoader2 class="animate-spin h-4 w-4 mr-2" />
             Changing...
           </span>
         </button>
@@ -193,6 +168,7 @@
 <script setup lang="ts">
 import type { UpdateProfileData } from '~/types'
 import { useProfileStore } from '~/stores/profile'
+import { IconAlertCircle, IconCircleCheck, IconEdit, IconLoader2 } from '@tabler/icons-vue'
 
 definePageMeta({
   layout: 'dashboard',

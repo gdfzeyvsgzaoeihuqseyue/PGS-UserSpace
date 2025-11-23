@@ -25,10 +25,7 @@
 
     <!-- Empty State -->
     <div v-else-if="servicesStore.services.length === 0" class="card text-center py-12">
-      <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-      </svg>
+      <IconFolders class="w-16 h-16 text-gray-400 mx-auto mb-4" />
       <h3 class="text-lg font-medium text-gray-900 mb-2">No services connected</h3>
       <p class="text-gray-600">You don't have access to any services yet.</p>
     </div>
@@ -43,7 +40,7 @@
             class="card hover:shadow-lg transition-shadow">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div class="w-12 h-12 bg-primaryn rounded-lg flex items-center justify-center flex-shrink-0">
                   <span class="text-white font-bold text-xl">
                     {{ service.serviceName.charAt(0) }}
                   </span>
@@ -59,20 +56,14 @@
 
             <div class="space-y-2 mb-4">
               <div class="flex items-center text-sm text-gray-600">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
+                <IconWorld class="w-4 h-4 mr-2" />
                 <a :href="service.domain" target="_blank" rel="noopener noreferrer"
-                  class="hover:text-primary-600 truncate">
+                  class="hover:text-primaryn truncate">
                   {{ service.domain }}
                 </a>
               </div>
               <div v-if="service.lastAccess" class="flex items-center text-sm text-gray-600">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <IconClock class="w-4 h-4 mr-2" />
                 Last accessed: {{ formatDate(service.lastAccess) }}
               </div>
             </div>
@@ -83,10 +74,7 @@
                 Open Service
               </a>
               <button @click="viewServiceDetails(service)" class="btn btn-secondary" title="View details">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <IconAlertCircle class="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -114,10 +102,7 @@
 
             <div class="space-y-2 mb-4">
               <div class="flex items-center text-sm text-gray-600">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
+                <IconWorld class="w-4 h-4 mr-2" />
                 <span class="truncate">{{ service.domain }}</span>
               </div>
             </div>
@@ -137,9 +122,7 @@
         <div class="flex items-center justify-between mb-6">
           <h3 class="text-2xl font-bold text-gray-900">Service Details</h3>
           <button @click="selectedService = null" class="text-gray-400 hover:text-gray-600">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <IconX class="w-6 h-6" />
           </button>
         </div>
 
@@ -192,6 +175,7 @@
 </template>
 
 <script setup lang="ts">
+import { IconClock, IconFolders, IconWorld, IconX } from '@tabler/icons-vue'
 import type { Service } from '~/types'
 
 definePageMeta({

@@ -17,7 +17,7 @@
           <div class="flex items-start space-x-4 mb-4">
             <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
               <img v-if="service.logo" :src="service.logo" :alt="service.name" class="w-full h-full object-cover" />
-              <div v-else class="w-full h-full flex items-center justify-center bg-primary-600">
+              <div v-else class="w-full h-full flex items-center justify-center bg-primaryn">
                 <span class="text-white font-bold text-xl">
                   {{ service.name.charAt(0) }}
                 </span>
@@ -27,7 +27,7 @@
               <h3 class="text-xl font-bold text-gray-900">{{ service.name }}</h3>
               <p class="text-sm text-gray-600 mt-1">{{ service.description }}</p>
               <a :href="service.domain" target="_blank" rel="noopener noreferrer"
-                class="text-xs text-primary-600 hover:text-primary-700 mt-2 inline-block">
+                class="text-xs text-primaryn hover:text-secondaryn mt-2 inline-block">
                 {{ service.domain }}
               </a>
             </div>
@@ -47,7 +47,7 @@
 
           <!-- Code Example -->
           <details class="mt-4">
-            <summary class="text-sm text-gray-600 cursor-pointer hover:text-primary-600">
+            <summary class="text-sm text-gray-600 cursor-pointer hover:text-primaryn">
               Voir le code d'intégration
             </summary>
             <div class="mt-3 bg-gray-900 rounded-lg p-4 overflow-x-auto">
@@ -74,7 +74,7 @@
         <div class="space-y-4">
           <div class="flex items-start space-x-3">
             <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primary-600 font-bold">1</span>
+              <span class="text-primaryn font-bold">1</span>
             </div>
             <div>
               <h3 class="font-medium text-gray-900">L'utilisateur clique sur "Se connecter"</h3>
@@ -86,7 +86,7 @@
 
           <div class="flex items-start space-x-3">
             <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primary-600 font-bold">2</span>
+              <span class="text-primaryn font-bold">2</span>
             </div>
             <div>
               <h3 class="font-medium text-gray-900">Vérification de l'authentification</h3>
@@ -98,7 +98,7 @@
 
           <div class="flex items-start space-x-3">
             <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primary-600 font-bold">3</span>
+              <span class="text-primaryn font-bold">3</span>
             </div>
             <div>
               <h3 class="font-medium text-gray-900">Création ou vérification de l'accès</h3>
@@ -110,7 +110,7 @@
 
           <div class="flex items-start space-x-3">
             <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primary-600 font-bold">4</span>
+              <span class="text-primaryn font-bold">4</span>
             </div>
             <div>
               <h3 class="font-medium text-gray-900">Redirection vers le service</h3>
@@ -123,10 +123,7 @@
 
         <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div class="flex items-start">
-            <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconInfoCircle class="w-5 h-5 text-primaryn mr-3 mt-0.5" />
             <div>
               <h4 class="text-sm font-medium text-blue-900 mb-1">Note importante</h4>
               <p class="text-sm text-blue-800">
@@ -142,13 +139,15 @@
 </template>
 
 <script setup lang="ts">
+import { IconInfoCircle } from '@tabler/icons-vue'
+
 definePageMeta({
   layout: 'default'
 })
 
 const config = useRuntimeConfig()
 
-// Services de démonstration (vous pouvez les charger depuis le store)
+// Services de démonstration
 const services = ref([
   {
     id: '69009f1cef08469044080df0',
@@ -162,21 +161,21 @@ const services = ref([
     name: 'Templix',
     description: 'Application de gestion de templates',
     domain: 'https://templix.app',
-    logo: null
+    logo: 'https://cdn.jsdelivr.net/gh/progestionsoft/Files/_General/Images/Logos/Templix-MC.png'
   },
   {
     id: '69009f1bef08469044080dee',
     name: 'Suitops Hire',
     description: 'Plateforme de recrutement moderne',
     domain: 'https://hire.suitops.com',
-    logo: null
+    logo: 'https://cdn.jsdelivr.net/gh/progestionsoft/Files/_General/Images/Logos/Hire-MC.png'
   },
   {
     id: '69009f1bef08469044080ded',
     name: 'Suitops',
     description: 'Suite complète d\'outils d\'entreprise',
     domain: 'https://suitops.com',
-    logo: null
+    logo: 'https://cdn.jsdelivr.net/gh/progestionsoft/Files/_General/Images/Logos/SuitOps-MC.png'
   }
 ])
 

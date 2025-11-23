@@ -4,7 +4,7 @@
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-          Welcome to <span class="text-danger">PGS</span>
+          Welcome to <span class="text-primaryn">PGS MY SPACE</span>
         </h1>
         <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
           Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services
@@ -23,7 +23,7 @@
       <div class="grid md:grid-cols-3 gap-8 mb-16">
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconLock class="w-8 h-8 text-primary-600" />
+            <IconLock class="w-8 h-8 text-primaryn" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Secure Authentication</h3>
           <p class="text-gray-600">Industry-standard security with HTTP-only cookies and JWT tokens</p>
@@ -31,7 +31,7 @@
 
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconLayoutGridAdd class="w-8 h-8 text-primary-600" />
+            <IconLayoutGridAdd class="w-8 h-8 text-primaryn" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Multiple Services</h3>
           <p class="text-gray-600">Access Templix, Suitops, EQT, Hire, and more with one account</p>
@@ -39,7 +39,7 @@
 
         <div class="card text-center hover:shadow-lg transition-shadow">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconBolt class="w-8 h-8 text-primary-600" />
+            <IconBolt class="w-8 h-8 text-primaryn" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Lightning Fast</h3>
           <p class="text-gray-600">Instant authentication and seamless service switching</p>
@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconBolt, IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
+import { IconBolt,IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();

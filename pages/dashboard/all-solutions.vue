@@ -52,26 +52,20 @@
 
         <button v-if="searchQuery" @click="clearSearch" class="badge badge-info flex items-center space-x-1">
           <span>Recherche: {{ searchQuery }}</span>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <IconX class="w-3 h-3" />
         </button>
 
         <button v-if="selectedCategory" @click="clearCategory" class="badge badge-info flex items-center space-x-1">
           <span>Catégorie: {{ selectedCategory }}</span>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <IconX class="w-3 h-3" />
         </button>
 
         <button v-if="authFilter" @click="clearAuthFilter" class="badge badge-info flex items-center space-x-1">
           <span>SSO: {{ authFilter === 'true' ? 'Activé' : 'Désactivé' }}</span>
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <IconX class="w-3 h-3" />
         </button>
 
-        <button @click="clearAllFilters" class="text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <button @click="clearAllFilters" class="text-sm text-primaryn hover:text-secondaryn font-medium">
           Tout effacer
         </button>
       </div>
@@ -86,10 +80,7 @@
             <p class="text-2xl font-bold text-gray-900">{{ solutionsStore.totalSolutions }}</p>
           </div>
           <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
+            <IconFolders class="w-5 h-5 text-primaryn" />
           </div>
         </div>
       </div>
@@ -101,10 +92,7 @@
             <p class="text-2xl font-bold text-green-600">{{ solutionsStore.activeSolutions.length }}</p>
           </div>
           <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconCircleCheck class="w-5 h-5 text-green-600" />
           </div>
         </div>
       </div>
@@ -113,13 +101,10 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm text-gray-600">Avec SSO</p>
-            <p class="text-2xl font-bold text-primary-600">{{ solutionsStore.authEnabledSolutions.length }}</p>
+            <p class="text-2xl font-bold text-primaryn">{{ solutionsStore.authEnabledSolutions.length }}</p>
           </div>
           <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+            <IconLock class="w-5 h-5 text-primaryn" />
           </div>
         </div>
       </div>
@@ -139,18 +124,14 @@
           <button @click="previousPage" :disabled="solutionsStore.currentPage === 1"
             class="btn btn-secondary text-sm py-2"
             :class="{ 'opacity-50 cursor-not-allowed': solutionsStore.currentPage === 1 }">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
+            <IconArrowLeft class="w-4 h-4" />
             Précédent
           </button>
           <button @click="nextPage" :disabled="solutionsStore.currentPage === solutionsStore.totalPages"
             class="btn btn-secondary text-sm py-2"
             :class="{ 'opacity-50 cursor-not-allowed': solutionsStore.currentPage === solutionsStore.totalPages }">
             Suivant
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <IconArrowRight class="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -159,6 +140,8 @@
 </template>
 
 <script setup lang="ts">
+import { IconArrowLeft, IconArrowRight, IconCircleCheck, IconFolders, IconLock, IconX } from '@tabler/icons-vue'
+
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'

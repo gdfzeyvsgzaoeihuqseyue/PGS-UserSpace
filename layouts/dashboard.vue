@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
           <NuxtLink to="/dashboard" class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 bg-primaryn rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-xl">P</span>
             </div>
             <span class="text-xl font-bold text-gray-900 hidden sm:block">PGS User Space</span>
@@ -21,7 +21,7 @@
             <div class="relative" v-if="authStore.user">
               <button @click="toggleUserMenu"
                 class="flex items-center space-x-3 hover:bg-gray-100 rounded-lg px-3 py-2 transition-colors">
-                <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
+                <div class="w-8 h-8 bg-primaryn rounded-full flex items-center justify-center">
                   <span class="text-white text-sm font-medium">
                     {{ getInitials(authStore.user.firstName, authStore.user.lastName) }}
                   </span>
@@ -56,7 +56,7 @@
         <aside class="lg:w-64 flex-shrink-0" :class="{ 'hidden lg:block': !showMobileMenu }">
           <nav class="space-y-1">
             <NuxtLink to="/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard') ? 'bg-primary-600 text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/dashboard') ? 'bg-primaryn text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconHome class="w-5 h-5" />
               <span class="font-medium">Dashboard</span>
@@ -64,7 +64,7 @@
 
             <NuxtLink to="/dashboard/services"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/services') ? 'bg-primary-600 text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/dashboard/services') ? 'bg-primaryn text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLayout2 class="w-5 h-5" />
               <span class="font-medium">Services</span>
@@ -75,7 +75,7 @@
 
             <NuxtLink to="/dashboard/all-solutions"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/all-solutions') ? 'bg-primary-600 text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/dashboard/all-solutions') ? 'bg-primaryn text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLayoutGridAdd class="w-5 h-5" />
               <span class="font-medium">Toutes les solutions</span>
@@ -83,14 +83,14 @@
 
             <NuxtLink to="/dashboard/sessions"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/sessions') ? 'bg-primary-600 text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/dashboard/sessions') ? 'bg-primaryn text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLock class="w-5 h-5" />
               <span class="font-medium">Sessions</span>
             </NuxtLink>
 
             <NuxtLink to="/dashboard/profile" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/profile') ? 'bg-primary-600 text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/dashboard/profile') ? 'bg-primaryn text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconUser class="w-5 h-5" />
               <span class="font-medium">Profile</span>

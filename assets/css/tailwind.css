@@ -3,7 +3,24 @@
 @tailwind utilities;
 
 :root {
+  --color-primary: #0284c7;
+  --color-secondary: #02358B;
+  --color-text: #323C4F;
   --color-danger: #ff0000;
+  --color-dangerAct: #dc2626;
+  --color-background: #e0f2fe;
+  --color-WtB: #FFFFFF;
+  --color-WtBAct: #f1f5f9;
+  --color-BtW: #000000;
+  --color-BtWAct: #333232;
+  --color-ash: #f3f4f6;
+  --color-ashAct: #d1d5db;
+  --color-hsa: #374151;
+  --color-hsaAct: #111827;
+
+
+
+
   --color-primary-50: #f0f9ff;
   --color-primary-100: #e0f2fe;
   --color-primary-200: #bae6fd;
@@ -30,14 +47,30 @@
 }
 
 .dark {
-  --color-danger: #0c4a6e;
+   --color-primary: #02358B;
+  --color-secondary: #082f49;
+  --color-text: #d8d6d6;
+  --color-danger: #ef4444;
+  --color-dangerAct: #b91c1c;
+  --color-background: #0ea5e9;
+  --color-WtB: #111827;
+  --color-WtBAct: #1F2937;
+  --color-BtW: #FFFFFF;
+  --color-BtWAct: #cfcdcd;
+  --color-ash: #374151;
+  --color-ashAct: #111827;
+  --color-hsa: #f3f4f6;
+  --color-hsaAct: #d1d5db;
+
+
+  
   --color-primary-50: #082f49; 
   --color-primary-100: #0c4a6e;
   --color-primary-200: #075985;
   --color-primary-300: #0369a1;
   --color-primary-400: #0284c7;
   --color-primary-500: #0ea5e9;
-  --color-primary-600: #ff0000;
+  --color-primary-600: #2eafec;
   --color-primary-700: #7dd3fc;
   --color-primary-800: #bae6fd;
   --color-primary-900: #e0f2fe;
@@ -68,7 +101,7 @@
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+    @apply bg-primaryn text-white hover:bg-secondaryn focus:ring-primary-500;
   }
 
   .btn-secondary {
@@ -80,7 +113,7 @@
   }
 
   .btn-outline {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    @apply border-2 border-primary-600 text-primaryn hover:bg-primary-50 focus:ring-primary-500;
   }
 
   .input {

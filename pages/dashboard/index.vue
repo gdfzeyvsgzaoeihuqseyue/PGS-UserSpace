@@ -20,13 +20,10 @@
             </p>
           </div>
           <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
+            <IconFolders class="w-6 h-6 text-primaryn" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/services" class="mt-4 text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <NuxtLink to="/dashboard/services" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
           View all services →
         </NuxtLink>
       </div>
@@ -43,13 +40,10 @@
             </div>
           </div>
           <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+            <IconShieldCheck class="w-6 h-6 text-green-600" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/profile" class="mt-4 text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <NuxtLink to="/dashboard/profile" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
           Manage profile →
         </NuxtLink>
       </div>
@@ -64,13 +58,10 @@
             </p>
           </div>
           <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <IconClock class="w-6 h-6 text-primaryn" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/sessions" class="mt-4 text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <NuxtLink to="/dashboard/sessions" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
           View sessions →
         </NuxtLink>
       </div>
@@ -83,10 +74,7 @@
         <NuxtLink to="/dashboard/services"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
+            <IconFolders class="w-5 h-5 text-primaryn" />
           </div>
           <span class="font-medium text-gray-900">Browse Services</span>
         </NuxtLink>
@@ -94,10 +82,7 @@
         <NuxtLink to="/dashboard/profile"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <IconUser class="w-5 h-5 text-green-600" />
           </div>
           <span class="font-medium text-gray-900">Edit Profile</span>
         </NuxtLink>
@@ -105,10 +90,7 @@
         <NuxtLink to="/dashboard/sessions"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+            <IconLock class="w-5 h-5 text-primaryn" />
           </div>
           <span class="font-medium text-gray-900">Manage Sessions</span>
         </NuxtLink>
@@ -116,10 +98,7 @@
         <button @click="handleLogout"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-red-50 transition-colors border border-gray-200">
           <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
+            <IconLogout class="w-5 h-5 text-red-600" />
           </div>
           <span class="font-medium text-red-900">Sign Out</span>
         </button>
@@ -130,7 +109,7 @@
     <div class="card" v-if="servicesStore.activeServices.length > 0">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-bold text-gray-900">Your Active Services</h2>
-        <NuxtLink to="/dashboard/services" class="text-sm text-primary-600 hover:text-primary-700 font-medium">
+        <NuxtLink to="/dashboard/services" class="text-sm text-primaryn hover:text-secondaryn font-medium">
           View all
         </NuxtLink>
       </div>
@@ -138,7 +117,7 @@
         <div v-for="service in servicesStore.activeServices.slice(0, 4)" :key="service.serviceId"
           class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-all">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center">
+            <div class="w-12 h-12 bg-primaryn rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-lg">
                 {{ service.serviceName.charAt(0) }}
               </span>
@@ -158,6 +137,8 @@
 </template>
 
 <script setup lang="ts">
+import { IconClock, IconFolders, IconLock, IconLogout, IconShieldCheck, IconUser } from '@tabler/icons-vue'
+
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'
