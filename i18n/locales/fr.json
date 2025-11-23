@@ -1,6 +1,9 @@
 {
   "meta": {
-    "indexPage": "SuitOps - Solution complète de gestion d'entreprise"
+    "indexPage": {
+      "title": "MON ESPACE PGS - Plateforme d'Authentification Centralisée",
+      "description": "Votre plateforme d'authentification unique centralisée pour un accès transparent à tous les services de l'écosystème PGS."
+    }
   },
   "prefSettings": {
     "preferences": "Préférences",
@@ -11,6 +14,35 @@
     "themeDark": "Sombre",
     "langFr": "Français",
     "langEn": "Anglais"
+  },
+  "home": {
+    "hero": {
+      "welcome": "Bienvenue sur",
+      "title": "MON ESPACE PGS",
+      "subtitle": "Votre plateforme d'authentification unique centralisée pour un accès transparent à tous les services de l'écosystème PGS",
+      "getStarted": "Commencer",
+      "signIn": "Se connecter"
+    },
+    "features": {
+      "secureAuth": {
+        "title": "Authentification sécurisée",
+        "description": "Sécurité conforme aux normes de l'industrie avec cookies HTTP-only et jetons JWT"
+      },
+      "multipleServices": {
+        "title": "Services multiples",
+        "description": "Accédez à Templix, Suitops, EQT, Hire et plus encore avec un seul compte"
+      },
+      "lightningFast": {
+        "title": "Ultra rapide",
+        "description": "Authentification instantanée et basculement transparent entre les services"
+      }
+    },
+    "solutions": {
+      "title": "Solutions de l'Écosystème PGS",
+      "subtitle": "Découvrez nos solutions innovantes avec authentification SSO intégrée",
+      "empty": "Aucune solution avec SSO n'est actuellement disponible.",
+      "available": "{count} solution disponible avec authentification unique | {count} solutions disponibles avec authentification unique"
+    }
   },
   "navbar": {
     "solutions": "Solutions",

@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const sharedFilesUrl = runtimeConfig.public.pgsSharedFiles;
 
@@ -19,12 +20,12 @@ useHead({
     {
       key: 'description',
       name: 'description',
-      content: 'PGS Single Sign-On Platform.'
+      content: computed(() => t('meta.indexPage.description'))
     },
-    
+
     // Open Graph (Facebook, LinkedIn)
-    { property: 'og:title', content: 'PGS MY SPACE - PGS Single Sign-On Platform' },
-    { property: 'og:description', content: '....' },
+    { property: 'og:title', content: computed(() => t('meta.indexPage.title')) },
+    { property: 'og:description', content: computed(() => t('meta.indexPage.description')) },
     { property: 'og:image', content: heroImagePath },
     { property: 'og:url', content: baseUrl },
     { property: 'og:type', content: 'website' },
@@ -32,8 +33,8 @@ useHead({
 
     // Twitter Card
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'PGS MY SPACE - PGS Single Sign-On Platform' },
-    { name: 'twitter:description', content: '....' },
+    { name: 'twitter:title', content: computed(() => t('meta.indexPage.title')) },
+    { name: 'twitter:description', content: computed(() => t('meta.indexPage.description')) },
     { name: 'twitter:image', content: heroImagePath },
   ],
   link: [

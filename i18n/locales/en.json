@@ -1,6 +1,9 @@
 {
   "meta": {
-    "indexPage": "SuitOps - Complete business management solution"
+    "indexPage": {
+      "title": "PGS MY SPACE - Centralized Authentication Platform",
+      "description": "Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services."
+    }
   },
   "prefSettings": {
     "preferences": "Settings",
@@ -11,6 +14,35 @@
     "themeDark": "Dark",
     "langFr": "French",
     "langEn": "English"
+  },
+  "home": {
+    "hero": {
+      "welcome": "Welcome to",
+      "title": "PGS MY SPACE",
+      "subtitle": "Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services",
+      "getStarted": "Get Started",
+      "signIn": "Sign In"
+    },
+    "features": {
+      "secureAuth": {
+        "title": "Secure Authentication",
+        "description": "Industry-standard security with HTTP-only cookies and JWT tokens"
+      },
+      "multipleServices": {
+        "title": "Multiple Services",
+        "description": "Access Templix, Suitops, EQT, Hire, and more with one account"
+      },
+      "lightningFast": {
+        "title": "Lightning Fast",
+        "description": "Instant authentication and seamless service switching"
+      }
+    },
+    "solutions": {
+      "title": "PGS Ecosystem Solutions",
+      "subtitle": "Discover our innovative solutions with integrated SSO authentication",
+      "empty": "No SSO-enabled solution is currently available.",
+      "available": "{count} solution available with single sign-on | {count} solutions available with single sign-on"
+    }
   },
   "navbar": {
     "solutions": "Solutions",

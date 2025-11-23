@@ -76,7 +76,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'PGS User Space',
+      title: 'PGS MY SPACE',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },

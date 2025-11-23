@@ -4,17 +4,17 @@
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">
-          Welcome to <span class="text-primary">PGS MY SPACE</span>
+          {{ $t('home.hero.welcome') }} <span class="text-primary">{{ $t('home.hero.title') }}</span>
         </h1>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-          Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services
+          {{ $t('home.hero.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/auth/register" class="btn btn-primary text-lg px-8 py-3">
-            Get Started
+            {{ $t('home.hero.getStarted') }}
           </NuxtLink>
           <NuxtLink to="/auth/login" class="btn btn-outline text-lg px-8 py-3">
-            Sign In
+            {{ $t('home.hero.signIn') }}
           </NuxtLink>
         </div>
       </div>
@@ -35,23 +35,21 @@
       <!-- Solutions -->
       <div class="space-y-8">
         <div class="text-center">
-          <h2 class="text-3xl font-bold mb-3">Solutions de l'Écosystème PGS</h2>
+          <h2 class="text-3xl font-bold mb-3">{{ $t('home.solutions.title') }}</h2>
           <p class="max-w-2xl mx-auto">
-            Découvrez nos solutions innovantes avec authentification SSO intégrée
+            {{ $t('home.solutions.subtitle') }}
           </p>
         </div>
 
         <!-- Solutions Grid -->
         <SolutionsGrid :solutions="solutionsStore.authEnabledSolutions" :loading="solutionsStore.loading"
-          :error="solutionsStore.error" :show-features="false"
-          empty-message="Aucune solution avec SSO n'est actuellement disponible." />
+          :error="solutionsStore.error" :show-features="false" :empty-message="$t('home.solutions.empty')" />
 
         <!-- View All Link -->
         <div v-if="solutionsStore.authEnabledSolutions.length > 0" class="text-center">
           <p class="text-sm text-gray-600">
-            {{ solutionsStore.authEnabledSolutions.length }} solution{{ solutionsStore.authEnabledSolutions.length > 1 ?
-              's' : '' }} disponible{{ solutionsStore.authEnabledSolutions.length > 1 ? 's' : '' }} avec authentification
-            unique
+            {{ $t('home.solutions.available', { count: solutionsStore.authEnabledSolutions.length },
+              solutionsStore.authEnabledSolutions.length) }}
           </p>
         </div>
       </div>
@@ -72,23 +70,23 @@ definePageMeta({
 
 const solutionsStore = useSolutionsStore()
 
-const features = [
+const features = computed(() => [
   {
     icon: IconLock,
-    title: 'Secure Authentication',
-    description: 'Industry-standard security with HTTP-only cookies and JWT tokens'
+    title: t('home.features.secureAuth.title'),
+    description: t('home.features.secureAuth.description')
   },
   {
     icon: IconLayoutGridAdd,
-    title: 'Multiple Services',
-    description: 'Access Templix, Suitops, EQT, Hire, and more with one account'
+    title: t('home.features.multipleServices.title'),
+    description: t('home.features.multipleServices.description')
   },
   {
     icon: IconBolt,
-    title: 'Lightning Fast',
-    description: 'Instant authentication and seamless service switching'
+    title: t('home.features.lightningFast.title'),
+    description: t('home.features.lightningFast.description')
   }
-]
+])
 
 // Charger les solutions au montage
 onMounted(async () => {
@@ -100,6 +98,6 @@ onMounted(async () => {
 })
 
 useHead({
-  title: t('contactPage.heroTitle')
+  title: t('meta.indexPage.title')
 })
 </script>
