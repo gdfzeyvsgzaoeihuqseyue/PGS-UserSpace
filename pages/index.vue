@@ -4,17 +4,17 @@
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">
-          {{ $t('home.hero.welcome') }} <span class="text-primary">{{ $t('home.hero.title') }}</span>
+          {{ $t('indexPage.hero.welcome') }} <span class="text-primary">{{ $t('indexPage.hero.title') }}</span>
         </h1>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-          {{ $t('home.hero.subtitle') }}
+          {{ $t('indexPage.hero.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/auth/register" class="btn btn-primary text-lg px-8 py-3">
-            {{ $t('home.hero.getStarted') }}
+            {{ $t('indexPage.hero.getStarted') }}
           </NuxtLink>
           <NuxtLink to="/auth/login" class="btn btn-outline text-lg px-8 py-3">
-            {{ $t('home.hero.signIn') }}
+            {{ $t('indexPage.hero.signIn') }}
           </NuxtLink>
         </div>
       </div>
@@ -24,8 +24,8 @@
         <div v-for="feature in features" :key="feature.title"
           class="card text-center hover:shadow-lg transition-shadow">
           <div class="relative w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <span class="absolute inset-0 bg-BtW opacity-10 dark:opacity-20 rounded-full"></span>
-            <component :is="feature.icon" class="w-8 h-8" />
+            <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-full"></span>
+            <component :is="feature.icon" class="w-8 h-8 text-primary" />
           </div>
           <h3 class="text-xl font-bold mb-2">{{ feature.title }}</h3>
           <p>{{ feature.description }}</p>
@@ -35,20 +35,20 @@
       <!-- Solutions -->
       <div class="space-y-8">
         <div class="text-center">
-          <h2 class="text-3xl font-bold mb-3">{{ $t('home.solutions.title') }}</h2>
+          <h2 class="text-3xl font-bold mb-3">{{ $t('indexPage.solutions.title') }}</h2>
           <p class="max-w-2xl mx-auto">
-            {{ $t('home.solutions.subtitle') }}
+            {{ $t('indexPage.solutions.subtitle') }}
           </p>
         </div>
 
         <!-- Solutions Grid -->
         <SolutionsGrid :solutions="solutionsStore.authEnabledSolutions" :loading="solutionsStore.loading"
-          :error="solutionsStore.error" :show-features="false" :empty-message="$t('home.solutions.empty')" />
+          :error="solutionsStore.error" :show-features="false" :empty-message="$t('indexPage.solutions.empty')" />
 
         <!-- View All Link -->
         <div v-if="solutionsStore.authEnabledSolutions.length > 0" class="text-center">
           <p class="text-sm text-gray-600">
-            {{ $t('home.solutions.available', { count: solutionsStore.authEnabledSolutions.length },
+            {{ $t('indexPage.solutions.available', { count: solutionsStore.authEnabledSolutions.length },
               solutionsStore.authEnabledSolutions.length) }}
           </p>
         </div>
@@ -73,18 +73,18 @@ const solutionsStore = useSolutionsStore()
 const features = computed(() => [
   {
     icon: IconLock,
-    title: t('home.features.secureAuth.title'),
-    description: t('home.features.secureAuth.description')
+    title: t('indexPage.features.secureAuth.title'),
+    description: t('indexPage.features.secureAuth.description')
   },
   {
     icon: IconLayoutGridAdd,
-    title: t('home.features.multipleServices.title'),
-    description: t('home.features.multipleServices.description')
+    title: t('indexPage.features.multipleServices.title'),
+    description: t('indexPage.features.multipleServices.description')
   },
   {
     icon: IconBolt,
-    title: t('home.features.lightningFast.title'),
-    description: t('home.features.lightningFast.description')
+    title: t('indexPage.features.lightningFast.title'),
+    description: t('indexPage.features.lightningFast.description')
   }
 ])
 

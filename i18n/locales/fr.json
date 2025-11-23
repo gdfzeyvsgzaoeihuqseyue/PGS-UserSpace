@@ -15,7 +15,19 @@
     "langFr": "Français",
     "langEn": "Anglais"
   },
-  "home": {
+  "navbar": {
+    "beta": "Bêta",
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire"
+  },
+  "footer": {
+    "copyright": "© {year} PGS MON ESPACE. Tous droits réservés.",
+    "description": "Plateforme d'authentification centralisée de l'écosystème PGS.",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "support": "Support"
+  },
+  "indexPage": {
     "hero": {
       "welcome": "Bienvenue sur",
       "title": "MON ESPACE PGS",
@@ -122,34 +134,5 @@
     "optional": "Facultatif",
     "showMore": "Afficher plus",
     "showLess": "Afficher moins"
-  },
-  "indexPage": {
-    "heroTitle": "La gestion d'entreprise",
-    "heroDynamicWords": {
-      "word1": "simplifiée",
-      "word2": "optimisée",
-      "word3": "rapide",
-      "word4": "intelligente"
-    },
-    "heroSubtitle": "Une solution complète pour optimiser vos processus et booster votre productivité",
-    "demoButton": "Voir une démo",
-    "startFreeButton": "Démarrer gratuitement",
-    "desktopVersionButton": "Obtenir la version bureautique",
-    "dashboardStatus": "Tableau de bord",
-    "featuresTitle": "Fonctionnalités",
-    "featuresSubtitle": "Nous proposons une large gamme de services.",
-    "allFeaturesButton": "Toutes les fonctionnalités",
-    "partnersTitle": "Ils nous font confiance",
-    "partnersSubtitle": "Ensemble, nous bâtissons l'avenir avec des collaborations stratégiques et durables.",
-    "testimonialsTitle": "Ce que disent nos utilisateurs",
-    "testimonialsSubtitle": "Découvrez les retours d'expérience de nos utilisateurs.",
-    "faqSubtitle": "Le palmarès des questions fréquentes.",
-    "newsletterTitle": "Restez informé",
-    "newsletterSubtitle": "Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités et mises à jour.",
-    "newsletterConsent": "En vous inscrivant, vous acceptez de recevoir nos communications marketing. Vous pourrez vous désinscrire à tout moment.",
-    "ctaTitle": "Prêt à transformer votre entreprise ?",
-    "ctaSubtitle": "Rejoignez de nombreuses entreprises qui font confiance à SuitOps pour leur gestion quotidienne",
-    "ctaStartNow": "Commencer maintenant",
-    "ctaContactUs": "Contactez-nous"
   }
 }

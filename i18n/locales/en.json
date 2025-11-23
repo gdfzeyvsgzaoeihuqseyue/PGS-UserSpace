@@ -15,7 +15,19 @@
     "langFr": "French",
     "langEn": "English"
   },
-  "home": {
+   "navbar": {
+    "beta": "Beta",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "footer": {
+    "copyright": "© {year} PGS MY SPACE. All rights reserved.",
+    "description": "Centralized authentication platform for the PGS ecosystem.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "support": "Support"
+  },
+  "indexPage": {
     "hero": {
       "welcome": "Welcome to",
       "title": "PGS MY SPACE",
@@ -122,34 +134,5 @@
     "optional": "Optional",
     "showMore": "Show more",
     "showLess": "Show less"
-  },
-  "indexPage": {
-    "heroTitle": "Business management",
-    "heroDynamicWords": {
-      "word1": "simplified",
-      "word2": "optimized",
-      "word3": "fast",
-      "word4": "smart"
-    },
-    "heroSubtitle": "A complete solution to optimize your processes and boost your productivity",
-    "demoButton": "See a demo",
-    "startFreeButton": "Start for free",
-    "desktopVersionButton": "Get desktop version",
-    "dashboardStatus": "Dashboard",
-    "featuresTitle": "Features",
-    "featuresSubtitle": "We offer a wide range of services.",
-    "allFeaturesButton": "All features",
-    "partnersTitle": "They trust us",
-    "partnersSubtitle": "Together, we build the future with strategic and lasting collaborations.",
-    "testimonialsTitle": "What our users say",
-    "testimonialsSubtitle": "Discover feedback from our users.",
-    "faqSubtitle": "The list of frequently asked questions.",
-    "newsletterTitle": "Stay informed",
-    "newsletterSubtitle": "Subscribe to our newsletter to receive our latest news and updates.",
-    "newsletterConsent": "By subscribing, you agree to receive our marketing communications. You can unsubscribe at any time.",
-    "ctaTitle": "Ready to transform your business?",
-    "ctaSubtitle": "Join many companies that trust SuitOps for their daily management",
-    "ctaStartNow": "Start now",
-    "ctaContactUs": "Contact us"
   }
 }
