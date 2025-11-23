@@ -16,16 +16,16 @@
           <span v-if="config.public.betaMode"
             class="relative inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary">
             <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-full"></span>
-            BETA
+            {{ $t('navbar.beta') }}
           </span>
         </NuxtLink>
 
         <div class="flex items-center space-x-4">
           <NuxtLink to="/auth/login" class="hover:text-primary transition-colors">
-            Sign In
+            {{ $t('navbar.signIn') }}
           </NuxtLink>
           <NuxtLink to="/auth/register" class="btn btn-primary">
-            Sign Up
+            {{ $t('navbar.signUp') }}
           </NuxtLink>
 
           <prefSettings />
