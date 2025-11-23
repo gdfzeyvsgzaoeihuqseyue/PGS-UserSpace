@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen mt-16 bg-WtB text-textClr font-body">
+  <div class="min-h-screen mt-16 font-body">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

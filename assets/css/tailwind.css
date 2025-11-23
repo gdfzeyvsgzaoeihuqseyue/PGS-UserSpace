@@ -17,33 +17,6 @@
   --color-ashAct: #d1d5db;
   --color-hsa: #374151;
   --color-hsaAct: #111827;
-
-
-
-
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  --color-primary-950: #082f49;
-
-  --color-secondary-50: #fafafa;
-  --color-secondary-100: #f4f4f5;
-  --color-secondary-200: #e4e4e7;
-  --color-secondary-300: #d4d4d8;
-  --color-secondary-400: #a1a1aa;
-  --color-secondary-500: #71717a;
-  --color-secondary-600: #52525b;
-  --color-secondary-700: #3f3f46;
-  --color-secondary-800: #27272a;
-  --color-secondary-900: #18181b;
-  --color-secondary-950: #09090b;
 }
 
 .dark {
@@ -61,37 +34,11 @@
   --color-ashAct: #111827;
   --color-hsa: #f3f4f6;
   --color-hsaAct: #d1d5db;
-
-
-  
-  --color-primary-50: #082f49; 
-  --color-primary-100: #0c4a6e;
-  --color-primary-200: #075985;
-  --color-primary-300: #0369a1;
-  --color-primary-400: #0284c7;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #2eafec;
-  --color-primary-700: #7dd3fc;
-  --color-primary-800: #bae6fd;
-  --color-primary-900: #e0f2fe;
-  --color-primary-950: #f0f9ff;
-
-  --color-secondary-50: #09090b;
-  --color-secondary-100: #18181b;
-  --color-secondary-200: #27272a;
-  --color-secondary-300: #3f3f46;
-  --color-secondary-400: #52525b;
-  --color-secondary-500: #71717a;
-  --color-secondary-600: #a1a1aa;
-  --color-secondary-700: #d4d4d8;
-  --color-secondary-800: #e4e4e7;
-  --color-secondary-900: #f4f4f5;
-  --color-secondary-950: #fafafa;
 }
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-WtB text-textClr;
   }
 }
 
@@ -101,23 +48,23 @@
   }
 
   .btn-primary {
-    @apply bg-primaryn text-white hover:bg-secondaryn focus:ring-primary-500;
+    @apply bg-primary text-white hover:bg-secondary focus:ring-primary;
   }
 
   .btn-secondary {
-    @apply bg-secondary-200 text-secondary-900 hover:bg-secondary-300 focus:ring-secondary-500;
+    @apply bg-secondary text-secondary hover:bg-secondary focus:ring-secondary;
   }
 
   .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+    @apply bg-danger text-white hover:bg-dangerAct focus:bg-danger;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-600 text-primaryn hover:bg-primary-50 focus:ring-primary-500;
+    @apply border-2 border-primary text-primary hover:text-white hover:bg-primary focus:ring-primary;
   }
 
   .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
   }
 
   .card {

@@ -14,13 +14,14 @@
           </div>
           <!-- Badge Beta -->
           <span v-if="config.public.betaMode"
-            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primaryn border border-primary-200">
+            class="relative inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary">
+            <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-full"></span>
             BETA
           </span>
         </NuxtLink>
 
         <div class="flex items-center space-x-4">
-          <NuxtLink to="/auth/login" class="hover:text-primaryn transition-colors">
+          <NuxtLink to="/auth/login" class="hover:text-primary transition-colors">
             Sign In
           </NuxtLink>
           <NuxtLink to="/auth/register" class="btn btn-primary">

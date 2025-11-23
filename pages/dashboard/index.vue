@@ -19,11 +19,12 @@
               {{ servicesStore.activeServiceCount }}
             </p>
           </div>
-          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-            <IconFolders class="w-6 h-6 text-primaryn" />
+          <div class="relative w-12 h-12 flex items-center justify-center">
+            <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconFolders class="w-6 h-6 text-primary" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/services" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/dashboard/services" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           View all services →
         </NuxtLink>
       </div>
@@ -43,7 +44,7 @@
             <IconShieldCheck class="w-6 h-6 text-green-600" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/profile" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/dashboard/profile" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           Manage profile →
         </NuxtLink>
       </div>
@@ -57,11 +58,12 @@
               {{ formatDate(authStore.user?.lastLogin) }}
             </p>
           </div>
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-            <IconClock class="w-6 h-6 text-primaryn" />
+          <div class="relative w-12 h-12 flex items-center justify-center">
+            <span class="absolute inset-0 bg-secondary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconClock class="w-6 h-6 text-secondary" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/sessions" class="mt-4 text-sm text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/dashboard/sessions" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           View sessions →
         </NuxtLink>
       </div>
@@ -73,8 +75,9 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <NuxtLink to="/dashboard/services"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
-          <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-            <IconFolders class="w-5 h-5 text-primaryn" />
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconFolders class="w-5 h-5 text-primary" />
           </div>
           <span class="font-medium text-gray-900">Browse Services</span>
         </NuxtLink>
@@ -89,18 +92,20 @@
 
         <NuxtLink to="/dashboard/sessions"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
-          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <IconLock class="w-5 h-5 text-primaryn" />
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <span class="absolute inset-0 bg-secondary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconLock class="w-5 h-5 text-secondary" />
           </div>
           <span class="font-medium text-gray-900">Manage Sessions</span>
         </NuxtLink>
 
         <button @click="handleLogout"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-red-50 transition-colors border border-gray-200">
-          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-            <IconLogout class="w-5 h-5 text-red-600" />
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <span class="absolute inset-0 bg-danger opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconLogout class="w-5 h-5 text-danger" />
           </div>
-          <span class="font-medium text-red-900">Sign Out</span>
+          <span class="font-medium text-danger">Sign Out</span>
         </button>
       </div>
     </div>
@@ -109,7 +114,7 @@
     <div class="card" v-if="servicesStore.activeServices.length > 0">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-bold text-gray-900">Your Active Services</h2>
-        <NuxtLink to="/dashboard/services" class="text-sm text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/dashboard/services" class="text-sm text-primary hover:text-secondary font-medium">
           View all
         </NuxtLink>
       </div>
@@ -117,7 +122,7 @@
         <div v-for="service in servicesStore.activeServices.slice(0, 4)" :key="service.serviceId"
           class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-all">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-primaryn rounded-lg flex items-center justify-center">
+            <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-lg">
                 {{ service.serviceName.charAt(0) }}
               </span>

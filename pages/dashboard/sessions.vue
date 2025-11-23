@@ -9,14 +9,15 @@
     </div>
 
     <!-- Current Session Info -->
-    <div class="card bg-primary-50 border-primary-200">
+    <div class="relative card border-primary">
+      <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20"></span>
       <div class="flex items-start">
-        <div class="w-12 h-12 bg-primaryn rounded-lg flex items-center justify-center flex-shrink-0">
+        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
           <IconShieldCheck class="w-6 h-6 text-white" />
         </div>
         <div class="ml-4">
-          <h3 class="text-lg font-bold text-primaryn">Current Session</h3>
-          <p class="text-sm text-secondaryn mt-1">
+          <h3 class="text-lg font-bold text-primary">Current Session</h3>
+          <p class="text-sm text-secondary mt-1">
             This is your current active session. Sessions automatically expire after 7 days of inactivity.
           </p>
         </div>
@@ -27,7 +28,7 @@
     <div class="card">
       <div class="flex items-start space-x-4">
         <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-          <IconInfoCircle class="w-5 h-5 text-primaryn" />
+          <IconInfoCircle class="w-5 h-5 text-primary" />
         </div>
         <div class="flex-1">
           <h3 class="font-medium text-gray-900 mb-1">About Sessions</h3>

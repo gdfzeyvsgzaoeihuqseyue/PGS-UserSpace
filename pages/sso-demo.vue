@@ -17,7 +17,7 @@
           <div class="flex items-start space-x-4 mb-4">
             <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
               <img v-if="service.logo" :src="service.logo" :alt="service.name" class="w-full h-full object-cover" />
-              <div v-else class="w-full h-full flex items-center justify-center bg-primaryn">
+              <div v-else class="w-full h-full flex items-center justify-center bg-primary">
                 <span class="text-white font-bold text-xl">
                   {{ service.name.charAt(0) }}
                 </span>
@@ -27,7 +27,7 @@
               <h3 class="text-xl font-bold text-gray-900">{{ service.name }}</h3>
               <p class="text-sm text-gray-600 mt-1">{{ service.description }}</p>
               <a :href="service.domain" target="_blank" rel="noopener noreferrer"
-                class="text-xs text-primaryn hover:text-secondaryn mt-2 inline-block">
+                class="text-xs text-primary hover:text-secondary mt-2 inline-block">
                 {{ service.domain }}
               </a>
             </div>
@@ -47,7 +47,7 @@
 
           <!-- Code Example -->
           <details class="mt-4">
-            <summary class="text-sm text-gray-600 cursor-pointer hover:text-primaryn">
+            <summary class="text-sm text-gray-600 cursor-pointer hover:text-primary">
               Voir le code d'intégration
             </summary>
             <div class="mt-3 bg-gray-900 rounded-lg p-4 overflow-x-auto">
@@ -72,58 +72,22 @@
         </h2>
 
         <div class="space-y-4">
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primaryn font-bold">1</span>
+          <div v-for="step in Doc" :key="step.id" class="flex items-start space-x-3">
+            <div class="relative w-8 h-8 flex items-center justify-center flex-shrink-0">
+              <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-full"></span>
+              <span class="text-primary font-bold">{{ step.id }}</span>
             </div>
-            <div>
-              <h3 class="font-medium text-gray-900">L'utilisateur clique sur "Se connecter"</h3>
-              <p class="text-sm text-gray-600 mt-1">
-                Le bouton redirige vers l'espace SSO avec les paramètres du service
-              </p>
-            </div>
-          </div>
 
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primaryn font-bold">2</span>
-            </div>
             <div>
-              <h3 class="font-medium text-gray-900">Vérification de l'authentification</h3>
-              <p class="text-sm text-gray-600 mt-1">
-                Le SSO vérifie si l'utilisateur est déjà connecté
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primaryn font-bold">3</span>
-            </div>
-            <div>
-              <h3 class="font-medium text-gray-900">Création ou vérification de l'accès</h3>
-              <p class="text-sm text-gray-600 mt-1">
-                Le système crée automatiquement l'accès au service si nécessaire
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-start space-x-3">
-            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <span class="text-primaryn font-bold">4</span>
-            </div>
-            <div>
-              <h3 class="font-medium text-gray-900">Redirection vers le service</h3>
-              <p class="text-sm text-gray-600 mt-1">
-                L'utilisateur est redirigé vers le service avec un token SSO temporaire
-              </p>
+              <h3 class="font-medium text-gray-900">{{ step.title }}</h3>
+              <p class="text-sm text-gray-600 mt-1">{{ step.text }}</p>
             </div>
           </div>
         </div>
 
         <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div class="flex items-start">
-            <IconInfoCircle class="w-5 h-5 text-primaryn mr-3 mt-0.5" />
+            <IconInfoCircle class="w-5 h-5 text-primary mr-3 mt-0.5" />
             <div>
               <h4 class="text-sm font-medium text-blue-900 mb-1">Note importante</h4>
               <p class="text-sm text-blue-800">
@@ -178,6 +142,31 @@ const services = ref([
     logo: 'https://cdn.jsdelivr.net/gh/progestionsoft/Files/_General/Images/Logos/SuitOps-MC.png'
   }
 ])
+
+// Documentation
+const Doc = [
+  {
+    id: 1,
+    title: "L'utilisateur clique sur \"Se connecter\"",
+    text: "Le bouton redirige vers l'espace SSO avec les paramètres du service"
+  },
+  {
+    id: 2,
+    title: "Vérification de l'authentification",
+    text: "Le SSO vérifie si l'utilisateur est déjà connecté"
+  },
+  {
+    id: 3,
+    title: "Création ou vérification de l'accès",
+    text: "Le système crée automatiquement l'accès au service si nécessaire"
+  },
+  {
+    id: 4,
+    title: "Redirection vers le service",
+    text: "L'utilisateur est redirigé vers le service avec un token SSO temporaire"
+  }
+]
+
 
 const getSSOUrl = (serviceId: string, action: string, domain: string) => {
   const baseUrl = config.public.pgsBaseAPI.replace('/api/v1', '')

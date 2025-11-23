@@ -3,7 +3,7 @@
     <div class="max-w-md w-full">
       <!-- Loading State -->
       <div v-if="loading" class="card text-center">
-        <div class="w-16 h-16 bg-primaryn rounded-xl flex items-center justify-center mx-auto mb-4">
+        <div class="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
           <div class="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full"></div>
         </div>
         <h2 class="text-xl font-bold text-gray-900 mb-2">Connexion en cours...</h2>

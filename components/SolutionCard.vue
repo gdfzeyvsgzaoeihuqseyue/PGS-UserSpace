@@ -6,14 +6,14 @@
         <div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
           <img v-if="solution.logo" :src="solution.logo" :alt="`${solution.name} logo`"
             class="w-full h-full object-cover" />
-          <div v-else class="w-full h-full flex items-center justify-center bg-primaryn">
+          <div v-else class="w-full h-full flex items-center justify-center bg-primary">
             <span class="text-white font-bold text-xl">
               {{ solution.name.charAt(0) }}
             </span>
           </div>
         </div>
         <div>
-          <h3 class="text-lg font-bold text-gray-900 group-hover:text-primaryn transition-colors">
+          <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">
             {{ solution.name }}
           </h3>
           <span class="badge badge-info text-xs">{{ solution.category }}</span>

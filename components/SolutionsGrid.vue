@@ -32,8 +32,8 @@
     <!-- Empty State -->
     <div v-else-if="solutions.length === 0" class="card text-center py-12">
       <IconInbox class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-      <h3 class="text-lg font-medium text-gray-900 mb-2">Aucune solution trouvée</h3>
-      <p class="text-gray-600">
+      <h3 class="text-lg font-medium mb-2">Aucune solution trouvée</h3>
+      <p>
         {{ emptyMessage || 'Aucune solution ne correspond à vos critères de recherche.' }}
       </p>
     </div>

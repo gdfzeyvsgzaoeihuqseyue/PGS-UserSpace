@@ -3,10 +3,10 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <!-- Hero Section -->
       <div class="text-center mb-16">
-        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-          Welcome to <span class="text-primaryn">PGS MY SPACE</span>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          Welcome to <span class="text-primary">PGS MY SPACE</span>
         </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
           Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -21,37 +21,22 @@
 
       <!-- Features Grid -->
       <div class="grid md:grid-cols-3 gap-8 mb-16">
-        <div class="card text-center hover:shadow-lg transition-shadow">
-          <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconLock class="w-8 h-8 text-primaryn" />
+        <div v-for="feature in features" :key="feature.title"
+          class="card text-center hover:shadow-lg transition-shadow">
+          <div class="relative w-16 h-16 flex items-center justify-center mx-auto mb-4">
+            <span class="absolute inset-0 bg-BtW opacity-10 dark:opacity-20 rounded-full"></span>
+            <component :is="feature.icon" class="w-8 h-8" />
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Secure Authentication</h3>
-          <p class="text-gray-600">Industry-standard security with HTTP-only cookies and JWT tokens</p>
-        </div>
-
-        <div class="card text-center hover:shadow-lg transition-shadow">
-          <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconLayoutGridAdd class="w-8 h-8 text-primaryn" />
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Multiple Services</h3>
-          <p class="text-gray-600">Access Templix, Suitops, EQT, Hire, and more with one account</p>
-        </div>
-
-        <div class="card text-center hover:shadow-lg transition-shadow">
-          <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <IconBolt class="w-8 h-8 text-primaryn" />
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Lightning Fast</h3>
-          <p class="text-gray-600">Instant authentication and seamless service switching</p>
+          <h3 class="text-xl font-bold mb-2">{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
         </div>
       </div>
 
-      <!-- Solutions Showcase -->
+      <!-- Solutions -->
       <div class="space-y-8">
-        <!-- Header -->
         <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">Solutions de l'Écosystème PGS</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <h2 class="text-3xl font-bold mb-3">Solutions de l'Écosystème PGS</h2>
+          <p class="max-w-2xl mx-auto">
             Découvrez nos solutions innovantes avec authentification SSO intégrée
           </p>
         </div>
@@ -75,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconBolt,IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
+import { IconBolt, IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -86,6 +71,24 @@ definePageMeta({
 })
 
 const solutionsStore = useSolutionsStore()
+
+const features = [
+  {
+    icon: IconLock,
+    title: 'Secure Authentication',
+    description: 'Industry-standard security with HTTP-only cookies and JWT tokens'
+  },
+  {
+    icon: IconLayoutGridAdd,
+    title: 'Multiple Services',
+    description: 'Access Templix, Suitops, EQT, Hire, and more with one account'
+  },
+  {
+    icon: IconBolt,
+    title: 'Lightning Fast',
+    description: 'Instant authentication and seamless service switching'
+  }
+]
 
 // Charger les solutions au montage
 onMounted(async () => {

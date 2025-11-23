@@ -107,7 +107,7 @@
         </div>
 
         <!-- Login Link -->
-        <NuxtLink to="/auth/login" class="block text-center text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/auth/login" class="block text-center text-primary hover:text-secondary font-medium">
           Sign in instead
         </NuxtLink>
       </div>

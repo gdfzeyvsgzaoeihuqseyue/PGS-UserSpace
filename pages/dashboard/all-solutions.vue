@@ -65,7 +65,7 @@
           <IconX class="w-3 h-3" />
         </button>
 
-        <button @click="clearAllFilters" class="text-sm text-primaryn hover:text-secondaryn font-medium">
+        <button @click="clearAllFilters" class="text-sm text-primary hover:text-secondary font-medium">
           Tout effacer
         </button>
       </div>
@@ -79,8 +79,9 @@
             <p class="text-sm text-gray-600">Total</p>
             <p class="text-2xl font-bold text-gray-900">{{ solutionsStore.totalSolutions }}</p>
           </div>
-          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <IconFolders class="w-5 h-5 text-primaryn" />
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconFolders class="w-5 h-5 text-primary" />
           </div>
         </div>
       </div>
@@ -101,10 +102,11 @@
         <div class="flex items-center justify-between">
           <div>
             <p class="text-sm text-gray-600">Avec SSO</p>
-            <p class="text-2xl font-bold text-primaryn">{{ solutionsStore.authEnabledSolutions.length }}</p>
+            <p class="text-2xl font-bold text-primary">{{ solutionsStore.authEnabledSolutions.length }}</p>
           </div>
-          <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-            <IconLock class="w-5 h-5 text-primaryn" />
+          <div class="relative w-10 h-10 flex items-center justify-center">
+            <span class="absolute inset-0 bg-secondary opacity-10 dark:opacity-20 rounded-lg"></span>
+            <IconLock class="w-5 h-5 text-secondary" />
           </div>
         </div>
       </div>

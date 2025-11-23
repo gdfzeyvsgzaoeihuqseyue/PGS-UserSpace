@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-primary-100 via-white to-secondary-100">
+  <div class="min-h-screen bg-gradient-to-br from-WtB via-bgClr to-WtBAct">
     <AppHeader />
     <main>
       <slot />

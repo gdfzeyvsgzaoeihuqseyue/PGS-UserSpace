@@ -63,7 +63,7 @@
         </div>
 
         <!-- Register Link -->
-        <NuxtLink to="/auth/register" class="block text-center text-primaryn hover:text-secondaryn font-medium">
+        <NuxtLink to="/auth/register" class="block text-center text-primary hover:text-secondary font-medium">
           Create a new account
         </NuxtLink>
       </div>

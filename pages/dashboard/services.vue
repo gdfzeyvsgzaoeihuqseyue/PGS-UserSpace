@@ -40,7 +40,7 @@
             class="card hover:shadow-lg transition-shadow">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-primaryn rounded-lg flex items-center justify-center flex-shrink-0">
+                <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
                   <span class="text-white font-bold text-xl">
                     {{ service.serviceName.charAt(0) }}
                   </span>
@@ -58,7 +58,7 @@
               <div class="flex items-center text-sm text-gray-600">
                 <IconWorld class="w-4 h-4 mr-2" />
                 <a :href="service.domain" target="_blank" rel="noopener noreferrer"
-                  class="hover:text-primaryn truncate">
+                  class="hover:text-primary truncate">
                   {{ service.domain }}
                 </a>
               </div>
@@ -175,7 +175,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconClock, IconFolders, IconWorld, IconX } from '@tabler/icons-vue'
+import { IconAlertCircle, IconClock, IconFolders, IconWorld, IconX } from '@tabler/icons-vue'
 import type { Service } from '~/types'
 
 definePageMeta({
