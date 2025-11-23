@@ -3,9 +3,12 @@
     <div class="max-w-md w-full">
       <!-- Header -->
       <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-primary-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-          <span class="text-white font-bold text-2xl">P</span>
+        <!-- Logo -->
+        <div class="flex justify-center">
+          <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-12 w-auto sm:h-16 dark:hidden" />
+          <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-12 w-auto sm:h-16 hidden dark:block" />
         </div>
+
         <h2 class="text-3xl font-bold text-gray-900">Create your account</h2>
         <p class="mt-2 text-gray-600">Join the PGS ecosystem today</p>
       </div>
@@ -125,6 +128,9 @@
 
 <script setup lang="ts">
 import type { RegisterData } from '~/types'
+import { useSharedFiles } from '~/stores/sharedFiles';
+
+const sharedFiles = useSharedFiles();
 
 definePageMeta({
   layout: 'default',
@@ -132,6 +138,8 @@ definePageMeta({
 })
 
 const authStore = useAuthStore()
+const router = useRouter()
+const route = useRoute()
 
 const form = reactive<RegisterData>({
   firstName: '',
@@ -142,11 +150,33 @@ const form = reactive<RegisterData>({
 })
 
 const registrationSuccess = ref(false)
+const serviceId = route.query.serviceId as string
+const returnUrl = route.query.returnUrl as string
 
 const handleRegister = async () => {
   try {
     await authStore.register(form)
-    registrationSuccess.value = true
+
+    // Si un serviceId est présent, connecter automatiquement et rediriger
+    if (serviceId) {
+      // Connecter l'utilisateur automatiquement
+      await authStore.login({
+        email: form.email,
+        password: form.password
+      })
+
+      // Rediriger vers le callback SSO
+      const queryParams = new URLSearchParams({
+        serviceId,
+        action: 'login'
+      })
+      if (returnUrl) {
+        queryParams.set('returnUrl', returnUrl)
+      }
+      await router.push(`/auth/authorize?${queryParams.toString()}`)
+    } else {
+      registrationSuccess.value = true
+    }
   } catch (error) {
     // Error is handled in the store
   }

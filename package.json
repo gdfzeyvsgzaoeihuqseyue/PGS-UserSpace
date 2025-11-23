@@ -14,14 +14,21 @@
   },
   "dependencies": {
     "@nuxt/image": "^2.0.0",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/robots": "^5.5.6",
+    "@nuxtjs/sitemap": "^7.4.7",
     "@pinia/nuxt": "^0.11.3",
     "@tabler/icons-vue": "^3.35.0",
     "nuxt": "^3.20.1",
+    "nuxt-gtag": "^4.1.0",
     "pinia": "^3.0.4",
     "vue": "^3.5.24",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@headlessui/vue": "^1.7.23",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@types/node": "^24.10.1",
     "typescript": "^5.9.3",

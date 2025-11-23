@@ -18,7 +18,7 @@ export const useProfileStore = defineStore('profile', {
         const config = useRuntimeConfig()
         const response = await $fetch<{ message: string; user: User }>('/user/profile', {
           method: 'PUT',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include',
           body: data
         })

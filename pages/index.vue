@@ -4,7 +4,7 @@
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-          Welcome to <span class="text-primary-600">PGS</span>
+          Welcome to <span class="text-danger">PGS</span>
         </h1>
         <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
           Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services
@@ -76,6 +76,9 @@
 
 <script setup lang="ts">
 import { IconBolt, IconLayoutGridAdd, IconLock } from '@tabler/icons-vue'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 definePageMeta({
   layout: 'default',
@@ -91,5 +94,9 @@ onMounted(async () => {
   } catch (error) {
     console.error('Failed to load solutions:', error)
   }
+})
+
+useHead({
+  title: t('contactPage.heroTitle')
 })
 </script>

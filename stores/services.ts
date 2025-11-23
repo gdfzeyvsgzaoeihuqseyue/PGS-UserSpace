@@ -47,7 +47,7 @@ export const useServicesStore = defineStore('services', {
         const config = useRuntimeConfig()
         const response = await $fetch<{ user: any; services: Service[] }>('/user/profile', {
           method: 'GET',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include'
         })
 

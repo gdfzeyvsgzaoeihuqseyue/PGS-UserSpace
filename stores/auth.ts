@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', {
         const config = useRuntimeConfig()
         const response = await $fetch<{ message: string; user: User }>('/user/auth/register', {
           method: 'POST',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include',
           body: data
         })
@@ -51,7 +51,7 @@ export const useAuthStore = defineStore('auth', {
         const config = useRuntimeConfig()
         const response = await $fetch<LoginResponse>('/user/auth/login', {
           method: 'POST',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include',
           body: data
         })
@@ -80,7 +80,7 @@ export const useAuthStore = defineStore('auth', {
         const config = useRuntimeConfig()
         await $fetch('/user/auth/logout', {
           method: 'POST',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include'
         })
 
@@ -108,7 +108,7 @@ export const useAuthStore = defineStore('auth', {
         const config = useRuntimeConfig()
         const response = await $fetch<SessionResponse>('/user/auth/session', {
           method: 'GET',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include'
         })
 
@@ -134,7 +134,7 @@ export const useAuthStore = defineStore('auth', {
         const config = useRuntimeConfig()
         const response = await $fetch<{ message: string; accessToken: string; expiresIn: number }>('/user/auth/refresh-token', {
           method: 'POST',
-          baseURL: config.public.apiUrl,
+          baseURL: config.public.pgsBaseAPI,
           credentials: 'include'
         })
 

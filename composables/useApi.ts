@@ -2,7 +2,7 @@ import type { UseFetchOptions } from 'nuxt/app'
 
 export const useApi = () => {
   const config = useRuntimeConfig()
-  const baseURL = config.public.apiUrl
+  const baseURL = config.public.PGS_API_URL
 
   const apiFetch = async <T>(
     endpoint: string,
