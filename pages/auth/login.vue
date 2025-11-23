@@ -121,7 +121,7 @@ const handleLogin = async () => {
       }
       await router.push(`/auth/authorize?${queryParams.toString()}`)
     } else {
-      await router.push('/dashboard')
+      await router.push('/me')
     }
   } catch (error) {
   }

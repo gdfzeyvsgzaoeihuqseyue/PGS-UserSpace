@@ -34,12 +34,12 @@
           </div>
 
           <div class="space-y-2">
-            <SSOButton :service-id="service.id" action="login" :return-url="`${service.domain}/dashboard`"
+            <SSOButton :service-id="service.id" action="login" :return-url="`${service.domain}/me`"
               button-class="w-full btn btn-primary">
               <span>Se connecter à {{ service.name }}</span>
             </SSOButton>
 
-            <SSOButton :service-id="service.id" action="register" :return-url="`${service.domain}/dashboard`"
+            <SSOButton :service-id="service.id" action="register" :return-url="`${service.domain}/me`"
               button-class="w-full btn btn-outline">
               <span>S'inscrire sur {{ service.name }}</span>
             </SSOButton>
@@ -170,6 +170,6 @@ const Doc = [
 
 const getSSOUrl = (serviceId: string, action: string, domain: string) => {
   const baseUrl = config.public.pgsBaseAPI.replace('/api/v1', '')
-  return `${baseUrl}/auth/authorize?serviceId=${serviceId}&action=${action}&returnUrl=${domain}/dashboard`
+  return `${baseUrl}/auth/authorize?serviceId=${serviceId}&action=${action}&returnUrl=${domain}/me`
 }
 </script>

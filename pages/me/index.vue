@@ -24,7 +24,7 @@
             <IconFolders class="w-6 h-6 text-primary" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/services" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
+        <NuxtLink to="/me/services" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           View all services →
         </NuxtLink>
       </div>
@@ -44,7 +44,7 @@
             <IconShieldCheck class="w-6 h-6 text-green-600" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/profile" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
+        <NuxtLink to="/me/profile" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           Manage profile →
         </NuxtLink>
       </div>
@@ -63,7 +63,7 @@
             <IconClock class="w-6 h-6 text-secondary" />
           </div>
         </div>
-        <NuxtLink to="/dashboard/sessions" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
+        <NuxtLink to="/me/sessions" class="mt-4 text-sm text-primary hover:text-secondary font-medium">
           View sessions →
         </NuxtLink>
       </div>
@@ -73,7 +73,7 @@
     <div class="card">
       <h2 class="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <NuxtLink to="/dashboard/services"
+        <NuxtLink to="/me/services"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="relative w-10 h-10 flex items-center justify-center">
             <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-lg"></span>
@@ -82,7 +82,7 @@
           <span class="font-medium text-gray-900">Browse Services</span>
         </NuxtLink>
 
-        <NuxtLink to="/dashboard/profile"
+        <NuxtLink to="/me/profile"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
             <IconUser class="w-5 h-5 text-green-600" />
@@ -90,7 +90,7 @@
           <span class="font-medium text-gray-900">Edit Profile</span>
         </NuxtLink>
 
-        <NuxtLink to="/dashboard/sessions"
+        <NuxtLink to="/me/sessions"
           class="flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors border border-gray-200">
           <div class="relative w-10 h-10 flex items-center justify-center">
             <span class="absolute inset-0 bg-secondary opacity-10 dark:opacity-20 rounded-lg"></span>
@@ -114,7 +114,7 @@
     <div class="card" v-if="servicesStore.activeServices.length > 0">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-bold text-gray-900">Your Active Services</h2>
-        <NuxtLink to="/dashboard/services" class="text-sm text-primary hover:text-secondary font-medium">
+        <NuxtLink to="/me/services" class="text-sm text-primary hover:text-secondary font-medium">
           View all
         </NuxtLink>
       </div>

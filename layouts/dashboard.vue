@@ -5,7 +5,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
-          <NuxtLink to="/dashboard" class="flex items-center space-x-3">
+          <NuxtLink to="/me" class="flex items-center space-x-3">
             <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-xl">P</span>
             </div>
@@ -36,7 +36,7 @@
               <!-- User Dropdown -->
               <div v-if="showUserMenu"
                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
-                <NuxtLink to="/dashboard/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                <NuxtLink to="/me/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   @click="showUserMenu = false">
                   Profile Settings
                 </NuxtLink>
@@ -55,16 +55,16 @@
         <!-- Sidebar Navigation -->
         <aside class="lg:w-64 flex-shrink-0" :class="{ 'hidden lg:block': !showMobileMenu }">
           <nav class="space-y-1">
-            <NuxtLink to="/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
+            <NuxtLink to="/me" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
+              :class="isActive('/me') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconHome class="w-5 h-5" />
               <span class="font-medium">Dashboard</span>
             </NuxtLink>
 
-            <NuxtLink to="/dashboard/services"
+            <NuxtLink to="/me/services"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/services') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/me/services') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLayout2 class="w-5 h-5" />
               <span class="font-medium">Services</span>
@@ -73,24 +73,24 @@
               </span>
             </NuxtLink>
 
-            <NuxtLink to="/dashboard/all-solutions"
+            <NuxtLink to="/me/solutions"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/all-solutions') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/me/solutions') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLayoutGridAdd class="w-5 h-5" />
               <span class="font-medium">Toutes les solutions</span>
             </NuxtLink>
 
-            <NuxtLink to="/dashboard/sessions"
+            <NuxtLink to="/me/sessions"
               class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/sessions') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
+              :class="isActive('/me/sessions') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconLock class="w-5 h-5" />
               <span class="font-medium">Sessions</span>
             </NuxtLink>
 
-            <NuxtLink to="/dashboard/profile" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
-              :class="isActive('/dashboard/profile') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
+            <NuxtLink to="/me/profile" class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors"
+              :class="isActive('/me/profile') ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'"
               @click="showMobileMenu = false">
               <IconUser class="w-5 h-5" />
               <span class="font-medium">Profile</span>
@@ -126,8 +126,8 @@ const toggleMobileMenu = () => {
 }
 
 const isActive = (path: string) => {
-  if (path === '/dashboard') {
-    return route.path === '/dashboard'
+  if (path === '/me') {
+    return route.path === '/me'
   }
   return route.path.startsWith(path)
 }

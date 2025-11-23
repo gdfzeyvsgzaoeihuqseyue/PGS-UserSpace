@@ -3,14 +3,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   // If user is authenticated, redirect to dashboard
   if (authStore.isAuthenticated && authStore.user) {
-    return navigateTo('/dashboard')
+    return navigateTo('/me')
   }
 
   // Try to check session silently
   try {
     await authStore.checkSession()
     // If successful, redirect to dashboard
-    return navigateTo('/dashboard')
+    return navigateTo('/me')
   } catch (error) {
     // Not authenticated, allow access to guest pages
     return
