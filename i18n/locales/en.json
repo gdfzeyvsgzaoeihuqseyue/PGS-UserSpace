@@ -15,7 +15,7 @@
     "langFr": "French",
     "langEn": "English"
   },
-   "navbar": {
+  "navbar": {
     "beta": "Beta",
     "signIn": "Sign In",
     "signUp": "Sign Up"
@@ -134,5 +134,19 @@
     "optional": "Optional",
     "showMore": "Show more",
     "showLess": "Show less"
+  },
+  "dashboard": {
+    "menu": {
+      "dashboard": "Dashboard",
+      "services": "Services",
+      "solutions": "All Solutions",
+      "sessions": "Sessions",
+      "profile": "Profile",
+      "settings": "Settings"
+    },
+    "userMenu": {
+      "profileSettings": "Profile Settings",
+      "signOut": "Sign Out"
+    }
   }
 }

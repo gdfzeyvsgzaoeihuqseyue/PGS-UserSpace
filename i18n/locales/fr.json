@@ -134,5 +134,19 @@
     "optional": "Facultatif",
     "showMore": "Afficher plus",
     "showLess": "Afficher moins"
+  },
+  "dashboard": {
+    "menu": {
+      "dashboard": "Tableau de bord",
+      "services": "Services",
+      "solutions": "Toutes les solutions",
+      "sessions": "Sessions",
+      "profile": "Profil",
+      "settings": "Paramètres"
+    },
+    "userMenu": {
+      "profileSettings": "Paramètres du profil",
+      "signOut": "Se déconnecter"
+    }
   }
 }

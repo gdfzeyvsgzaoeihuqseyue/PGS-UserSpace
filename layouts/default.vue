@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-WtB via-bgClr to-WtBAct">
     <AppHeader />
-    <main>
+    <main class="pt-16">
       <slot />
     </main>
-     <AppFooter />
+    <AppFooter />
   </div>
 </template>
 

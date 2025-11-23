@@ -26,7 +26,12 @@ export default {
         ashAct: 'var(--color-ashAct)',
         hsa: 'var(--color-hsa)',
         hsaAct: 'var(--color-hsaAct)',
-      }
+      },
+      fontFamily: {
+        body: ['"Kedebideri"', 'sans-serif'],
+        sans: ['"Science Gothic', 'sans-serif'],
+        heading: ['"Stack Sans Notch"', 'sans-serif']
+      },
     },
   },
   plugins: [],

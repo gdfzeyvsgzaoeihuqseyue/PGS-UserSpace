@@ -74,6 +74,15 @@ export default defineNuxtConfig({
     configPath: '~/tailwind.config.ts'
   },
 
+   googleFonts: {
+    display: 'swap',
+    families: {
+      'Kedebideri': [400, 500, 600, 700, 800, 900],
+      'Science+Gothic': [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      'Stack+Sans+Notch': [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    }
+  },
+
   app: {
     head: {
       title: 'PGS MY SPACE',
