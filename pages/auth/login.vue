@@ -9,8 +9,8 @@
           <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-12 w-auto sm:h-16 hidden dark:block" />
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-900">Welcome back</h2>
-        <p class="mt-2 text-gray-600">Sign in to access your account</p>
+        <h2 class="text-3xl font-bold text-gray-900">{{ $t('auth.login.welcome') }}</h2>
+        <p class="mt-2 text-gray-600">{{ $t('auth.login.subtitle') }}</p>
       </div>
 
       <!-- Login Form -->
@@ -27,27 +27,27 @@
           <!-- Email Field -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
+              {{ $t('auth.login.emailLabel') }}
             </label>
-            <input id="email" v-model="form.email" type="email" required class="input" placeholder="you@example.com"
-              :disabled="authStore.loading" />
+            <input id="email" v-model="form.email" type="email" required class="input"
+              :placeholder="$t('auth.login.emailPlaceholder')" :disabled="authStore.loading" />
           </div>
 
           <!-- Password Field -->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              Password
+              {{ $t('auth.login.passwordLabel') }}
             </label>
-            <input id="password" v-model="form.password" type="password" required class="input" placeholder="••••••••"
-              :disabled="authStore.loading" />
+            <input id="password" v-model="form.password" type="password" required class="input"
+              :placeholder="$t('auth.login.passwordPlaceholder')" :disabled="authStore.loading" />
           </div>
 
           <!-- Submit Button -->
           <button type="submit" class="w-full btn btn-primary" :disabled="authStore.loading">
-            <span v-if="!authStore.loading">Sign In</span>
+            <span v-if="!authStore.loading">{{ $t('auth.login.submitButton') }}</span>
             <span v-else class="flex items-center justify-center">
               <IconLoader2 class="animate-spin h-5 w-5 mr-2" />
-              Signing in...
+              {{ $t('auth.login.submittingButton') }}
             </span>
           </button>
         </form>
@@ -58,13 +58,13 @@
             <div class="w-full border-t border-gray-300"></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <span class="px-2 bg-white text-gray-500">Don't have an account?</span>
+            <span class="px-2 bg-white text-gray-500">{{ $t('auth.login.noAccount') }}</span>
           </div>
         </div>
 
         <!-- Register Link -->
         <NuxtLink to="/auth/register" class="block text-center text-primary hover:text-secondary font-medium">
-          Create a new account
+          {{ $t('auth.login.createAccount') }}
         </NuxtLink>
       </div>
     </div>

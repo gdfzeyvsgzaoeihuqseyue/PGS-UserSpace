@@ -6,7 +6,7 @@
         <div class="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
           <div class="animate-spin h-8 w-8 border-4 border-white border-t-transparent rounded-full"></div>
         </div>
-        <h2 class="text-xl font-bold text-gray-900 mb-2">Connexion en cours...</h2>
+        <h2 class="text-xl font-bold text-gray-900 mb-2">{{ $t('auth.authorize.loadingTitle') }}</h2>
         <p class="text-gray-600">{{ statusMessage }}</p>
       </div>
 
@@ -19,7 +19,7 @@
           </div>
         </div>
         <button @click="retry" class="w-full btn btn-primary">
-          Réessayer
+          {{ $t('auth.authorize.retry') }}
         </button>
       </div>
     </div>
@@ -34,13 +34,14 @@ definePageMeta({
   middleware: []
 })
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const config = useRuntimeConfig()
 
 const loading = ref(true)
 const error = ref<string | null>(null)
-const statusMessage = ref('Vérification de votre authentification...')
+const statusMessage = ref(t('auth.authorize.statusChecking'))
 
 const serviceId = route.query.serviceId as string
 const action = (route.query.action as string) || 'login'
@@ -66,7 +67,7 @@ const handleSSO = async () => {
       throw new Error('Service ID manquant')
     }
 
-    statusMessage.value = 'Vérification du service...'
+    statusMessage.value = t('auth.authorize.statusService')
 
     // Appeler l'endpoint SSO callback
     const response = await $fetch<SSOCallbackResponse>('/user/auth/authorize', {
@@ -81,7 +82,7 @@ const handleSSO = async () => {
 
     if (!response.authenticated) {
       // Utilisateur non authentifié, rediriger vers login/register
-      statusMessage.value = 'Redirection vers la page de connexion...'
+      statusMessage.value = t('auth.authorize.statusRedirecting')
 
       const redirectPath = action === 'register' ? '/auth/register' : '/auth/login'
       const queryParams = new URLSearchParams({
@@ -94,7 +95,7 @@ const handleSSO = async () => {
     }
 
     // Utilisateur authentifié, créer l'URL de redirection avec le token SSO
-    statusMessage.value = `Connexion à ${response.service.name}...`
+    statusMessage.value = t('auth.authorize.statusConnecting', { service: response.service.name })
 
     const redirectUrl = new URL(returnUrl || response.service.domain)
     redirectUrl.searchParams.set('sso_token', response.ssoToken!)

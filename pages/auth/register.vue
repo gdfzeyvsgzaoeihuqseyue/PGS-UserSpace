@@ -9,8 +9,8 @@
           <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-12 w-auto sm:h-16 hidden dark:block" />
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-900">Create your account</h2>
-        <p class="mt-2 text-gray-600">Join the PGS ecosystem today</p>
+        <h2 class="text-3xl font-bold text-gray-900">{{ $t('auth.register.title') }}</h2>
+        <p class="mt-2 text-gray-600">{{ $t('auth.register.subtitle') }}</p>
       </div>
 
       <!-- Success Message -->
@@ -19,10 +19,10 @@
           <div class="flex items-start">
             <IconCircleCheck class="w-5 h-5 text-green-600 mr-3 mt-0.5" />
             <div>
-              <h3 class="text-sm font-medium text-green-800 mb-1">Registration successful!</h3>
-              <p class="text-sm text-green-700">You can now sign in with your credentials.</p>
+              <h3 class="text-sm font-medium text-green-800 mb-1">{{ $t('auth.register.successTitle') }}</h3>
+              <p class="text-sm text-green-700">{{ $t('auth.register.successMessage') }}</p>
               <NuxtLink to="/auth/login" class="text-sm text-green-800 font-medium underline mt-2 inline-block">
-                Go to Sign In →
+                {{ $t('auth.register.goToLogin') }}
               </NuxtLink>
             </div>
           </div>
@@ -44,54 +44,55 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
-                First Name
+                {{ $t('auth.register.firstNameLabel') }}
               </label>
-              <input id="firstName" v-model="form.firstName" type="text" required class="input" placeholder="John"
-                :disabled="authStore.loading" />
+              <input id="firstName" v-model="form.firstName" type="text" required class="input"
+                :placeholder="$t('auth.register.firstNamePlaceholder')" :disabled="authStore.loading" />
             </div>
             <div>
               <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
-                Last Name
+                {{ $t('auth.register.lastNameLabel') }}
               </label>
-              <input id="lastName" v-model="form.lastName" type="text" required class="input" placeholder="Doe"
-                :disabled="authStore.loading" />
+              <input id="lastName" v-model="form.lastName" type="text" required class="input"
+                :placeholder="$t('auth.register.lastNamePlaceholder')" :disabled="authStore.loading" />
             </div>
           </div>
 
           <!-- Username Field (Optional) -->
           <div>
             <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
-              Username <span class="text-gray-500 text-xs">(optional)</span>
+              {{ $t('auth.register.usernameLabel') }} <span class="text-gray-500 text-xs">({{ $t('common.optional')
+                }})</span>
             </label>
-            <input id="username" v-model="form.username" type="text" class="input" placeholder="johndoe"
-              :disabled="authStore.loading" />
+            <input id="username" v-model="form.username" type="text" class="input"
+              :placeholder="$t('auth.register.usernamePlaceholder')" :disabled="authStore.loading" />
           </div>
 
           <!-- Email Field -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
+              {{ $t('auth.register.emailLabel') }}
             </label>
-            <input id="email" v-model="form.email" type="email" required class="input" placeholder="you@example.com"
-              :disabled="authStore.loading" />
+            <input id="email" v-model="form.email" type="email" required class="input"
+              :placeholder="$t('auth.register.emailPlaceholder')" :disabled="authStore.loading" />
           </div>
 
           <!-- Password Field -->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              Password
+              {{ $t('auth.register.passwordLabel') }}
             </label>
             <input id="password" v-model="form.password" type="password" required minlength="8" class="input"
-              placeholder="••••••••" :disabled="authStore.loading" />
-            <p class="mt-1 text-xs text-gray-500">Minimum 8 characters</p>
+              :placeholder="$t('auth.register.passwordPlaceholder')" :disabled="authStore.loading" />
+            <p class="mt-1 text-xs text-gray-500">{{ $t('auth.register.minChars') }}</p>
           </div>
 
           <!-- Submit Button -->
           <button type="submit" class="w-full btn btn-primary" :disabled="authStore.loading">
-            <span v-if="!authStore.loading">Create Account</span>
+            <span v-if="!authStore.loading">{{ $t('auth.register.submitButton') }}</span>
             <span v-else class="flex items-center justify-center">
               <IconLoader2 class="animate-spin h-5 w-5 mr-2" />
-              Creating account...
+              {{ $t('auth.register.submittingButton') }}
             </span>
           </button>
         </form>
@@ -102,13 +103,13 @@
             <div class="w-full border-t border-gray-300"></div>
           </div>
           <div class="relative flex justify-center text-sm">
-            <span class="px-2 bg-white text-gray-500">Already have an account?</span>
+            <span class="px-2 bg-white text-gray-500">{{ $t('auth.register.hasAccount') }}</span>
           </div>
         </div>
 
         <!-- Login Link -->
         <NuxtLink to="/auth/login" class="block text-center text-primary hover:text-secondary font-medium">
-          Sign in instead
+          {{ $t('auth.register.signIn') }}
         </NuxtLink>
       </div>
     </div>

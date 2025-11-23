@@ -44,6 +44,50 @@
       "available": "{count} solution disponible avec authentification unique | {count} solutions disponibles avec authentification unique"
     }
   },
+  "auth": {
+    "authorize": {
+      "loadingTitle": "Connexion en cours...",
+      "statusChecking": "Vérification de votre authentification...",
+      "statusService": "Vérification du service...",
+      "statusRedirecting": "Redirection vers la page de connexion...",
+      "statusConnecting": "Connexion à {service}...",
+      "retry": "Réessayer"
+    },
+    "login": {
+      "welcome": "Bon retour",
+      "subtitle": "Connectez-vous pour accéder à votre compte",
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "vous{'@'}exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "••••••••",
+      "submitButton": "Se connecter",
+      "submittingButton": "Connexion...",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "createAccount": "Créer un nouveau compte"
+    },
+    "register": {
+      "title": "Créez votre compte",
+      "subtitle": "Rejoignez l'écosystème PGS aujourd'hui",
+      "successTitle": "Inscription réussie !",
+      "successMessage": "Vous pouvez maintenant vous connecter avec vos identifiants.",
+      "goToLogin": "Aller à la connexion →",
+      "firstNameLabel": "Prénom",
+      "firstNamePlaceholder": "John",
+      "lastNameLabel": "Nom",
+      "lastNamePlaceholder": "Doe",
+      "usernameLabel": "Nom d'utilisateur",
+      "usernamePlaceholder": "johndoe",
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "vous{'@'}exemple.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "••••••••",
+      "minChars": "Minimum 8 caractères",
+      "submitButton": "Créer un compte",
+      "submittingButton": "Création du compte...",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter"
+    }
+  },
   "navbar": {
     "solutions": "Solutions",
     "webVersion": "Version web",
