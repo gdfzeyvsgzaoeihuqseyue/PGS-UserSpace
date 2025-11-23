@@ -123,4 +123,8 @@ const retry = () => {
 onMounted(() => {
   handleSSO()
 })
+
+useHead({
+  title: t('auth.authorize.statusChecking')
+})
 </script>

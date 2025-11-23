@@ -62,7 +62,7 @@
           <div>
             <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
               {{ $t('auth.register.usernameLabel') }} <span class="text-gray-500 text-xs">({{ $t('common.optional')
-                }})</span>
+              }})</span>
             </label>
             <input id="username" v-model="form.username" type="text" class="input"
               :placeholder="$t('auth.register.usernamePlaceholder')" :disabled="authStore.loading" />
@@ -82,8 +82,16 @@
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
               {{ $t('auth.register.passwordLabel') }}
             </label>
-            <input id="password" v-model="form.password" type="password" required minlength="8" class="input"
-              :placeholder="$t('auth.register.passwordPlaceholder')" :disabled="authStore.loading" />
+            <div class="relative">
+              <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'" required
+                minlength="8" class="input pr-10" :placeholder="$t('auth.register.passwordPlaceholder')"
+                :disabled="authStore.loading" />
+              <button type="button" @click="showPassword = !showPassword"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                <IconEye v-if="!showPassword" class="h-5 w-5" />
+                <IconEyeOff v-else class="h-5 w-5" />
+              </button>
+            </div>
             <p class="mt-1 text-xs text-gray-500">{{ $t('auth.register.minChars') }}</p>
           </div>
 
@@ -119,8 +127,9 @@
 <script setup lang="ts">
 import type { RegisterData } from '~/types'
 import { useSharedFiles } from '~/stores/sharedFiles';
-import { IconAlertCircle, IconCircleCheck, IconLoader2 } from '@tabler/icons-vue';
+import { IconAlertCircle, IconCircleCheck, IconLoader2, IconEye, IconEyeOff } from '@tabler/icons-vue';
 
+const { t } = useI18n()
 const sharedFiles = useSharedFiles();
 
 definePageMeta({
@@ -139,6 +148,8 @@ const form = reactive<RegisterData>({
   email: '',
   password: ''
 })
+
+const showPassword = ref(false)
 
 const registrationSuccess = ref(false)
 const serviceId = route.query.serviceId as string
@@ -171,4 +182,8 @@ const handleRegister = async () => {
   } catch (error) {
   }
 }
+
+useHead({
+  title: t('auth.register.subtitle')
+})
 </script>

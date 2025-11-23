@@ -38,8 +38,15 @@
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
               {{ $t('auth.login.passwordLabel') }}
             </label>
-            <input id="password" v-model="form.password" type="password" required class="input"
-              :placeholder="$t('auth.login.passwordPlaceholder')" :disabled="authStore.loading" />
+            <div class="relative">
+              <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'" required
+                class="input pr-10" :placeholder="$t('auth.login.passwordPlaceholder')" :disabled="authStore.loading" />
+              <button type="button" @click="showPassword = !showPassword"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                <IconEye v-if="!showPassword" class="h-5 w-5" />
+                <IconEyeOff v-else class="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           <!-- Submit Button -->
@@ -74,8 +81,9 @@
 <script setup lang="ts">
 import type { LoginData } from '~/types'
 import { useSharedFiles } from '~/stores/sharedFiles';
-import { IconAlertCircle, IconLoader2 } from '@tabler/icons-vue';
+import { IconAlertCircle, IconLoader2, IconEye, IconEyeOff } from '@tabler/icons-vue';
 
+const { t } = useI18n()
 const sharedFiles = useSharedFiles();
 
 definePageMeta({
@@ -91,6 +99,8 @@ const form = reactive<LoginData>({
   email: '',
   password: ''
 })
+
+const showPassword = ref(false)
 
 // Récupérer les paramètres SSO de l'URL
 const serviceId = route.query.serviceId as string
@@ -114,7 +124,10 @@ const handleLogin = async () => {
       await router.push('/dashboard')
     }
   } catch (error) {
-    // Error is handled in the store
   }
 }
+
+useHead({
+  title: t('auth.login.subtitle')
+})
 </script>
