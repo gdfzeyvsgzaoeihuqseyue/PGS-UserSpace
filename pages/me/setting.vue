@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-5xl mx-auto">
     <div class="mb-8">
       <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $t('dashboard.menu.settings') }}</h1>
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
@@ -92,7 +92,7 @@
 </template>
 
 <script setup>
-import { prefLang2, prefTheme2} from '~/components/pref'
+import { prefLang2, prefTheme2 } from '~/components/pref'
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'

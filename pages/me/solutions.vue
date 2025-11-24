@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Header -->
     <div>
       <h1 class="text-3xl font-bold text-gray-900">Toutes les Solutions</h1>

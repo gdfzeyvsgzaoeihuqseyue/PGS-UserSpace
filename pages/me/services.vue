@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Header -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
       <div>
@@ -57,8 +57,7 @@
             <div class="space-y-2 mb-4">
               <div class="flex items-center text-sm text-gray-600">
                 <IconWorld class="w-4 h-4 mr-2" />
-                <a :href="service.domain" target="_blank" rel="noopener noreferrer"
-                  class="hover:text-primary truncate">
+                <a :href="service.domain" target="_blank" rel="noopener noreferrer" class="hover:text-primary truncate">
                   {{ service.domain }}
                 </a>
               </div>
