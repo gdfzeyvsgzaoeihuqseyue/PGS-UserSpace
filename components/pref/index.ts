@@ -1,0 +1,5 @@
+export { default as prefLang } from './prefLang.vue' 
+export { default as prefLang2 } from './prefLang2.vue' 
+export { default as prefSettings } from './prefSettings.vue' 
+export { default as prefTheme } from './prefTheme.vue' 
+export { default as prefTheme2 } from './prefTheme2.vue' 

@@ -36,6 +36,7 @@
 <script setup>
 import { IconSettings } from '@tabler/icons-vue'
 import { ref, onMounted, onUnmounted } from 'vue'
+import { prefLang, prefTheme} from '~/components/pref'
 
 const isOpen = ref(false)
 const dropdown = ref(null)

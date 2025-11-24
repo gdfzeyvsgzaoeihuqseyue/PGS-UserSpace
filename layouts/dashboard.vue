@@ -5,29 +5,32 @@
       class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50 transition-colors duration-300">
       <div class="w-full px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-          <!-- Logo & Sidebar Toggle -->
-          <div class="flex items-center gap-4">
-            <div
-              class="flex items-center">
-              <div class="hidden lg:block">
-                <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-8 w-auto sm:h-16 dark:hidden" />
-                <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-8 w-auto sm:h-16 hidden dark:block" />
-              </div>
-              <div class="lg:hidden flex-shrink-0 mr-3">
-                <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-8 w-auto sm:h-16 dark:hidden" />
-                <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-8 w-auto sm:h-16 hidden dark:block" />
-              </div>
-            </div>
-
+          <!-- Search Bar & Sidebar Toggle -->
+          <div class="flex items-center gap-4 flex-1 max-w-2xl">
             <button @click="toggleSidebar"
-              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hidden lg:block transition-colors">
+              class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hidden lg:block transition-colors flex-shrink-0">
               <IconLayoutSidebarRightCollapse v-if="isSidebarCollapsed" class="w-5 h-5" />
               <IconLayoutSidebarLeftCollapse v-else class="w-5 h-5" />
             </button>
+
+            <div class="w-full max-w-md hidden sm:block">
+              <GlobalSearch />
+            </div>
           </div>
 
           <!-- User Menu -->
-          <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-2 sm:space-x-4">
+            <!-- Mobile Search Toggle (visible only on small screens) -->
+            <button
+              class="sm:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-colors">
+              <IconSearch class="w-5 h-5" />
+            </button>
+
+            <prefLang2 />
+            <prefTheme2 />
+
+            <div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2 hidden sm:block"></div>
+
             <button @click="toggleMobileMenu"
               class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-colors">
               <IconMenu class="w-5 h-5" />
@@ -75,7 +78,23 @@
           isSidebarCollapsed ? 'w-20' : 'w-64',
           showMobileMenu ? 'fixed inset-y-0 left-0 z-40 w-64 transform translate-x-0' : 'hidden lg:block'
         ]">
-        <div class="h-full px-3 py-4">
+        <div class="h-full px-3 py-4 flex flex-col">
+          <!-- Logo Section -->
+          <div class="flex items-center justify-center mb-6 h-16 flex-shrink-0">
+            <NuxtLink to="/me" class="block">
+              <!-- Collapsed State -->
+              <div v-if="isSidebarCollapsed" class="flex justify-center">
+                <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-8 w-auto dark:hidden" />
+                <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-8 w-auto hidden dark:block" />
+              </div>
+              <!-- Expanded State -->
+              <div v-else>
+                <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-8 w-auto dark:hidden" />
+                <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-8 w-auto hidden dark:block" />
+              </div>
+            </NuxtLink>
+          </div>
+
           <!-- Mobile Close Button -->
           <div class="lg:hidden flex justify-end mb-4">
             <button @click="showMobileMenu = false"
@@ -189,9 +208,12 @@
 </template>
 
 <script setup lang="ts">
-import { IconChevronDown, IconHome, IconLayout2, IconLayoutGridAdd, IconLock, IconMenu, IconUser, IconSettings, IconLayoutSidebarRightCollapse, IconLayoutSidebarLeftCollapse, IconX } from '@tabler/icons-vue'
+
+import { IconChevronDown, IconHome, IconLayout2, IconLayoutGridAdd, IconLock, IconMenu, IconUser, IconSettings, IconLayoutSidebarRightCollapse, IconLayoutSidebarLeftCollapse, IconX, IconSearch } from '@tabler/icons-vue'
 import { useSharedFiles } from '~/stores/sharedFiles';
-  
+import GlobalSearch from '~/components/GlobalSearch.vue'
+import { prefLang2, prefTheme2} from '~/components/pref'
+
 const sharedFiles = useSharedFiles();
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()

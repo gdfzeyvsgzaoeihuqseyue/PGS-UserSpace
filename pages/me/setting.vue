@@ -20,7 +20,7 @@
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ $t('prefSettings.lang') }}
               </label>
-              <prefLang />
+              <prefLang2 />
               <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 Select your preferred language for the interface.
               </p>
@@ -30,7 +30,7 @@
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {{ $t('prefSettings.theme') }}
               </label>
-              <prefTheme />
+              <prefTheme2 />
               <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 Choose between light and dark mode.
               </p>
@@ -92,6 +92,7 @@
 </template>
 
 <script setup>
+import { prefLang2, prefTheme2} from '~/components/pref'
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'
