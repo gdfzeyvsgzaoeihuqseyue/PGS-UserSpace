@@ -46,27 +46,32 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div v-show="isMobileMenuOpen"
-      class="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-40">
-      <div class="px-4 pt-2 pb-4 space-y-3">
-        <NuxtLink :to="localePath('/auth/login')"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-          @click="isMobileMenuOpen = false">
-          {{ $t('navbar.signIn') }}
-        </NuxtLink>
-        <NuxtLink :to="localePath('/auth/register')"
-          class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
-          @click="isMobileMenuOpen = false">
-          {{ $t('navbar.signUp') }}
-        </NuxtLink>
+    <Transition enter-active-class="transition duration-200 ease-out"
+      enter-from-class="transform -translate-y-2 opacity-0" enter-to-class="transform translate-y-0 opacity-100"
+      leave-active-class="transition duration-150 ease-in" leave-from-class="transform translate-y-0 opacity-100"
+      leave-to-class="transform -translate-y-2 opacity-0">
+      <div v-show="isMobileMenuOpen" ref="mobileMenuRef"
+        class="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-40">
+        <div class="px-4 pt-2 pb-4 space-y-3">
+          <NuxtLink :to="localePath('/auth/login')"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+            @click="isMobileMenuOpen = false">
+            {{ $t('navbar.signIn') }}
+          </NuxtLink>
+          <NuxtLink :to="localePath('/auth/register')"
+            class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
+            @click="isMobileMenuOpen = false">
+            {{ $t('navbar.signUp') }}
+          </NuxtLink>
 
-        <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
-          <div class="px-3 py-2">
-            <prefSettings />
+          <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
+            <div class="px-3 py-2">
+              <prefSettings />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </header>
 </template>
 
@@ -78,11 +83,27 @@ import { prefSettings } from '~/components/pref'
 const config = useRuntimeConfig();
 const sharedFiles = useSharedFiles();
 const isMobileMenuOpen = ref(false);
+const mobileMenuRef = ref(null);
 const localePath = useLocalePath();
 
-const toggleMobileMenu = () => {
+const toggleMobileMenu = (event) => {
+  event.stopPropagation();
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+const closeMobileMenu = (event) => {
+  if (isMobileMenuOpen.value && mobileMenuRef.value && !mobileMenuRef.value.contains(event.target)) {
+    isMobileMenuOpen.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', closeMobileMenu);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeMobileMenu);
+});
 
 // Close mobile menu when route changes
 const route = useRoute();
