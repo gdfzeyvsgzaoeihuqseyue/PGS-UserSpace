@@ -54,7 +54,29 @@
       "title": "PGS Ecosystem Solutions",
       "subtitle": "Discover our innovative solutions with integrated SSO authentication",
       "empty": "No SSO-enabled solution is currently available.",
-      "available": "{count} solution available with single sign-on | {count} solutions available with single sign-on"
+      "available": "{count} solution available with single sign-on | {count} solutions available with single sign-on",
+      "viewAll": "View all solutions"
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "subtitle": "Create your free account and access the entire PGS ecosystem in seconds",
+      "createAccount": "Create a free account",
+      "viewDemo": "View SSO Demo"
+    },
+    "stats": {
+      "integratedSolutions": "Integrated Solutions",
+      "support": "Support",
+      "users": "Active Users",
+      "countries": "Countries Covered"
+    },
+    "visual": {
+      "secureConnection": "Secure Connection",
+      "ssoAuth": "SSO Authentication"
+    },
+    "featuresHeader": {
+      "badge": "Features",
+      "title": "PGS MY SPACE",
+      "subtitle": "A modern, secure, and easy-to-integrate authentication platform"
     }
   },
   "auth": {

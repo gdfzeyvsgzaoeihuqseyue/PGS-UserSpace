@@ -54,7 +54,29 @@
       "title": "Solutions de l'Écosystème PGS",
       "subtitle": "Découvrez nos solutions innovantes avec authentification SSO intégrée",
       "empty": "Aucune solution avec SSO n'est actuellement disponible.",
-      "available": "{count} solution disponible avec authentification unique | {count} solutions disponibles avec authentification unique"
+      "available": "{count} solution disponible avec authentification unique | {count} solutions disponibles avec authentification unique",
+      "viewAll": "Voir toutes les solutions"
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "subtitle": "Créez votre compte gratuitement et accédez à tout l'écosystème PGS en quelques secondes",
+      "createAccount": "Créer un compte gratuit",
+      "viewDemo": "Voir la démo SSO"
+    },
+    "stats": {
+      "integratedSolutions": "Solutions intégrées",
+      "support": "Support",
+      "users": "Utilisateurs actifs",
+      "countries": "Pays couverts"
+    },
+    "visual": {
+      "secureConnection": "Connexion sécurisée",
+      "ssoAuth": "Authentification SSO"
+    },
+    "featuresHeader": {
+      "badge": "Fonctionnalités",
+      "title": "PGS MY SPACE",
+      "subtitle": "Une plateforme d'authentification moderne, sécurisée et facile à intégrer"
     }
   },
   "auth": {

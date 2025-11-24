@@ -56,12 +56,26 @@
             <!-- Social Proof -->
             <div class="flex items-center space-x-4 justify-center lg:justify-start pt-4">
               <div class="flex -space-x-2">
-                <div class="w-10 h-10 rounded-full bg-primary border-2 border-white flex items-center justify-center text-white font-bold">A</div>
-                <div class="w-10 h-10 rounded-full bg-secondary border-2 border-white flex items-center justify-center text-white font-bold">B</div>
-                <div class="w-10 h-10 rounded-full bg-primary border-2 border-white flex items-center justify-center text-white font-bold">C</div>
+                <template v-if="solutionsStore.authEnabledSolutions.length > 0">
+                  <div v-for="solution in solutionsStore.authEnabledSolutions.slice(0, 3)" :key="solution.id" 
+                       class="w-10 h-10 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden relative group cursor-help"
+                       :title="solution.name">
+                    <img v-if="solution.logo" :src="solution.logo" :alt="solution.name" class="w-full h-full object-cover" />
+                    <div v-else class="w-full h-full bg-primary flex items-center justify-center text-white font-bold text-xs">
+                      {{ solution.name.charAt(0) }}
+                    </div>
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-gray-400">
+                    <IconFolders class="w-5 h-5" />
+                  </div>
+                </template>
               </div>
               <div class="text-sm text-gray-600">
-                <span class="font-bold text-gray-900">{{ solutionsStore.authEnabledSolutions.length }}+</span> solutions intégrées
+                <span class="font-bold text-gray-900">
+                  {{ Math.max(0, solutionsStore.authEnabledSolutions.length - 3) }}+
+                </span> {{ $t('indexPage.stats.integratedSolutions').toLowerCase() }}
               </div>
             </div>
           </div>
@@ -79,8 +93,8 @@
                         <IconShieldCheck class="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 class="font-bold text-gray-900">Connexion sécurisée</h3>
-                        <p class="text-sm text-gray-500">SSO Authentication</p>
+                        <h3 class="font-bold text-gray-900">{{ $t('indexPage.visual.secureConnection') }}</h3>
+                        <p class="text-sm text-gray-500">{{ $t('indexPage.visual.ssoAuth') }}</p>
                       </div>
                     </div>
                     <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -118,13 +132,13 @@
         <!-- Section Header -->
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-            Fonctionnalités
+            {{ $t('indexPage.featuresHeader.badge') }}
           </span>
           <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            PGS <span class="text-primary">MY SPACE</span>
+            {{ $t('indexPage.featuresHeader.title') }}
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Une plateforme d'authentification moderne, sécurisée et facile à intégrer
+            {{ $t('indexPage.featuresHeader.subtitle') }}
           </p>
         </div>
 
@@ -219,7 +233,7 @@
               {{ $t('indexPage.solutions.available', { count: solutionsStore.authEnabledSolutions.length }, solutionsStore.authEnabledSolutions.length) }}
             </p>
             <NuxtLink to="/me/solutions" class="inline-flex items-center btn btn-outline">
-              Voir toutes les solutions
+              {{ $t('indexPage.solutions.viewAll') }}
               <IconArrowRight class="ml-2 w-5 h-5" />
             </NuxtLink>
           </div>
@@ -247,22 +261,22 @@
 
       <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Prêt à commencer ?
+          {{ $t('indexPage.cta.title') }}
         </h2>
         <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-          Créez votre compte gratuitement et accédez à tout l'écosystème PGS en quelques secondes
+          {{ $t('indexPage.cta.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/auth/register" 
             class="btn bg-white text-primary hover:bg-gray-100 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             <span class="flex items-center justify-center">
-              Créer un compte gratuit
+              {{ $t('indexPage.cta.createAccount') }}
               <IconArrowRight class="ml-2 w-5 h-5" />
             </span>
           </NuxtLink>
           <NuxtLink to="/sso-demo" 
             class="btn border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-4 backdrop-blur-sm transform hover:scale-105 transition-all duration-300">
-            Voir la démo SSO
+            {{ $t('indexPage.cta.viewDemo') }}
           </NuxtLink>
         </div>
       </div>
@@ -271,8 +285,8 @@
     <!-- Stats Section -->
     <section class="py-16 bg-white border-t border-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div v-for="stat in stats" :key="stat.label" class="text-center">
+        <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+          <div v-for="stat in stats" :key="stat.label" class="text-center min-w-[150px]">
             <div class="text-4xl md:text-5xl font-bold text-primary mb-2">
               {{ stat.value }}
             </div>
@@ -320,19 +334,19 @@ const features = computed(() => [
 const stats = computed(() => [
   {
     value: `${solutionsStore.authEnabledSolutions.length}+`,
-    label: 'Solutions intégrées'
+    label: t('indexPage.stats.integratedSolutions')
   },
-  // {
-  //   value: '99.9%',
-  //   label: 'Disponibilité'
-  // },
-  // {
-  //   value: '<100ms',
-  //   label: 'Temps de réponse'
-  // },
+  {
+    value: '10k+',
+    label: t('indexPage.stats.users')
+  },
+  {
+    value: '15+',
+    label: t('indexPage.stats.countries')
+  },
   {
     value: '24/7',
-    label: 'Support'
+    label: t('indexPage.stats.support')
   }
 ])
 
