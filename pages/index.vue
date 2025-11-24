@@ -1,11 +1,13 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section with Gradient Background -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-background/30 pt-20 pb-32">
+    <section
+      class="relative overflow-hidden bg-gradient-to-br from-primary/5 via-secondary/5 to-background/30 pt-20 pb-32">
       <!-- Animated Background Elements -->
       <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse"
+          style="animation-delay: 1s"></div>
       </div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +15,8 @@
           <!-- Left Content -->
           <div class="space-y-8 text-center lg:text-left">
             <!-- Badge -->
-            <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-primary/20">
+            <div
+              class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-primary/20">
               <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
@@ -25,7 +28,8 @@
             <div class="space-y-4">
               <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 {{ $t('indexPage.hero.welcome') }}
-                <span class="block text-primary font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mt-2">
+                <span
+                  class="block text-primary font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mt-2">
                   {{ $t('indexPage.hero.title') }}
                 </span>
               </h1>
@@ -36,15 +40,15 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <NuxtLink to="/auth/register" 
+              <NuxtLink to="/auth/register"
                 class="group relative btn btn-primary text-lg px-8 py-4 overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                 <span class="relative z-10 flex items-center justify-center">
                   {{ $t('indexPage.hero.getStarted') }}
                   <IconArrowRight class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </NuxtLink>
-              
-              <NuxtLink to="/auth/login" 
+
+              <NuxtLink to="/auth/login"
                 class="group btn btn-outline text-lg px-8 py-4 backdrop-blur-sm bg-white/80 hover:bg-white transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
                 <span class="flex items-center justify-center">
                   {{ $t('indexPage.hero.signIn') }}
@@ -56,25 +60,28 @@
             <!-- Social Proof -->
             <div class="flex items-center space-x-4 justify-center lg:justify-start pt-4">
               <div class="flex -space-x-2">
-                <template v-if="solutionsStore.authEnabledSolutions.length > 0">
-                  <div v-for="solution in solutionsStore.authEnabledSolutions.slice(0, 3)" :key="solution.id" 
-                       class="w-10 h-10 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden relative group cursor-help"
-                       :title="solution.name">
-                    <img v-if="solution.logo" :src="solution.logo" :alt="solution.name" class="w-full h-full object-cover" />
-                    <div v-else class="w-full h-full bg-primary flex items-center justify-center text-white font-bold text-xs">
+                <template v-if="solutionsStore.activeSolutions.length > 0">
+                  <div v-for="solution in solutionsStore.activeSolutions.slice(0, 3)" :key="solution.id"
+                    class="w-10 h-10 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden relative group cursor-help"
+                    :title="solution.name">
+                    <img v-if="solution.logo" :src="solution.logo" :alt="solution.name"
+                      class="w-full h-full object-cover" />
+                    <div v-else
+                      class="w-full h-full bg-primary flex items-center justify-center text-white font-bold text-xs">
                       {{ solution.name.charAt(0) }}
                     </div>
                   </div>
                 </template>
                 <template v-else>
-                  <div class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-gray-400">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-gray-400">
                     <IconFolders class="w-5 h-5" />
                   </div>
                 </template>
               </div>
               <div class="text-sm text-gray-600">
                 <span class="font-bold text-gray-900">
-                  {{ Math.max(0, solutionsStore.authEnabledSolutions.length - 3) }}+
+                  {{ Math.max(0, solutionsStore.activeSolutions.length - 3) }}+
                 </span> {{ $t('indexPage.stats.integratedSolutions').toLowerCase() }}
               </div>
             </div>
@@ -84,12 +91,14 @@
           <div class="relative lg:block hidden">
             <div class="relative">
               <!-- Main Card -->
-              <div class="relative bg-white rounded-2xl shadow-2xl p-8 border border-gray-100 transform hover:scale-105 transition-all duration-500">
+              <div
+                class="relative bg-white rounded-2xl shadow-2xl p-8 border border-gray-100 transform hover:scale-105 transition-all duration-500">
                 <div class="space-y-6">
                   <!-- Header -->
                   <div class="flex items-center justify-between pb-4 border-b">
                     <div class="flex items-center space-x-3">
-                      <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                      <div
+                        class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
                         <IconShieldCheck class="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -102,11 +111,11 @@
 
                   <!-- Services Preview -->
                   <div class="space-y-3">
-                    <div v-for="(service, index) in solutionsStore.authEnabledSolutions.slice(0, 3)" 
-                      :key="service.id"
+                    <div v-for="(service, index) in solutionsStore.authEnabledSolutions.slice(0, 3)" :key="service.id"
                       class="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-primary/5 transition-all duration-300 transform hover:translate-x-2"
                       :style="{ animationDelay: `${index * 0.1}s` }">
-                      <img v-if="service.logo" :src="service.logo" :alt="service.name" class="w-10 h-10 rounded-lg object-cover" />
+                      <img v-if="service.logo" :src="service.logo" :alt="service.name"
+                        class="w-10 h-10 rounded-lg object-cover" />
                       <div class="flex-1">
                         <p class="font-medium text-gray-900 text-sm">{{ service.name }}</p>
                         <p class="text-xs text-gray-500">{{ service.category }}</p>
@@ -118,8 +127,12 @@
               </div>
 
               <!-- Floating Elements -->
-              <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl opacity-20 blur-xl animate-pulse"></div>
-              <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-secondary to-primary rounded-2xl opacity-20 blur-xl animate-pulse" style="animation-delay: 1.5s"></div>
+              <div
+                class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl opacity-20 blur-xl animate-pulse">
+              </div>
+              <div
+                class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-secondary to-primary rounded-2xl opacity-20 blur-xl animate-pulse"
+                style="animation-delay: 1.5s"></div>
             </div>
           </div>
         </div>
@@ -149,8 +162,11 @@
             :style="{ animationDelay: `${index * 0.1}s` }">
             <!-- Icon -->
             <div class="relative w-16 h-16 mb-6 transform group-hover:scale-110 transition-transform duration-300">
-              <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-10 group-hover:opacity-20 rounded-2xl transition-opacity"></div>
-              <div class="relative w-full h-full flex items-center justify-center bg-white rounded-2xl shadow-md group-hover:shadow-lg transition-shadow">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-10 group-hover:opacity-20 rounded-2xl transition-opacity">
+              </div>
+              <div
+                class="relative w-full h-full flex items-center justify-center bg-white rounded-2xl shadow-md group-hover:shadow-lg transition-shadow">
                 <component :is="feature.icon" class="w-8 h-8 text-primary" />
               </div>
             </div>
@@ -164,7 +180,9 @@
             </p>
 
             <!-- Hover Effect -->
-            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl"></div>
+            <div
+              class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-b-2xl">
+            </div>
           </div>
         </div>
       </div>
@@ -189,14 +207,16 @@
         <!-- Solutions Grid -->
         <div v-if="!solutionsStore.loading && solutionsStore.authEnabledSolutions.length > 0">
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <div v-for="(solution, index) in solutionsStore.authEnabledSolutions.slice(0, 6)" 
-              :key="solution.id"
+            <div v-for="(solution, index) in solutionsStore.authEnabledSolutions.slice(0, 6)" :key="solution.id"
               class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-primary/50 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2">
               <!-- Solution Header -->
               <div class="flex items-start space-x-4 mb-4">
-                <div class="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <img v-if="solution.logo" :src="solution.logo" :alt="solution.name" class="w-full h-full object-cover" />
-                  <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary to-secondary">
+                <div
+                  class="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <img v-if="solution.logo" :src="solution.logo" :alt="solution.name"
+                    class="w-full h-full object-cover" />
+                  <div v-else
+                    class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary to-secondary">
                     <span class="text-white font-bold text-xl">{{ solution.name.charAt(0) }}</span>
                   </div>
                 </div>
@@ -230,7 +250,8 @@
           <!-- View All Link -->
           <div class="text-center">
             <p class="text-gray-600 mb-4">
-              {{ $t('indexPage.solutions.available', { count: solutionsStore.authEnabledSolutions.length }, solutionsStore.authEnabledSolutions.length) }}
+              {{ $t('indexPage.solutions.available', { count: solutionsStore.authEnabledSolutions.length },
+                solutionsStore.authEnabledSolutions.length) }}
             </p>
             <NuxtLink to="/me/solutions" class="inline-flex items-center btn btn-outline">
               {{ $t('indexPage.solutions.viewAll') }}
@@ -256,7 +277,9 @@
     <section class="py-20 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        <div class="absolute inset-0"
+          style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;">
+        </div>
       </div>
 
       <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -267,14 +290,14 @@
           {{ $t('indexPage.cta.subtitle') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <NuxtLink to="/auth/register" 
+          <NuxtLink to="/auth/register"
             class="btn bg-white text-primary hover:bg-gray-100 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             <span class="flex items-center justify-center">
               {{ $t('indexPage.cta.createAccount') }}
               <IconArrowRight class="ml-2 w-5 h-5" />
             </span>
           </NuxtLink>
-          <NuxtLink to="/sso-demo" 
+          <NuxtLink to="/sso-demo"
             class="btn border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-4 backdrop-blur-sm transform hover:scale-105 transition-all duration-300">
             {{ $t('indexPage.cta.viewDemo') }}
           </NuxtLink>
@@ -352,7 +375,7 @@ const stats = computed(() => [
 
 onMounted(async () => {
   try {
-    await solutionsStore.fetchAuthEnabledSolutions()
+    await solutionsStore.fetchSolutions({ disabled: false })
   } catch (error) {
     console.error('Failed to load solutions:', error)
   }
@@ -365,9 +388,12 @@ useHead({
 
 <style scoped>
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
