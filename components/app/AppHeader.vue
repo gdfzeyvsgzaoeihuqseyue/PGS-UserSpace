@@ -4,7 +4,8 @@
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo avec Badge Beta -->
-        <NuxtLink to="/" class="flex items-center gap-2 hover:scale-105 overflow-hidden transition-all duration-300">
+        <NuxtLink :to="localePath('/')"
+          class="flex items-center gap-2 hover:scale-105 overflow-hidden transition-all duration-300">
           <div class="hidden lg:block">
             <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-8 w-auto sm:h-16 dark:hidden" />
             <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-8 w-auto sm:h-16 hidden dark:block" />
@@ -23,10 +24,10 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-4">
-          <NuxtLink to="/auth/login" class="hover:text-primary transition-colors font-medium">
+          <NuxtLink :to="localePath('/auth/login')" class="hover:text-primary transition-colors font-medium">
             {{ $t('navbar.signIn') }}
           </NuxtLink>
-          <NuxtLink to="/auth/register" class="btn btn-primary">
+          <NuxtLink :to="localePath('/auth/register')" class="btn btn-primary">
             {{ $t('navbar.signUp') }}
           </NuxtLink>
 
@@ -48,12 +49,12 @@
     <div v-show="isMobileMenuOpen"
       class="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-40">
       <div class="px-4 pt-2 pb-4 space-y-3">
-        <NuxtLink to="/auth/login"
+        <NuxtLink :to="localePath('/auth/login')"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
           @click="isMobileMenuOpen = false">
           {{ $t('navbar.signIn') }}
         </NuxtLink>
-        <NuxtLink to="/auth/register"
+        <NuxtLink :to="localePath('/auth/register')"
           class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
           @click="isMobileMenuOpen = false">
           {{ $t('navbar.signUp') }}
@@ -77,6 +78,7 @@ import { prefSettings } from '~/components/pref'
 const config = useRuntimeConfig();
 const sharedFiles = useSharedFiles();
 const isMobileMenuOpen = ref(false);
+const localePath = useLocalePath();
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;

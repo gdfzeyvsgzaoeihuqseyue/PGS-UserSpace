@@ -14,7 +14,7 @@ const runtimeConfig = useRuntimeConfig();
 const sharedFilesUrl = runtimeConfig.public.pgsSharedFiles;
 
 const heroImagePath = `${sharedFilesUrl}/SuitOps_Landing/Hero/index.png`;
-const baseUrl = "https://pgs-account.netlify.app";
+const baseUrl = "https://pgs-me.netlify.app/";
 
 useHead({
   titleTemplate: '%s | PGS MY SPACE',

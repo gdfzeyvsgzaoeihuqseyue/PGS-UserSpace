@@ -60,8 +60,8 @@
             <!-- Social Proof -->
             <div class="flex items-center space-x-4 justify-center lg:justify-start pt-4">
               <div class="flex -space-x-2">
-                <template v-if="solutionsStore.activeSolutions.length > 0">
-                  <div v-for="solution in solutionsStore.activeSolutions.slice(0, 3)" :key="solution.id"
+                <template v-if="shuffledSolutions.length > 0">
+                  <div v-for="solution in shuffledSolutions.slice(0, 3)" :key="solution.id"
                     class="w-10 h-10 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden relative group cursor-help"
                     :title="solution.name">
                     <img v-if="solution.logo" :src="solution.logo" :alt="solution.name"
@@ -336,6 +336,15 @@ definePageMeta({
 
 const solutionsStore = useSolutionsStore()
 
+// Randomize solutions for Social Proof section
+const shuffledSolutions = ref<any[]>([])
+
+watch(() => solutionsStore.activeSolutions, (newSolutions) => {
+  if (newSolutions) {
+    shuffledSolutions.value = [...newSolutions].sort(() => Math.random() - 0.5)
+  }
+}, { immediate: true })
+
 const features = computed(() => [
   {
     icon: IconLock,
@@ -359,14 +368,14 @@ const stats = computed(() => [
     value: `${solutionsStore.authEnabledSolutions.length}+`,
     label: t('indexPage.stats.integratedSolutions')
   },
-  {
-    value: '10k+',
-    label: t('indexPage.stats.users')
-  },
-  {
-    value: '15+',
-    label: t('indexPage.stats.countries')
-  },
+  // {
+  //   value: '10k+',
+  //   label: t('indexPage.stats.users')
+  // },
+  // {
+  //   value: '15+',
+  //   label: t('indexPage.stats.countries')
+  // },
   {
     value: '24/7',
     label: t('indexPage.stats.support')
@@ -376,6 +385,10 @@ const stats = computed(() => [
 onMounted(async () => {
   try {
     await solutionsStore.fetchSolutions({ disabled: false })
+    // Reshuffle on mount to ensure randomness on every visit
+    if (solutionsStore.activeSolutions.length) {
+      shuffledSolutions.value = [...solutionsStore.activeSolutions].sort(() => Math.random() - 0.5)
+    }
   } catch (error) {
     console.error('Failed to load solutions:', error)
   }
@@ -402,6 +415,7 @@ useHead({
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
