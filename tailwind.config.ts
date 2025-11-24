@@ -28,7 +28,7 @@ export default {
         hsaAct: 'var(--color-hsaAct)',
       },
       fontFamily: {
-        body: ['"Kedebideri"', 'sans-serif'],
+        body: ['Kedebideri', 'sans-serif'],
         sans: ['"Science Gothic', 'sans-serif'],
         heading: ['"Stack Sans Notch"', 'sans-serif']
       },

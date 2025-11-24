@@ -4,7 +4,7 @@
       <!-- Hero Section -->
       <div class="text-center mb-16">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">
-          {{ $t('indexPage.hero.welcome') }} <span class="text-primary">{{ $t('indexPage.hero.title') }}</span>
+          {{ $t('indexPage.hero.welcome') }} <span class="text-primary font-heading">{{ $t('indexPage.hero.title') }}</span>
         </h1>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
           {{ $t('indexPage.hero.subtitle') }}
