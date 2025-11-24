@@ -2,9 +2,9 @@
   <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Header -->
     <div>
-      <h1 class="text-3xl font-bold text-gray-900">Active Sessions</h1>
+      <h1 class="text-3xl font-bold text-gray-900">{{ $t('sessions.title') }}</h1>
       <p class="mt-2 text-gray-600">
-        Manage your active login sessions across different devices
+        {{ $t('sessions.subtitle') }}
       </p>
     </div>
 
@@ -16,9 +16,9 @@
           <IconShieldCheck class="w-6 h-6 text-white" />
         </div>
         <div class="ml-4">
-          <h3 class="text-lg font-bold text-primary">Current Session</h3>
+          <h3 class="text-lg font-bold text-primary">{{ $t('sessions.current.title') }}</h3>
           <p class="text-sm text-secondary mt-1">
-            This is your current active session. Sessions automatically expire after 7 days of inactivity.
+            {{ $t('sessions.current.description') }}
           </p>
         </div>
       </div>
@@ -31,23 +31,22 @@
           <IconInfoCircle class="w-5 h-5 text-primary" />
         </div>
         <div class="flex-1">
-          <h3 class="font-medium text-gray-900 mb-1">About Sessions</h3>
+          <h3 class="font-medium text-gray-900 mb-1">{{ $t('sessions.about.title') }}</h3>
           <p class="text-sm text-gray-600">
-            Your sessions are managed automatically using secure HTTP-only cookies.
-            Each session includes:
+            {{ $t('sessions.about.description') }}
           </p>
           <ul class="mt-2 space-y-1 text-sm text-gray-600">
             <li class="flex items-center">
               <IconCheck class="w-4 h-4 mr-2 text-green-600" />
-              Access token valid for 1 hour
+              {{ $t('sessions.about.accessToken') }}
             </li>
             <li class="flex items-center">
               <IconCheck class="w-4 h-4 mr-2 text-green-600" />
-              Refresh token valid for 7 days
+              {{ $t('sessions.about.refreshToken') }}
             </li>
             <li class="flex items-center">
               <IconCheck class="w-4 h-4 mr-2 text-green-600" />
-              Automatic token refresh
+              {{ $t('sessions.about.autoRefresh') }}
             </li>
           </ul>
         </div>
@@ -56,15 +55,15 @@
 
     <!-- Security Recommendations -->
     <div class="card">
-      <h3 class="text-lg font-bold text-gray-900 mb-4">Security Best Practices</h3>
+      <h3 class="text-lg font-bold text-gray-900 mb-4">{{ $t('sessions.security.title') }}</h3>
       <div class="space-y-3">
         <div class="flex items-start space-x-3">
           <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
             <IconCheck class="w-4 h-4 text-green-600" />
           </div>
           <div>
-            <p class="text-sm font-medium text-gray-900">Always sign out on shared devices</p>
-            <p class="text-sm text-gray-600">Prevent unauthorized access by logging out when using public computers</p>
+            <p class="text-sm font-medium text-gray-900">{{ $t('sessions.security.logout.title') }}</p>
+            <p class="text-sm text-gray-600">{{ $t('sessions.security.logout.description') }}</p>
           </div>
         </div>
         <div class="flex items-start space-x-3">
@@ -72,8 +71,8 @@
             <IconCheck class="w-4 h-4 text-green-600" />
           </div>
           <div>
-            <p class="text-sm font-medium text-gray-900">Use strong, unique passwords</p>
-            <p class="text-sm text-gray-600">Protect your account with a password that's at least 8 characters long</p>
+            <p class="text-sm font-medium text-gray-900">{{ $t('sessions.security.password.title') }}</p>
+            <p class="text-sm text-gray-600">{{ $t('sessions.security.password.description') }}</p>
           </div>
         </div>
         <div class="flex items-start space-x-3">
@@ -81,9 +80,8 @@
             <IconCheck class="w-4 h-4 text-green-600" />
           </div>
           <div>
-            <p class="text-sm font-medium text-gray-900">Keep your browser updated</p>
-            <p class="text-sm text-gray-600">Ensure you're using the latest version of your web browser for best
-              security</p>
+            <p class="text-sm font-medium text-gray-900">{{ $t('sessions.security.browser.title') }}</p>
+            <p class="text-sm text-gray-600">{{ $t('sessions.security.browser.description') }}</p>
           </div>
         </div>
       </div>
@@ -91,7 +89,7 @@
 
     <!-- Session Actions -->
     <div class="card">
-      <h3 class="text-lg font-bold text-gray-900 mb-4">Session Actions</h3>
+      <h3 class="text-lg font-bold text-gray-900 mb-4">{{ $t('sessions.actions.title') }}</h3>
       <div class="space-y-3">
         <button @click="handleLogout"
           class="w-full flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-red-300 hover:bg-red-50 transition-all">
@@ -100,8 +98,8 @@
               <IconLogout class="w-5 h-5 text-red-600" />
             </div>
             <div class="text-left">
-              <p class="font-medium text-gray-900">Sign Out</p>
-              <p class="text-sm text-gray-600">End your current session</p>
+              <p class="font-medium text-gray-900">{{ $t('sessions.actions.signOut') }}</p>
+              <p class="text-sm text-gray-600">{{ $t('sessions.actions.signOutDesc') }}</p>
             </div>
           </div>
           <IconChevronRight class="w-5 h-5 text-gray-400" />
@@ -112,17 +110,18 @@
     <!-- Technical Details -->
     <div class="card bg-gray-50">
       <details class="cursor-pointer">
-        <summary class="font-medium text-gray-900">Technical Details</summary>
+        <summary class="font-medium text-gray-900">{{ $t('sessions.technical.title') }}</summary>
         <div class="mt-4 space-y-2 text-sm text-gray-600">
-          <p><strong>Authentication Method:</strong> HTTP-only Cookies with JWT</p>
-          <p><strong>Token Type:</strong> Bearer Token</p>
-          <p><strong>Security Features:</strong></p>
+          <p><strong>{{ $t('sessions.technical.authMethod') }}</strong> {{ $t('sessions.technical.authMethodValue') }}
+          </p>
+          <p><strong>{{ $t('sessions.technical.tokenType') }}</strong> {{ $t('sessions.technical.tokenTypeValue') }}</p>
+          <p><strong>{{ $t('sessions.technical.securityFeatures') }}</strong></p>
           <ul class="list-disc list-inside ml-4 space-y-1">
-            <li>Secure cookie transmission (HTTPS only in production)</li>
-            <li>SameSite cookie policy</li>
-            <li>Automatic token rotation</li>
-            <li>IP address tracking</li>
-            <li>User agent validation</li>
+            <li>{{ $t('sessions.technical.feature1') }}</li>
+            <li>{{ $t('sessions.technical.feature2') }}</li>
+            <li>{{ $t('sessions.technical.feature3') }}</li>
+            <li>{{ $t('sessions.technical.feature4') }}</li>
+            <li>{{ $t('sessions.technical.feature5') }}</li>
           </ul>
         </div>
       </details>
@@ -139,9 +138,10 @@ definePageMeta({
 })
 
 const authStore = useAuthStore()
+const { t } = useI18n()
 
 const handleLogout = async () => {
-  if (confirm('Are you sure you want to sign out?')) {
+  if (confirm(t('sessions.confirmLogout'))) {
     await authStore.logout()
   }
 }

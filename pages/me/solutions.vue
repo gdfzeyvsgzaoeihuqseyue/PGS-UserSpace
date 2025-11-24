@@ -2,9 +2,9 @@
   <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Header -->
     <div>
-      <h1 class="text-3xl font-bold text-gray-900">Toutes les Solutions</h1>
+      <h1 class="text-3xl font-bold text-gray-900">{{ $t('solutionsPage.title') }}</h1>
       <p class="mt-2 text-gray-600">
-        Explorez l'ensemble des solutions de l'écosystème PGS
+        {{ $t('solutionsPage.subtitle') }}
       </p>
     </div>
 
@@ -14,19 +14,19 @@
         <!-- Search -->
         <div class="md:col-span-2">
           <label for="search" class="block text-sm font-medium text-gray-700 mb-2">
-            Rechercher
+            {{ $t('solutionsPage.filters.search') }}
           </label>
-          <input id="search" v-model="searchQuery" type="text" placeholder="Nom ou description..." class="input"
-            @input="debouncedSearch" />
+          <input id="search" v-model="searchQuery" type="text"
+            :placeholder="$t('solutionsPage.filters.searchPlaceholder')" class="input" @input="debouncedSearch" />
         </div>
 
         <!-- Category Filter -->
         <div>
           <label for="category" class="block text-sm font-medium text-gray-700 mb-2">
-            Catégorie
+            {{ $t('solutionsPage.filters.category') }}
           </label>
           <select id="category" v-model="selectedCategory" class="input" @change="applyFilters">
-            <option value="">Toutes</option>
+            <option value="">{{ $t('solutionsPage.filters.all') }}</option>
             <option v-for="category in solutionsStore.categories" :key="category" :value="category">
               {{ category }}
             </option>
@@ -36,37 +36,38 @@
         <!-- Auth Filter -->
         <div>
           <label for="authFilter" class="block text-sm font-medium text-gray-700 mb-2">
-            Authentification
+            {{ $t('solutionsPage.filters.auth') }}
           </label>
           <select id="authFilter" v-model="authFilter" class="input" @change="applyFilters">
-            <option value="">Toutes</option>
-            <option value="true">SSO Activé</option>
-            <option value="false">SSO Désactivé</option>
+            <option value="">{{ $t('solutionsPage.filters.all') }}</option>
+            <option value="true">{{ $t('solutionsPage.filters.ssoEnabled') }}</option>
+            <option value="false">{{ $t('solutionsPage.filters.ssoDisabled') }}</option>
           </select>
         </div>
       </div>
 
       <!-- Active Filters Display -->
       <div v-if="hasActiveFilters" class="mt-4 flex items-center flex-wrap gap-2">
-        <span class="text-sm text-gray-600">Filtres actifs:</span>
+        <span class="text-sm text-gray-600">{{ $t('solutionsPage.filters.active') }}</span>
 
         <button v-if="searchQuery" @click="clearSearch" class="badge badge-info flex items-center space-x-1">
-          <span>Recherche: {{ searchQuery }}</span>
+          <span>{{ $t('solutionsPage.filters.activeSearch') }} {{ searchQuery }}</span>
           <IconX class="w-3 h-3" />
         </button>
 
         <button v-if="selectedCategory" @click="clearCategory" class="badge badge-info flex items-center space-x-1">
-          <span>Catégorie: {{ selectedCategory }}</span>
+          <span>{{ $t('solutionsPage.filters.activeCategory') }} {{ selectedCategory }}</span>
           <IconX class="w-3 h-3" />
         </button>
 
         <button v-if="authFilter" @click="clearAuthFilter" class="badge badge-info flex items-center space-x-1">
-          <span>SSO: {{ authFilter === 'true' ? 'Activé' : 'Désactivé' }}</span>
+          <span>{{ $t('solutionsPage.filters.activeSso') }} {{ authFilter === 'true' ?
+            $t('solutionsPage.filters.enabled') : $t('solutionsPage.filters.disabled') }}</span>
           <IconX class="w-3 h-3" />
         </button>
 
         <button @click="clearAllFilters" class="text-sm text-primary hover:text-secondary font-medium">
-          Tout effacer
+          {{ $t('solutionsPage.filters.clearAll') }}
         </button>
       </div>
     </div>
@@ -76,7 +77,7 @@
       <div class="card">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-gray-600">Total</p>
+            <p class="text-sm text-gray-600">{{ $t('solutionsPage.stats.total') }}</p>
             <p class="text-2xl font-bold text-gray-900">{{ solutionsStore.totalSolutions }}</p>
           </div>
           <div class="relative w-10 h-10 flex items-center justify-center">
@@ -89,7 +90,7 @@
       <div class="card">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-gray-600">Actives</p>
+            <p class="text-sm text-gray-600">{{ $t('solutionsPage.stats.active') }}</p>
             <p class="text-2xl font-bold text-green-600">{{ solutionsStore.activeSolutions.length }}</p>
           </div>
           <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -101,7 +102,7 @@
       <div class="card">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-sm text-gray-600">Avec SSO</p>
+            <p class="text-sm text-gray-600">{{ $t('solutionsPage.stats.withSso') }}</p>
             <p class="text-2xl font-bold text-primary">{{ solutionsStore.authEnabledSolutions.length }}</p>
           </div>
           <div class="relative w-10 h-10 flex items-center justify-center">
@@ -120,19 +121,21 @@
     <div v-if="solutionsStore.totalPages > 1" class="card">
       <div class="flex items-center justify-between">
         <div class="text-sm text-gray-600">
-          Page {{ solutionsStore.currentPage }} sur {{ solutionsStore.totalPages }}
+          {{ $t('solutionsPage.pagination.info', {
+            current: solutionsStore.currentPage, total: solutionsStore.totalPages
+          }) }}
         </div>
         <div class="flex items-center space-x-2">
           <button @click="previousPage" :disabled="solutionsStore.currentPage === 1"
             class="btn btn-secondary text-sm py-2"
             :class="{ 'opacity-50 cursor-not-allowed': solutionsStore.currentPage === 1 }">
             <IconArrowLeft class="w-4 h-4" />
-            Précédent
+            {{ $t('solutionsPage.pagination.prev') }}
           </button>
           <button @click="nextPage" :disabled="solutionsStore.currentPage === solutionsStore.totalPages"
             class="btn btn-secondary text-sm py-2"
             :class="{ 'opacity-50 cursor-not-allowed': solutionsStore.currentPage === solutionsStore.totalPages }">
-            Suivant
+            {{ $t('solutionsPage.pagination.next') }}
             <IconArrowRight class="w-4 h-4" />
           </button>
         </div>

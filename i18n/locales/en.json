@@ -229,5 +229,179 @@
       "2": "Sweet dreams",
       "3": "Time to rest"
     }
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your account information and preferences",
+    "success": {
+      "update": "Profile updated successfully!"
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "edit": "Edit Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "username": "Username",
+      "optional": "(optional)",
+      "email": "Email Address",
+      "verified": "Verified",
+      "unverified": "Unverified"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "cancel": "Cancel"
+    },
+    "password": {
+      "title": "Change Password",
+      "success": "Password changed successfully!",
+      "new": "New Password",
+      "minChars": "Minimum 8 characters",
+      "confirm": "Confirm New Password",
+      "submit": "Change Password",
+      "submitting": "Changing...",
+      "error": {
+        "length": "Password must be at least 8 characters long",
+        "match": "Passwords do not match",
+        "failed": "Failed to change password"
+      }
+    },
+    "account": {
+      "title": "Account Information",
+      "id": "Account ID",
+      "status": "Account Status",
+      "active": "Active",
+      "lastLogin": "Last Login"
+    }
+  },
+  "services": {
+    "title": "Connected Services",
+    "subtitle": "Manage your access to PGS ecosystem applications",
+    "active": "Active",
+    "loading": "Loading services...",
+    "empty": {
+      "title": "No services connected",
+      "description": "You don't have access to any services yet."
+    },
+    "activeServices": "Active Services",
+    "lastAccessed": "Last accessed:",
+    "openService": "Open Service",
+    "inactiveServices": "Inactive Services",
+    "inactive": "Inactive",
+    "inactiveMessage": "This service is currently inactive. Contact support to reactivate.",
+    "details": {
+      "title": "Service Details",
+      "name": "Service Name",
+      "domain": "Domain",
+      "role": "Role",
+      "lastAccess": "Last Access",
+      "permissions": "Permissions",
+      "close": "Close"
+    }
+  },
+  "sessions": {
+    "title": "Active Sessions",
+    "subtitle": "Manage your active login sessions across different devices",
+    "current": {
+      "title": "Current Session",
+      "description": "This is your current active session. Sessions automatically expire after 7 days of inactivity."
+    },
+    "about": {
+      "title": "About Sessions",
+      "description": "Your sessions are managed automatically using secure HTTP-only cookies. Each session includes:",
+      "accessToken": "Access token valid for 1 hour",
+      "refreshToken": "Refresh token valid for 7 days",
+      "autoRefresh": "Automatic token refresh"
+    },
+    "security": {
+      "title": "Security Best Practices",
+      "logout": {
+        "title": "Always sign out on shared devices",
+        "description": "Prevent unauthorized access by logging out when using public computers"
+      },
+      "password": {
+        "title": "Use strong, unique passwords",
+        "description": "Protect your account with a password that's at least 8 characters long"
+      },
+      "browser": {
+        "title": "Keep your browser updated",
+        "description": "Ensure you're using the latest version of your web browser for best security"
+      }
+    },
+    "actions": {
+      "title": "Session Actions",
+      "signOut": "Sign Out",
+      "signOutDesc": "End your current session"
+    },
+    "technical": {
+      "title": "Technical Details",
+      "authMethod": "Authentication Method:",
+      "authMethodValue": "HTTP-only Cookies with JWT",
+      "tokenType": "Token Type:",
+      "tokenTypeValue": "Bearer Token",
+      "securityFeatures": "Security Features:",
+      "feature1": "Secure cookie transmission (HTTPS only in production)",
+      "feature2": "SameSite cookie policy",
+      "feature3": "Automatic token rotation",
+      "feature4": "IP address tracking",
+      "feature5": "User agent validation"
+    },
+    "confirmLogout": "Are you sure you want to sign out?"
+  },
+  "settings": {
+    "interface": {
+      "title": "Interface",
+      "langDesc": "Select your preferred language for the interface.",
+      "themeDesc": "Choose between light and dark mode."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "email": {
+        "title": "Email Notifications",
+        "desc": "Receive emails about your account activity."
+      },
+      "marketing": {
+        "title": "Marketing Emails",
+        "desc": "Receive news and updates about PGS products."
+      }
+    },
+    "security": {
+      "title": "Security",
+      "2fa": {
+        "title": "Two-Factor Authentication",
+        "desc": "Add an extra layer of security to your account.",
+        "enable": "Enable"
+      }
+    }
+  },
+  "solutionsPage": {
+    "title": "All Solutions",
+    "subtitle": "Explore all solutions in the PGS ecosystem",
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Name or description...",
+      "category": "Category",
+      "all": "All",
+      "auth": "Authentication",
+      "ssoEnabled": "SSO Enabled",
+      "ssoDisabled": "SSO Disabled",
+      "active": "Active filters:",
+      "activeSearch": "Search:",
+      "activeCategory": "Category:",
+      "activeSso": "SSO:",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "clearAll": "Clear all"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Active",
+      "withSso": "With SSO"
+    },
+    "pagination": {
+      "info": "Page {current} of {total}",
+      "prev": "Previous",
+      "next": "Next"
+    }
   }
 }

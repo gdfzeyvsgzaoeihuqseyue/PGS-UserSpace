@@ -15,7 +15,7 @@
 
         <div class="flex items-center w-full justify-between" :class="isSidebarCollapsed ? 'justify-arround' : 'gap-3'">
           <!-- Logo -->
-          <NuxtLink to="/me" class="block flex-shrink-0 transition-all duration-200">
+          <div class="block flex-shrink-0 transition-all duration-200">
             <!-- Collapsed State: Show small logo -->
             <div v-if="isSidebarCollapsed" class="flex justify-center">
               <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-8 w-auto dark:hidden" />
@@ -26,7 +26,7 @@
               <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-16 w-auto dark:hidden" />
               <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-10 w-auto hidden dark:block" />
             </div>
-          </NuxtLink>
+          </div>
 
           <button @click="toggleSidebar"
             class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hidden lg:flex items-center justify-center transition-colors flex-shrink-0">

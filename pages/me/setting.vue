@@ -12,7 +12,7 @@
       <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
         <div class="px-4 py-5 sm:p-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
-            Interface
+            {{ $t('settings.interface.title') }}
           </h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -22,7 +22,7 @@
               </label>
               <prefLang2 />
               <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Select your preferred language for the interface.
+                {{ $t('settings.interface.langDesc') }}
               </p>
             </div>
 
@@ -32,7 +32,7 @@
               </label>
               <prefTheme2 />
               <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Choose between light and dark mode.
+                {{ $t('settings.interface.themeDesc') }}
               </p>
             </div>
           </div>
@@ -43,7 +43,7 @@
       <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
         <div class="px-4 py-5 sm:p-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
-            Notifications
+            {{ $t('settings.notifications.title') }}
           </h3>
           <div class="space-y-4">
             <div class="flex items-start">
@@ -52,9 +52,9 @@
                   class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded" checked>
               </div>
               <div class="ml-3 text-sm">
-                <label for="email_notifications" class="font-medium text-gray-700 dark:text-gray-300">Email
-                  Notifications</label>
-                <p class="text-gray-500 dark:text-gray-400">Receive emails about your account activity.</p>
+                <label for="email_notifications" class="font-medium text-gray-700 dark:text-gray-300">{{
+                  $t('settings.notifications.email.title') }}</label>
+                <p class="text-gray-500 dark:text-gray-400">{{ $t('settings.notifications.email.desc') }}</p>
               </div>
             </div>
             <div class="flex items-start">
@@ -63,9 +63,9 @@
                   class="focus:ring-primary h-4 w-4 text-primary border-gray-300 rounded">
               </div>
               <div class="ml-3 text-sm">
-                <label for="marketing_emails" class="font-medium text-gray-700 dark:text-gray-300">Marketing
-                  Emails</label>
-                <p class="text-gray-500 dark:text-gray-400">Receive news and updates about PGS products.</p>
+                <label for="marketing_emails" class="font-medium text-gray-700 dark:text-gray-300">{{
+                  $t('settings.notifications.marketing.title') }}</label>
+                <p class="text-gray-500 dark:text-gray-400">{{ $t('settings.notifications.marketing.desc') }}</p>
               </div>
             </div>
           </div>
@@ -76,14 +76,14 @@
       <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
         <div class="px-4 py-5 sm:p-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
-            Security
+            {{ $t('settings.security.title') }}
           </h3>
           <div class="flex items-center justify-between">
             <div>
-              <h4 class="text-sm font-medium text-gray-900 dark:text-white">Two-Factor Authentication</h4>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Add an extra layer of security to your account.</p>
+              <h4 class="text-sm font-medium text-gray-900 dark:text-white">{{ $t('settings.security.2fa.title') }}</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ $t('settings.security.2fa.desc') }}</p>
             </div>
-            <button class="btn btn-outline text-sm">Enable</button>
+            <button class="btn btn-outline text-sm">{{ $t('settings.security.2fa.enable') }}</button>
           </div>
         </div>
       </div>

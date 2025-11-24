@@ -200,5 +200,179 @@
       "2": "Fais de beaux rêves",
       "3": "À demain"
     }
+  },
+  "profile": {
+    "title": "Paramètres du profil",
+    "subtitle": "Gérez vos informations de compte et vos préférences",
+    "success": {
+      "update": "Profil mis à jour avec succès !"
+    },
+    "personalInfo": {
+      "title": "Informations personnelles",
+      "edit": "Modifier le profil",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "username": "Nom d'utilisateur",
+      "optional": "(facultatif)",
+      "email": "Adresse email",
+      "verified": "Vérifié",
+      "unverified": "Non vérifié"
+    },
+    "actions": {
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "cancel": "Annuler"
+    },
+    "password": {
+      "title": "Changer le mot de passe",
+      "success": "Mot de passe modifié avec succès !",
+      "new": "Nouveau mot de passe",
+      "minChars": "Minimum 8 caractères",
+      "confirm": "Confirmer le mot de passe",
+      "submit": "Changer le mot de passe",
+      "submitting": "Modification...",
+      "error": {
+        "length": "Le mot de passe doit contenir au moins 8 caractères",
+        "match": "Les mots de passe ne correspondent pas",
+        "failed": "Échec du changement de mot de passe"
+      }
+    },
+    "account": {
+      "title": "Informations du compte",
+      "id": "ID du compte",
+      "status": "Statut du compte",
+      "active": "Actif",
+      "lastLogin": "Dernière connexion"
+    }
+  },
+  "services": {
+    "title": "Services connectés",
+    "subtitle": "Gérez votre accès aux applications de l'écosystème PGS",
+    "active": "Actif",
+    "loading": "Chargement des services...",
+    "empty": {
+      "title": "Aucun service connecté",
+      "description": "Vous n'avez pas encore accès à des services."
+    },
+    "activeServices": "Services actifs",
+    "lastAccessed": "Dernier accès :",
+    "openService": "Ouvrir le service",
+    "inactiveServices": "Services inactifs",
+    "inactive": "Inactif",
+    "inactiveMessage": "Ce service est actuellement inactif. Contactez le support pour le réactiver.",
+    "details": {
+      "title": "Détails du service",
+      "name": "Nom du service",
+      "domain": "Domaine",
+      "role": "Rôle",
+      "lastAccess": "Dernier accès",
+      "permissions": "Permissions",
+      "close": "Fermer"
+    }
+  },
+  "sessions": {
+    "title": "Sessions actives",
+    "subtitle": "Gérez vos sessions de connexion actives sur différents appareils",
+    "current": {
+      "title": "Session actuelle",
+      "description": "Ceci est votre session active actuelle. Les sessions expirent automatiquement après 7 jours d'inactivité."
+    },
+    "about": {
+      "title": "À propos des sessions",
+      "description": "Vos sessions sont gérées automatiquement à l'aide de cookies HTTP-only sécurisés. Chaque session comprend :",
+      "accessToken": "Jeton d'accès valide pour 1 heure",
+      "refreshToken": "Jeton de rafraîchissement valide pour 7 jours",
+      "autoRefresh": "Rafraîchissement automatique du jeton"
+    },
+    "security": {
+      "title": "Bonnes pratiques de sécurité",
+      "logout": {
+        "title": "Déconnectez-vous toujours sur les appareils partagés",
+        "description": "Empêchez l'accès non autorisé en vous déconnectant lorsque vous utilisez des ordinateurs publics"
+      },
+      "password": {
+        "title": "Utilisez des mots de passe forts et uniques",
+        "description": "Protégez votre compte avec un mot de passe d'au moins 8 caractères"
+      },
+      "browser": {
+        "title": "Gardez votre navigateur à jour",
+        "description": "Assurez-vous d'utiliser la dernière version de votre navigateur web pour une sécurité optimale"
+      }
+    },
+    "actions": {
+      "title": "Actions de session",
+      "signOut": "Se déconnecter",
+      "signOutDesc": "Mettre fin à votre session actuelle"
+    },
+    "technical": {
+      "title": "Détails techniques",
+      "authMethod": "Méthode d'authentification :",
+      "authMethodValue": "Cookies HTTP-only avec JWT",
+      "tokenType": "Type de jeton :",
+      "tokenTypeValue": "Jeton Bearer",
+      "securityFeatures": "Fonctionnalités de sécurité :",
+      "feature1": "Transmission sécurisée des cookies (HTTPS uniquement en production)",
+      "feature2": "Politique de cookies SameSite",
+      "feature3": "Rotation automatique des jetons",
+      "feature4": "Suivi de l'adresse IP",
+      "feature5": "Validation de l'agent utilisateur"
+    },
+    "confirmLogout": "Êtes-vous sûr de vouloir vous déconnecter ?"
+  },
+  "settings": {
+    "interface": {
+      "title": "Interface",
+      "langDesc": "Sélectionnez votre langue préférée pour l'interface.",
+      "themeDesc": "Choisissez entre le mode clair et sombre."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "email": {
+        "title": "Notifications par email",
+        "desc": "Recevez des emails concernant l'activité de votre compte."
+      },
+      "marketing": {
+        "title": "Emails marketing",
+        "desc": "Recevez des nouvelles et des mises à jour sur les produits PGS."
+      }
+    },
+    "security": {
+      "title": "Sécurité",
+      "2fa": {
+        "title": "Authentification à deux facteurs",
+        "desc": "Ajoutez une couche de sécurité supplémentaire à votre compte.",
+        "enable": "Activer"
+      }
+    }
+  },
+  "solutionsPage": {
+    "title": "Toutes les Solutions",
+    "subtitle": "Explorez l'ensemble des solutions de l'écosystème PGS",
+    "filters": {
+      "search": "Rechercher",
+      "searchPlaceholder": "Nom ou description...",
+      "category": "Catégorie",
+      "all": "Toutes",
+      "auth": "Authentification",
+      "ssoEnabled": "SSO Activé",
+      "ssoDisabled": "SSO Désactivé",
+      "active": "Filtres actifs :",
+      "activeSearch": "Recherche :",
+      "activeCategory": "Catégorie :",
+      "activeSso": "SSO :",
+      "enabled": "Activé",
+      "disabled": "Désactivé",
+      "clearAll": "Tout effacer"
+    },
+    "stats": {
+      "total": "Total",
+      "active": "Actives",
+      "withSso": "Avec SSO"
+    },
+    "pagination": {
+      "info": "Page {current} sur {total}",
+      "prev": "Précédent",
+      "next": "Suivant"
+    }
   }
 }
