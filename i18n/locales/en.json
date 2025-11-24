@@ -15,8 +15,21 @@
     "langFr": "French",
     "langEn": "English"
   },
-  "home": {
+  "navbar": {
+    "beta": "Beta",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "footer": {
+    "copyright": "© {year} PGS. All rights reserved.",
+    "description": "Centralized authentication platform for the PGS ecosystem.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "support": "Support"
+  },
+  "indexPage": {
     "hero": {
+      "badge": "Centralized SSO authentication",
       "welcome": "Welcome to",
       "title": "PGS MY SPACE",
       "subtitle": "Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services",
@@ -124,52 +137,11 @@
     "showLess": "Show less",
     "never": "Never"
   },
-  "indexPage": {
-    "heroTitle": "Business management",
-    "heroDynamicWords": {
-      "word1": "simplified",
-      "word2": "optimized",
-      "word3": "fast",
-      "word4": "smart"
-    },
-    "heroSubtitle": "A complete solution to optimize your processes and boost your productivity",
-    "demoButton": "See a demo",
-    "startFreeButton": "Start for free",
-    "desktopVersionButton": "Get desktop version",
-    "dashboardStatus": "Dashboard",
-    "featuresTitle": "Features",
-    "featuresSubtitle": "We offer a wide range of services.",
-    "allFeaturesButton": "All features",
-    "partnersTitle": "They trust us",
-    "partnersSubtitle": "Together, we build the future with strategic and lasting collaborations.",
-    "testimonialsTitle": "What our users say",
-    "testimonialsSubtitle": "Discover feedback from our users.",
-    "faqSubtitle": "The list of frequently asked questions.",
-    "newsletterTitle": "Stay informed",
-    "newsletterSubtitle": "Subscribe to our newsletter to receive our latest news and updates.",
-    "newsletterConsent": "By subscribing, you agree to receive our marketing communications. You can unsubscribe at any time.",
-    "ctaTitle": "Ready to transform your business?",
-    "ctaSubtitle": "Join many companies that trust SuitOps for their daily management",
-    "ctaStartNow": "Start now",
-    "ctaContactUs": "Contact us"
-  },
-  "navbar": {
-    "beta": "Beta",
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
-  },
-  "footer": {
-    "copyright": "© {year} PGS. All rights reserved.",
-    "description": "Centralized authentication platform for the PGS ecosystem.",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "support": "Support"
-  },
   "dashboard": {
     "menu": {
       "dashboard": "Dashboard",
       "services": "Services",
-      "solutions": "All Solutions",
+      "solutions": "Solutions",
       "sessions": "Sessions",
       "profile": "Profile",
       "settings": "Settings"
@@ -403,5 +375,12 @@
       "prev": "Previous",
       "next": "Next"
     }
+  },
+  "solutionCard": {
+    "keyFeatures": "Key Features:",
+    "others": "+{count} other | +{count} others",
+    "ssoAvailable": "SSO Authentication Available",
+    "viewDetails": "View Details",
+    "open": "Open"
   }
 }

@@ -22,7 +22,7 @@
 
       <!-- Auth Badge -->
       <div v-if="solution.allowAuth" class="flex-shrink-0">
-        <span class="badge badge-success" title="Authentification SSO disponible">
+        <span class="badge badge-success" :title="$t('solutionCard.ssoAvailable')">
           <IconShieldCheck class="w-3 h-3 mr-1" />
           SSO
         </span>
@@ -37,7 +37,7 @@
     <!-- Features -->
     <div v-if="showFeatures && solution.features.length > 0" class="mb-4">
       <div class="border-t border-gray-200 pt-3">
-        <p class="text-xs font-medium text-gray-700 mb-2">Fonctionnalités clés :</p>
+        <p class="text-xs font-medium text-gray-700 mb-2">{{ $t('solutionCard.keyFeatures') }}</p>
         <ul class="space-y-1">
           <li v-for="(feature, index) in solution.features.slice(0, 3)" :key="index"
             class="flex items-start text-xs text-gray-600">
@@ -46,7 +46,7 @@
           </li>
         </ul>
         <p v-if="solution.features.length > 3" class="text-xs text-gray-500 mt-1 ml-4">
-          +{{ solution.features.length - 3 }} autre{{ solution.features.length - 3 > 1 ? 's' : '' }}
+          {{ $t('solutionCard.others', { count: solution.features.length - 3 }, solution.features.length - 3) }}
         </p>
       </div>
     </div>
@@ -56,11 +56,17 @@
       <div class="text-xs text-gray-500">
         {{ solution.updatedAt }}
       </div>
-      <a :href="solution.ctaLink" target="_blank" rel="noopener noreferrer"
-        class="btn btn-primary text-sm py-2 px-4 flex items-center space-x-1 group/btn">
-        <span>{{ solution.ctaText }}</span>
-        <IconArrowRight class="w-4 h-4" />
-      </a>
+      <div class="flex items-center space-x-2">
+        <a :href="`https://progestionsoft.netlify.app/solutions/${solution.slug}`" target="_blank"
+          rel="noopener noreferrer" class="text-sm text-primary hover:text-secondary font-medium transition-colors">
+          {{ $t('solutionCard.viewDetails') }}
+        </a>
+        <a :href="solution.ctaLink" target="_blank" rel="noopener noreferrer"
+          class="btn btn-primary text-sm py-2 px-4 flex items-center space-x-1 group/btn">
+          <span>{{ solution.ctaText || $t('solutionCard.open') }}</span>
+          <IconArrowRight class="w-4 h-4" />
+        </a>
+      </div>
     </div>
   </div>
 </template>

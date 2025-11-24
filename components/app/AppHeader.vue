@@ -72,6 +72,7 @@
 <script setup>
 import { useSharedFiles } from '~/stores/sharedFiles';
 import { IconMenu, IconX } from '@tabler/icons-vue';
+import { prefSettings } from '~/components/pref'
 
 const config = useRuntimeConfig();
 const sharedFiles = useSharedFiles();

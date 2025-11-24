@@ -29,6 +29,7 @@
   },
   "indexPage": {
     "hero": {
+      "badge": "Authentification centralisée SSO",
       "welcome": "Bienvenue sur",
       "title": "MON ESPACE PGS",
       "subtitle": "Votre plateforme d'authentification unique centralisée pour un accès transparent à tous les services de l'écosystème PGS",
@@ -140,7 +141,7 @@
     "menu": {
       "dashboard": "Tableau de bord",
       "services": "Services",
-      "solutions": "Toutes les solutions",
+      "solutions": "Solutions",
       "sessions": "Sessions",
       "profile": "Profil",
       "settings": "Paramètres"
@@ -374,5 +375,12 @@
       "prev": "Précédent",
       "next": "Suivant"
     }
+  },
+  "solutionCard": {
+    "keyFeatures": "Fonctionnalités clés :",
+    "others": "+{count} autre | +{count} autres",
+    "ssoAvailable": "Authentification SSO disponible",
+    "viewDetails": "Voir détails",
+    "open": "Ouvrir"
   }
 }
