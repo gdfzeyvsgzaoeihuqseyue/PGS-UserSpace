@@ -1,9 +1,9 @@
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Welcome Header -->
     <div>
       <h1 class="text-3xl font-bold text-gray-900">
-        Welcome back, {{ authStore.user?.firstName }}!
+        {{ $t(greetingKey) }}, {{ authStore.user?.firstName }}!
       </h1>
       <p class="mt-2 text-gray-600">Here's an overview of your PGS account</p>
     </div>
@@ -143,6 +143,7 @@
 
 <script setup lang="ts">
 import { IconClock, IconFolders, IconLock, IconLogout, IconShieldCheck, IconUser } from '@tabler/icons-vue'
+import { getGreetingKey } from '~/utils/greeting'
 
 definePageMeta({
   layout: 'dashboard',
@@ -151,6 +152,7 @@ definePageMeta({
 
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()
+const greetingKey = ref('greetings.morning.1') // Default
 
 const formatDate = (date?: string) => {
   if (!date) return 'Never'
@@ -169,5 +171,6 @@ const handleLogout = async () => {
 
 onMounted(() => {
   servicesStore.fetchServices()
+  greetingKey.value = getGreetingKey()
 })
 </script>

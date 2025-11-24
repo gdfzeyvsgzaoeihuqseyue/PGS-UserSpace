@@ -13,25 +13,31 @@
         class="h-16 flex items-center px-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all duration-300"
         :class="isSidebarCollapsed ? 'justify-center' : 'justify-between'">
 
-        <div class="flex items-center" :class="{ 'gap-3': !isSidebarCollapsed }">
-          <!-- Sidebar Toggle (Desktop) -->
+        <div class="flex items-center w-full" :class="isSidebarCollapsed ? 'justify-center' : 'gap-3'">
+          <!-- Logo -->
+          <NuxtLink to="/me" class="block flex-shrink-0 transition-all duration-200">
+            <!-- Collapsed State: Show small logo -->
+            <div v-if="isSidebarCollapsed" class="flex justify-center">
+              <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-8 w-auto dark:hidden" />
+              <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-8 w-auto hidden dark:block" />
+            </div>
+            <!-- Expanded State: Show full logo (larger) -->
+            <div v-else>
+              <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-16 w-auto dark:hidden" />
+              <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-10 w-auto hidden dark:block" />
+            </div>
+          </NuxtLink>
+
           <button @click="toggleSidebar"
             class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 hidden lg:flex items-center justify-center transition-colors flex-shrink-0">
             <IconLayoutSidebarRightCollapse v-if="isSidebarCollapsed" class="w-5 h-5" />
             <IconLayoutSidebarLeftCollapse v-else class="w-5 h-5" />
           </button>
-
-          <!-- Logo -->
-          <NuxtLink to="/me" class="block flex-shrink-0 transition-opacity duration-200"
-            :class="{ 'opacity-0 w-0 overflow-hidden': isSidebarCollapsed && !showMobileMenu }">
-            <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-8 w-auto dark:hidden" />
-            <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-8 w-auto hidden dark:block" />
-          </NuxtLink>
         </div>
 
         <!-- Mobile Close Button -->
         <button @click="showMobileMenu = false"
-          class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400">
+          class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 ml-auto">
           <IconX class="w-5 h-5" />
         </button>
       </div>
@@ -39,8 +45,9 @@
       <!-- Navigation Links -->
       <div class="flex-1 overflow-y-auto px-3 py-4">
         <nav class="space-y-1">
-          <NuxtLink to="/me" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
-            :class="isActive('/me') && route.path === '/me' ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
+          <NuxtLink :to="localePath('/me')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+            :class="isActive('/me') && isExactActive('/me') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconHome class="w-6 h-6 flex-shrink-0" />
             <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
@@ -54,7 +61,8 @@
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/me/services" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+          <NuxtLink :to="localePath('/me/services')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me/services') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconLayout2 class="w-6 h-6 flex-shrink-0" />
@@ -71,7 +79,8 @@
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/me/solutions" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+          <NuxtLink :to="localePath('/me/solutions')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me/solutions') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconLayoutGridAdd class="w-6 h-6 flex-shrink-0" />
@@ -85,7 +94,8 @@
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/me/sessions" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+          <NuxtLink :to="localePath('/me/sessions')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me/sessions') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconLock class="w-6 h-6 flex-shrink-0" />
@@ -99,7 +109,8 @@
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/me/profile" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+          <NuxtLink :to="localePath('/me/profile')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me/profile') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconUser class="w-6 h-6 flex-shrink-0" />
@@ -113,7 +124,8 @@
             </div>
           </NuxtLink>
 
-          <NuxtLink to="/me/setting" class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
+          <NuxtLink :to="localePath('/me/setting')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me/setting') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
             <IconSettings class="w-6 h-6 flex-shrink-0" />
@@ -185,7 +197,7 @@
                 <!-- User Dropdown -->
                 <div v-if="showUserMenu"
                   class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
-                  <NuxtLink to="/me/profile"
+                  <NuxtLink :to="localePath('/me/profile')"
                     class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     @click="showUserMenu = false">
                     {{ $t('dashboard.userMenu.profileSettings') }}
@@ -220,6 +232,7 @@ const sharedFiles = useSharedFiles();
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()
 const route = useRoute()
+const localePath = useLocalePath()
 
 const showUserMenu = ref(false)
 const showMobileMenu = ref(false)
@@ -238,10 +251,20 @@ const toggleSidebar = () => {
 }
 
 const isActive = (path: string) => {
+  const currentPath = route.path
+  const targetPath = localePath(path)
+
+  // Handle root path or exact match
   if (path === '/me') {
-    return route.path === '/me'
+    return currentPath === targetPath
   }
-  return route.path.startsWith(path)
+
+  // Handle sub-paths
+  return currentPath.startsWith(targetPath)
+}
+
+const isExactActive = (path: string) => {
+  return route.path === localePath(path)
 }
 
 const getInitials = (firstName: string, lastName: string) => {

@@ -148,5 +148,27 @@
       "profileSettings": "Profile Settings",
       "signOut": "Sign Out"
     }
+  },
+  "greetings": {
+    "morning": {
+      "1": "Good morning",
+      "2": "Rise and shine",
+      "3": "Have a great morning"
+    },
+    "afternoon": {
+      "1": "Good afternoon",
+      "2": "Hope your day is going well",
+      "3": "Good day"
+    },
+    "evening": {
+      "1": "Good evening",
+      "2": "Hope you had a good day",
+      "3": "Relaxing evening"
+    },
+    "night": {
+      "1": "Good night",
+      "2": "Late night working?",
+      "3": "Time to rest soon"
+    }
   }
 }

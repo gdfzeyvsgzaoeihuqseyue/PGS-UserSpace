@@ -148,5 +148,27 @@
       "profileSettings": "Paramètres du profil",
       "signOut": "Se déconnecter"
     }
+  },
+  "greetings": {
+    "morning": {
+      "1": "Bonjour",
+      "2": "Bonne matinée",
+      "3": "Bien le bonjour"
+    },
+    "afternoon": {
+      "1": "Bon après-midi",
+      "2": "Bonne journée",
+      "3": "Salut"
+    },
+    "evening": {
+      "1": "Bonsoir",
+      "2": "Bonne soirée",
+      "3": "Soirée détente ?"
+    },
+    "night": {
+      "1": "Bonne nuit",
+      "2": "Sommeil difficile ?",
+      "3": "Il se fait tard"
+    }
   }
 }
