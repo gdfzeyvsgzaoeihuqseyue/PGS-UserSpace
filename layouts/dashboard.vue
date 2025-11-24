@@ -13,7 +13,7 @@
         class="h-16 flex items-center px-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 transition-all duration-300"
         :class="isSidebarCollapsed ? 'justify-center' : 'justify-between'">
 
-        <div class="flex items-center w-full" :class="isSidebarCollapsed ? 'justify-center' : 'gap-3'">
+        <div class="flex items-center w-full justify-between" :class="isSidebarCollapsed ? 'justify-arround' : 'gap-3'">
           <!-- Logo -->
           <NuxtLink to="/me" class="block flex-shrink-0 transition-all duration-200">
             <!-- Collapsed State: Show small logo -->

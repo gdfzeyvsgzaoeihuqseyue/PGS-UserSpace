@@ -82,6 +82,7 @@
 import type { LoginData } from '~/types'
 import { useSharedFiles } from '~/stores/sharedFiles';
 import { IconAlertCircle, IconLoader2, IconEye, IconEyeOff } from '@tabler/icons-vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n()
 const sharedFiles = useSharedFiles();
