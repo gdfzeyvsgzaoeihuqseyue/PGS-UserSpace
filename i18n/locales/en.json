@@ -15,19 +15,7 @@
     "langFr": "French",
     "langEn": "English"
   },
-  "navbar": {
-    "beta": "Beta",
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
-  },
-  "footer": {
-    "copyright": "© {year} PGS MY SPACE. All rights reserved.",
-    "description": "Centralized authentication platform for the PGS ecosystem.",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "support": "Support"
-  },
-  "indexPage": {
+  "home": {
     "hero": {
       "welcome": "Welcome to",
       "title": "PGS MY SPACE",
@@ -133,7 +121,49 @@
     "presentationLabel": "SuitOps presentation video",
     "optional": "Optional",
     "showMore": "Show more",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "never": "Never"
+  },
+  "indexPage": {
+    "heroTitle": "Business management",
+    "heroDynamicWords": {
+      "word1": "simplified",
+      "word2": "optimized",
+      "word3": "fast",
+      "word4": "smart"
+    },
+    "heroSubtitle": "A complete solution to optimize your processes and boost your productivity",
+    "demoButton": "See a demo",
+    "startFreeButton": "Start for free",
+    "desktopVersionButton": "Get desktop version",
+    "dashboardStatus": "Dashboard",
+    "featuresTitle": "Features",
+    "featuresSubtitle": "We offer a wide range of services.",
+    "allFeaturesButton": "All features",
+    "partnersTitle": "They trust us",
+    "partnersSubtitle": "Together, we build the future with strategic and lasting collaborations.",
+    "testimonialsTitle": "What our users say",
+    "testimonialsSubtitle": "Discover feedback from our users.",
+    "faqSubtitle": "The list of frequently asked questions.",
+    "newsletterTitle": "Stay informed",
+    "newsletterSubtitle": "Subscribe to our newsletter to receive our latest news and updates.",
+    "newsletterConsent": "By subscribing, you agree to receive our marketing communications. You can unsubscribe at any time.",
+    "ctaTitle": "Ready to transform your business?",
+    "ctaSubtitle": "Join many companies that trust SuitOps for their daily management",
+    "ctaStartNow": "Start now",
+    "ctaContactUs": "Contact us"
+  },
+  "navbar": {
+    "beta": "Beta",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "footer": {
+    "copyright": "© {year} PGS. All rights reserved.",
+    "description": "Centralized authentication platform for the PGS ecosystem.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "support": "Support"
   },
   "dashboard": {
     "menu": {
@@ -147,28 +177,57 @@
     "userMenu": {
       "profileSettings": "Profile Settings",
       "signOut": "Sign Out"
+    },
+    "overview": "Here's an overview of your PGS account",
+    "stats": {
+      "activeServices": {
+        "title": "Active Services",
+        "link": "View all services →"
+      },
+      "accountStatus": {
+        "title": "Account Status",
+        "verified": "Verified",
+        "unverified": "Unverified",
+        "link": "Manage profile →"
+      },
+      "lastLogin": {
+        "title": "Last Login",
+        "link": "View sessions →"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "browseServices": "Browse Services",
+      "editProfile": "Edit Profile",
+      "manageSessions": "Manage Sessions",
+      "signOut": "Sign Out"
+    },
+    "activeServices": {
+      "title": "Your Active Services",
+      "viewAll": "View all",
+      "open": "Open"
     }
   },
   "greetings": {
     "morning": {
       "1": "Good morning",
       "2": "Rise and shine",
-      "3": "Have a great morning"
+      "3": "Top of the morning"
     },
     "afternoon": {
       "1": "Good afternoon",
-      "2": "Hope your day is going well",
+      "2": "Hope you're having a good day",
       "3": "Good day"
     },
     "evening": {
       "1": "Good evening",
-      "2": "Hope you had a good day",
-      "3": "Relaxing evening"
+      "2": "Hope you had a great day",
+      "3": "Good to see you"
     },
     "night": {
       "1": "Good night",
-      "2": "Late night working?",
-      "3": "Time to rest soon"
+      "2": "Sweet dreams",
+      "3": "Time to rest"
     }
   }
 }

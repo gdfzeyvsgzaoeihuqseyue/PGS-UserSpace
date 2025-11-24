@@ -133,7 +133,8 @@
     "presentationLabel": "Vidéo de présentation SuitOps",
     "optional": "Facultatif",
     "showMore": "Afficher plus",
-    "showLess": "Afficher moins"
+    "showLess": "Afficher moins",
+    "never": "Jamais"
   },
   "dashboard": {
     "menu": {
@@ -147,13 +148,42 @@
     "userMenu": {
       "profileSettings": "Paramètres du profil",
       "signOut": "Se déconnecter"
+    },
+    "overview": "Voici un aperçu de votre compte PGS",
+    "stats": {
+      "activeServices": {
+        "title": "Services Actifs",
+        "link": "Voir tous les services →"
+      },
+      "accountStatus": {
+        "title": "Statut du Compte",
+        "verified": "Vérifié",
+        "unverified": "Non vérifié",
+        "link": "Gérer le profil →"
+      },
+      "lastLogin": {
+        "title": "Dernière Connexion",
+        "link": "Voir les sessions →"
+      }
+    },
+    "quickActions": {
+      "title": "Actions Rapides",
+      "browseServices": "Parcourir les services",
+      "editProfile": "Modifier le profil",
+      "manageSessions": "Gérer les sessions",
+      "signOut": "Se déconnecter"
+    },
+    "activeServices": {
+      "title": "Vos Services Actifs",
+      "viewAll": "Tout voir",
+      "open": "Ouvrir"
     }
   },
   "greetings": {
     "morning": {
       "1": "Bonjour",
-      "2": "Bonne matinée",
-      "3": "Bien le bonjour"
+      "2": "Bon réveil",
+      "3": "Salut"
     },
     "afternoon": {
       "1": "Bon après-midi",
@@ -163,12 +193,12 @@
     "evening": {
       "1": "Bonsoir",
       "2": "Bonne soirée",
-      "3": "Soirée détente ?"
+      "3": "Ravi de vous voir"
     },
     "night": {
       "1": "Bonne nuit",
-      "2": "Sommeil difficile ?",
-      "3": "Il se fait tard"
+      "2": "Fais de beaux rêves",
+      "3": "À demain"
     }
   }
 }
