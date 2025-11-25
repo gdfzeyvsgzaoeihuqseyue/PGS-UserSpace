@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   ],
 
   site: {
-    url: 'https://pgs-me.netlify.app/',
+    url: 'https://pgs-user.netlify.app/',
     name: 'SuitOps',
   },
 
@@ -95,7 +95,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'canonical', href: 'https://pgs-me.netlify.app/' }
+        { rel: 'canonical', href: 'https://pgs-user.netlify.app/' }
       ]
     }
   },

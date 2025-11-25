@@ -106,7 +106,10 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         const config = useRuntimeConfig()
-        const response = await $fetch<SessionResponse>('/user/auth/session', {
+
+        // ✅ SOLUTION: Utiliser /user/profile directement (comme l'autre projet)
+        // Au lieu de /user/auth/session qui ne retourne pas lastLogin
+        const response = await $fetch<SessionResponse>('/user/profile', {
           method: 'GET',
           baseURL: config.public.pgsBaseAPI,
           credentials: 'include'
@@ -115,27 +118,10 @@ export const useAuthStore = defineStore('auth', {
         this.user = response.user
         this.isAuthenticated = true
 
-        // Store services
         const servicesStore = useServicesStore()
         servicesStore.setServices(response.services)
 
-        // ⚠️ WORKAROUND: Si lastLogin est manquant, le récupérer depuis /user/profile
-        if (!this.user.lastLogin) {
-          try {
-            const profileResponse = await $fetch<{ user: User }>('/user/profile', {
-              method: 'GET',
-              baseURL: config.public.pgsBaseAPI,
-              credentials: 'include'
-            })
-
-            if (profileResponse.user.lastLogin) {
-              this.user.lastLogin = profileResponse.user.lastLogin
-              console.log('✅ lastLogin récupéré depuis /user/profile:', this.user.lastLogin)
-            }
-          } catch (profileErr) {
-            console.warn('⚠️ Impossible de récupérer lastLogin depuis /user/profile:', profileErr)
-          }
-        }
+        console.log('✅ Session chargée depuis /user/profile avec lastLogin:', this.user.lastLogin)
 
         return response
       } catch (err: any) {

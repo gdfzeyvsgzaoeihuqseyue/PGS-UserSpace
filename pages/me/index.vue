@@ -56,7 +56,7 @@
           <div>
             <p class="text-sm font-medium text-gray-600">{{ $t('dashboard.stats.lastLogin.title') }}</p>
             <p class="mt-2 text-sm text-gray-900">
-              {{ formatDate(authStore.user?.lastLogin, locale, t('common.never')) }}
+              {{ formatRelativeDate(authStore.user?.lastLogin, locale, t('common.never')) }}
             </p>
           </div>
           <div class="relative w-12 h-12 flex items-center justify-center">
@@ -145,7 +145,7 @@
 <script setup lang="ts">
 import { IconClock, IconFolders, IconLock, IconLogout, IconShieldCheck, IconUser } from '@tabler/icons-vue'
 import { getGreetingKey } from '~/utils/greeting'
-import { formatDate } from '~/utils/dateFormatter'
+import { formatRelativeDate } from '~/utils/dateFormatter'
 
 definePageMeta({
   layout: 'dashboard',
