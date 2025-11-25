@@ -67,6 +67,68 @@ export const useServicesStore = defineStore('services', {
 
     getServiceById(id: string): Service | undefined {
       return this.services.find(s => s.serviceId === id)
+    },
+
+    async revokeServiceAccess(serviceId: string) {
+      try {
+        const config = useRuntimeConfig()
+        const authStore = useAuthStore()
+
+        if (!authStore.user?.id) {
+          throw new Error('User not authenticated')
+        }
+
+        await $fetch('/user/service/revoke-access', {
+          method: 'POST',
+          baseURL: config.public.pgsBaseAPI,
+          credentials: 'include',
+          body: {
+            userId: authStore.user.id,
+            serviceId
+          }
+        })
+
+        // Mettre à jour le service localement
+        const service = this.services.find(s => s.serviceId === serviceId)
+        if (service) {
+          service.isActive = false
+        }
+
+        return true
+      } catch (err: any) {
+        throw err
+      }
+    },
+
+    async reactivateServiceAccess(serviceId: string) {
+      try {
+        const config = useRuntimeConfig()
+        const authStore = useAuthStore()
+
+        if (!authStore.user?.id) {
+          throw new Error('User not authenticated')
+        }
+
+        await $fetch('/user/service/grant-access', {
+          method: 'POST',
+          baseURL: config.public.pgsBaseAPI,
+          credentials: 'include',
+          body: {
+            userId: authStore.user.id,
+            serviceId
+          }
+        })
+
+        // Mettre à jour le service localement
+        const service = this.services.find(s => s.serviceId === serviceId)
+        if (service) {
+          service.isActive = true
+        }
+
+        return true
+      } catch (err: any) {
+        throw err
+      }
     }
   }
 })

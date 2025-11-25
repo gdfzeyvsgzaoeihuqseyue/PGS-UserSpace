@@ -161,7 +161,7 @@
     "linkCopied": "Link copied to clipboard!",
     "copyLinkError": "Could not copy link.",
     "iframeCopied": "Iframe code copied in the clipboard!",
-    "iframecopyerror": "Ladge of copy of the Iframe code.",
+    "iframecopyerror": "Failed to copy Iframe code.",
     "firstnameLabel": "First Name",
     "lastnameLabel": "Last Name",
     "fullnameLabel": "Full Name",
@@ -296,6 +296,24 @@
       "lastAccess": "Last Access",
       "permissions": "Permissions",
       "close": "Close"
+    },
+    "actions": {
+      "revoke": "Revoke Access",
+      "revoking": "Revoking...",
+      "reactivate": "Reactivate Access",
+      "reactivating": "Reactivating..."
+    },
+    "modal": {
+      "revokeTitle": "Revoke access to this service?",
+      "revokeDescription": "This action will disable your access to {serviceName}. You can reactivate it later.",
+      "reactivateTitle": "Reactivate access to this service?",
+      "reactivateDescription": "This action will reactivate your access to {serviceName}.",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "success": {
+      "revoked": "Access revoked successfully",
+      "reactivated": "Access reactivated successfully"
     }
   },
   "sessions": {

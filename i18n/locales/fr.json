@@ -296,6 +296,24 @@
       "lastAccess": "Dernier accès",
       "permissions": "Permissions",
       "close": "Fermer"
+    },
+    "actions": {
+      "revoke": "Révoquer l'accès",
+      "revoking": "Révocation...",
+      "reactivate": "Réactiver l'accès",
+      "reactivating": "Réactivation..."
+    },
+    "modal": {
+      "revokeTitle": "Révoquer l'accès à ce service ?",
+      "revokeDescription": "Cette action désactivera votre accès à {serviceName}. Vous pourrez le réactiver ultérieurement.",
+      "reactivateTitle": "Réactiver l'accès à ce service ?",
+      "reactivateDescription": "Cette action réactivera votre accès à {serviceName}.",
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
+    },
+    "success": {
+      "revoked": "Accès révoqué avec succès",
+      "reactivated": "Accès réactivé avec succès"
     }
   },
   "sessions": {

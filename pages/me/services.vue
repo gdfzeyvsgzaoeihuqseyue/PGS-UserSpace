@@ -78,6 +78,10 @@
               <button @click="viewServiceDetails(service)" class="btn btn-secondary" title="View details">
                 <IconAlertCircle class="w-5 h-5" />
               </button>
+              <button @click="confirmRevokeAccess(service)" class="btn btn-danger"
+                :title="$t('services.actions.revoke')">
+                <IconX class="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>
@@ -109,9 +113,11 @@
               </div>
             </div>
 
-            <p class="text-sm text-gray-600">
-              {{ $t('services.inactiveMessage') }}
-            </p>
+            <button @click="confirmReactivateAccess(service)" class="btn btn-primary w-full"
+              :disabled="reactivatingServiceId === service.serviceId">
+              {{ reactivatingServiceId === service.serviceId ? $t('services.actions.reactivating') :
+                $t('services.actions.reactivate') }}
+            </button>
           </div>
         </div>
       </div>
@@ -119,8 +125,8 @@
       <!-- No Results -->
       <div v-if="hasActiveSearch && filteredActiveServices.length === 0 && filteredInactiveServices.length === 0"
         class="text-center py-12">
-        <p class="text-gray-500">Aucun service ne correspond à votre recherche.</p>
-        <button @click="clearSearch" class="mt-4 btn btn-secondary">Effacer la recherche</button>
+        <p class="text-gray-500">{{ $t('sessions.empty.noResults') }}</p>
+        <button @click="clearSearch" class="mt-4 btn btn-secondary">{{ $t('sessions.empty.clearSearch') }}</button>
       </div>
     </div>
 
@@ -180,6 +186,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Revoke Access Confirmation Modal -->
+    <div v-if="serviceToRevoke" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      @click.self="serviceToRevoke = null">
+      <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.modal.revokeTitle') }}</h3>
+        <p class="text-gray-600 mb-6">
+          {{ $t('services.modal.revokeDescription', { serviceName: serviceToRevoke.serviceName }) }}
+        </p>
+        <div class="flex space-x-3">
+          <button @click="serviceToRevoke = null" class="flex-1 btn btn-secondary">
+            {{ $t('services.modal.cancel') }}
+          </button>
+          <button @click="revokeAccess" class="flex-1 btn btn-danger" :disabled="revokingServiceId !== null">
+            {{ revokingServiceId ? $t('services.actions.revoking') : $t('services.modal.confirm') }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reactivate Access Confirmation Modal -->
+    <div v-if="serviceToReactivate"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      @click.self="serviceToReactivate = null">
+      <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.modal.reactivateTitle') }}</h3>
+        <p class="text-gray-600 mb-6">
+          {{ $t('services.modal.reactivateDescription', { serviceName: serviceToReactivate.serviceName }) }}
+        </p>
+        <div class="flex space-x-3">
+          <button @click="serviceToReactivate = null" class="flex-1 btn btn-secondary">
+            {{ $t('services.modal.cancel') }}
+          </button>
+          <button @click="reactivateAccess" class="flex-1 btn btn-primary" :disabled="reactivatingServiceId !== null">
+            {{ reactivatingServiceId ? $t('services.actions.reactivating') : $t('services.modal.confirm') }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -194,7 +239,14 @@ definePageMeta({
 })
 
 const servicesStore = useServicesStore()
+const { t, locale } = useI18n()
+const { $toast } = useNuxtApp() as { $toast: { success: (msg: string) => void; error: (msg: string) => void } }
+
 const selectedService = ref<Service | null>(null)
+const serviceToRevoke = ref<Service | null>(null)
+const serviceToReactivate = ref<Service | null>(null)
+const revokingServiceId = ref<string | null>(null)
+const reactivatingServiceId = ref<string | null>(null)
 
 // Search Logic
 const allServices = computed(() => servicesStore.services)
@@ -215,7 +267,7 @@ const getRoleBadgeClass = (role: string) => {
   return classes[role] || 'badge-info'
 }
 
-const { locale } = useI18n()
+
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString(locale.value, {
@@ -229,6 +281,46 @@ const formatDate = (date: string) => {
 
 const viewServiceDetails = (service: Service) => {
   selectedService.value = service
+}
+
+const confirmRevokeAccess = (service: Service) => {
+  serviceToRevoke.value = service
+}
+
+const confirmReactivateAccess = (service: Service) => {
+  serviceToReactivate.value = service
+}
+
+const revokeAccess = async () => {
+  if (!serviceToRevoke.value) return
+
+  try {
+    revokingServiceId.value = serviceToRevoke.value.serviceId
+    await servicesStore.revokeServiceAccess(serviceToRevoke.value.serviceId)
+
+    $toast.success(t('services.success.revoked'))
+    serviceToRevoke.value = null
+  } catch (error: any) {
+    $toast.error(error.data?.message || 'Failed to revoke access')
+  } finally {
+    revokingServiceId.value = null
+  }
+}
+
+const reactivateAccess = async () => {
+  if (!serviceToReactivate.value) return
+
+  try {
+    reactivatingServiceId.value = serviceToReactivate.value.serviceId
+    await servicesStore.reactivateServiceAccess(serviceToReactivate.value.serviceId)
+
+    $toast.success(t('services.success.reactivated'))
+    serviceToReactivate.value = null
+  } catch (error: any) {
+    $toast.error(error.data?.message || 'Failed to reactivate access')
+  } finally {
+    reactivatingServiceId.value = null
+  }
 }
 
 onMounted(() => {
