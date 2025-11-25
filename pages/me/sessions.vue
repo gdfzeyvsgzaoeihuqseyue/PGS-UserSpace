@@ -85,8 +85,8 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div v-for="session in filteredSessions" :key="session.id"
-            class="card hover:shadow-lg transition-shadow h-full"
-            :class="{ 'bg-gray-50': session.isRevoked, 'border-l-4 border-l-primary': isCurrentSession(session) }">
+            class="card border-l-4 hover:shadow-lg transition-shadow h-full"
+            :class="{ 'bg-red-50 border-l-danger': session.isRevoked, 'bg-blue-50 border-l-primary': isCurrentSession(session) }">
             <div class="flex items-start justify-between h-full flex-col">
               <!-- Session Info -->
               <div class="w-full">
@@ -95,11 +95,11 @@
                   <!-- Device Icon -->
                   <div class="relative w-12 h-12 flex items-center justify-center flex-shrink-0">
                     <span class="absolute inset-0 rounded-lg"
-                      :class="session.isRevoked ? 'bg-gray-200' : 'bg-primary opacity-10'"></span>
+                      :class="session.isRevoked ? 'bg-danger opacity-10' : 'bg-primary opacity-10'"></span>
                     <IconDeviceDesktop v-if="!session.deviceInfo?.mobile" class="w-6 h-6"
-                      :class="session.isRevoked ? 'text-red-500' : 'text-primary'" />
+                      :class="session.isRevoked ? 'text-danger' : 'text-primary'" />
                     <IconDeviceMobile v-else class="w-6 h-6"
-                      :class="session.isRevoked ? 'text-gray-500' : 'text-primary'" />
+                      :class="session.isRevoked ? 'text-danger' : 'text-primary'" />
                   </div>
 
                   <!-- Device Info -->
