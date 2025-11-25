@@ -56,7 +56,7 @@
           <div>
             <p class="text-sm font-medium text-gray-600">{{ $t('dashboard.stats.lastLogin.title') }}</p>
             <p class="mt-2 text-sm text-gray-900">
-              {{ formatDate(authStore.user?.lastLogin) }}
+              {{ formatDate(authStore.user?.lastLogin, locale, t('common.never')) }}
             </p>
           </div>
           <div class="relative w-12 h-12 flex items-center justify-center">
@@ -145,6 +145,7 @@
 <script setup lang="ts">
 import { IconClock, IconFolders, IconLock, IconLogout, IconShieldCheck, IconUser } from '@tabler/icons-vue'
 import { getGreetingKey } from '~/utils/greeting'
+import { formatDate } from '~/utils/dateFormatter'
 
 definePageMeta({
   layout: 'dashboard',
@@ -155,17 +156,6 @@ const { locale, t } = useI18n()
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()
 const greetingKey = ref('greetings.morning.1') // Default
-
-const formatDate = (date?: string) => {
-  if (!date) return t('common.never')
-  return new Date(date).toLocaleDateString(locale.value, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  })
-}
 
 const handleLogout = async () => {
   await authStore.logout()

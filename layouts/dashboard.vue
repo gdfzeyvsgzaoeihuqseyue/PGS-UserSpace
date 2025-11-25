@@ -70,7 +70,7 @@
               :class="{ 'lg:opacity-0 lg:hidden': isSidebarCollapsed }">
               {{ $t('dashboard.menu.services') }}
             </span>
-            <span v-if="servicesStore.activeServiceCount > 0 && !isSidebarCollapsed" class="ml-auto badge badge-info">
+            <span v-if="servicesStore.activeServiceCount > 0" class="ml-auto badge badge-info">
               {{ servicesStore.activeServiceCount }}
             </span>
             <div v-if="isSidebarCollapsed"
@@ -87,6 +87,9 @@
             <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
               :class="{ 'lg:opacity-0 lg:hidden': isSidebarCollapsed }">
               {{ $t('dashboard.menu.solutions') }}
+            </span>
+            <span v-if="solutionsStore.activeSolutions.length > 0" class="ml-auto badge badge-info">
+              {{ solutionsStore.activeSolutions.length }}
             </span>
             <div v-if="isSidebarCollapsed"
               class="hidden lg:group-hover:block absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded shadow-lg whitespace-nowrap z-50">
@@ -231,6 +234,7 @@ import { prefLang2, prefTheme2 } from '~/components/pref'
 const sharedFiles = useSharedFiles();
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()
+const solutionsStore = useSolutionsStore()
 const route = useRoute()
 const localePath = useLocalePath()
 

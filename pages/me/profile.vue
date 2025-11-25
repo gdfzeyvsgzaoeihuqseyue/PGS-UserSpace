@@ -158,7 +158,8 @@
         <div class="flex items-center justify-between py-3">
           <div>
             <p class="text-sm font-medium text-gray-700">{{ $t('profile.account.lastLogin') }}</p>
-            <p class="text-sm text-gray-600 mt-1">{{ formatDate(authStore.user?.lastLogin) }}</p>
+            <p class="text-sm text-gray-600 mt-1">{{ formatDate(authStore.user?.lastLogin, locale, t('common.never')) }}
+            </p>
           </div>
         </div>
       </div>
@@ -170,6 +171,7 @@
 import type { UpdateProfileData } from '~/types'
 import { useProfileStore } from '~/stores/profile'
 import { IconAlertCircle, IconCircleCheck, IconEdit, IconLoader2 } from '@tabler/icons-vue'
+import { formatDate } from '~/utils/dateFormatter'
 
 definePageMeta({
   layout: 'dashboard',
@@ -252,17 +254,6 @@ const handleChangePassword = async () => {
   } finally {
     changingPassword.value = false
   }
-}
-
-const formatDate = (date?: string) => {
-  if (!date) return t('common.never')
-  return new Date(date).toLocaleDateString(locale.value, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  })
 }
 
 onMounted(() => {
