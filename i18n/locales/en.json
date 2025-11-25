@@ -301,9 +301,61 @@
   "sessions": {
     "title": "Active Sessions",
     "subtitle": "Manage your active login sessions across different devices",
+    "stats": {
+      "total": "Total Sessions",
+      "active": "Active Sessions",
+      "revoked": "Revoked Sessions"
+    },
     "current": {
       "title": "Current Session",
-      "description": "This is your current active session. Sessions automatically expire after 7 days of inactivity."
+      "description": "You are currently logged in from this device. You cannot revoke this session.",
+      "badge": "Current Session"
+    },
+    "list": {
+      "title": "Your Sessions",
+      "created": "Created",
+      "expires": "Expires"
+    },
+    "badges": {
+      "current": "Current Session",
+      "revoked": "Revoked",
+      "expired": "Expired",
+      "active": "Active"
+    },
+    "device": {
+      "mobile": "Mobile Device",
+      "windowsPC": "Windows Computer",
+      "macPC": "Mac Computer",
+      "linuxPC": "Linux Computer",
+      "android": "Android Device",
+      "ios": "iOS Device",
+      "unknown": "Unknown Device",
+      "unknownBrowser": "Unknown Browser",
+      "unknownIP": "Unknown IP"
+    },
+    "actions": {
+      "revoke": "Revoke",
+      "revoking": "Revoking...",
+      "revokeAll": "Revoke All",
+      "revokingAll": "Revoking..."
+    },
+    "revokeAll": {
+      "title": "Revoke all other sessions",
+      "description": "Sign out from all other devices with one click."
+    },
+    "empty": {
+      "title": "No sessions found",
+      "noResults": "No sessions match your search.",
+      "noSessions": "You don't have any active sessions at the moment.",
+      "clearSearch": "Clear search"
+    },
+    "modal": {
+      "revokeTitle": "Revoke this session?",
+      "revokeAllTitle": "Revoke all other sessions?",
+      "revokeDescription": "This action will disconnect this device. This action is irreversible.",
+      "revokeAllDescription": "This action will disconnect all your other devices. This action is irreversible.",
+      "cancel": "Cancel",
+      "confirm": "Revoke"
     },
     "about": {
       "title": "About Sessions",
@@ -326,11 +378,6 @@
         "title": "Keep your browser updated",
         "description": "Ensure you're using the latest version of your web browser for best security"
       }
-    },
-    "actions": {
-      "title": "Session Actions",
-      "signOut": "Sign Out",
-      "signOutDesc": "End your current session"
     },
     "technical": {
       "title": "Technical Details",

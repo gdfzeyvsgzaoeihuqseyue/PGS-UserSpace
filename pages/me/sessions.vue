@@ -32,7 +32,7 @@
         <div class="card">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Total des sessions</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('sessions.stats.total') }}</p>
               <p class="mt-2 text-3xl font-bold text-gray-900">{{ sessionsStore.sessions.length }}</p>
             </div>
             <div class="relative w-12 h-12 flex items-center justify-center">
@@ -45,7 +45,7 @@
         <div class="card">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Sessions actives</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('sessions.stats.active') }}</p>
               <p class="mt-2 text-3xl font-bold text-gray-900">{{ sessionsStore.activeSessions.length }}</p>
             </div>
             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -57,7 +57,7 @@
         <div class="card">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Sessions révoquées</p>
+              <p class="text-sm font-medium text-gray-600">{{ $t('sessions.stats.revoked') }}</p>
               <p class="mt-2 text-3xl font-bold text-gray-900">{{ sessionsStore.revokedSessions.length }}</p>
             </div>
             <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
@@ -72,16 +72,15 @@
         <div class="flex items-start">
           <IconInfoCircle class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
           <div class="flex-1">
-            <p class="text-sm font-medium text-blue-900">Session actuelle</p>
-            <p class="text-sm text-blue-700 mt-1">Vous êtes actuellement connecté depuis cet appareil. Vous ne pouvez
-              pas révoquer cette session.</p>
+            <p class="text-sm font-medium text-blue-900">{{ $t('sessions.current.title') }}</p>
+            <p class="text-sm text-blue-700 mt-1">{{ $t('sessions.current.description') }}</p>
           </div>
         </div>
       </div>
 
       <!-- Sessions List -->
       <div v-if="filteredSessions.length > 0" class="space-y-4">
-        <h2 class="text-xl font-bold text-gray-900">Vos sessions</h2>
+        <h2 class="text-xl font-bold text-gray-900">{{ $t('sessions.list.title') }}</h2>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div v-for="session in filteredSessions" :key="session.id"
@@ -109,29 +108,29 @@
                         {{ getDeviceName(session) }}
                       </h3>
                       <span v-if="isCurrentSession(session)" class="badge badge-success text-xs whitespace-nowrap">
-                        Session actuelle
+                        {{ $t('sessions.badges.current') }}
                       </span>
                       <span v-else-if="session.isRevoked" class="badge badge-danger text-xs whitespace-nowrap">
-                        Révoquée
+                        {{ $t('sessions.badges.revoked') }}
                       </span>
                       <span v-else-if="isExpired(session)" class="badge badge-warning text-xs whitespace-nowrap">
-                        Expirée
+                        {{ $t('sessions.badges.expired') }}
                       </span>
                       <span v-else class="badge badge-success text-xs whitespace-nowrap">
-                        Active
+                        {{ $t('sessions.badges.active') }}
                       </span>
                     </div>
 
                     <!-- User Agent -->
                     <p class="text-sm text-gray-600 mb-2 truncate" :title="session.userAgent">{{ session.userAgent ||
-                      'Unknown Browser' }}</p>
+                      $t('sessions.device.unknownBrowser') }}</p>
 
                     <!-- Details Grid -->
                     <div class="grid grid-cols-1 gap-2 text-sm">
                       <!-- IP Address -->
                       <div class="flex items-center text-gray-600">
                         <IconMapPin class="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
-                        <span class="truncate">{{ session.ipAddress || 'Unknown IP' }}</span>
+                        <span class="truncate">{{ session.ipAddress || $t('sessions.device.unknownIP') }}</span>
                       </div>
 
                       <!-- Platform -->
@@ -143,14 +142,16 @@
                       <!-- Created At -->
                       <div class="flex items-center text-gray-600">
                         <IconClock class="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
-                        <span class="truncate">Créée: {{ formatRelativeDate(session.createdAt, locale, 'N/A') }}</span>
+                        <span class="truncate">{{ $t('sessions.list.created') }}: {{
+                          formatRelativeDate(session.createdAt, locale, 'N/A') }}</span>
                       </div>
 
                       <!-- Expires At -->
                       <div class="flex items-center" :class="isExpired(session) ? 'text-red-600' : 'text-gray-600'">
                         <IconClockHour4 class="w-4 h-4 mr-2 flex-shrink-0"
                           :class="isExpired(session) ? 'text-red-400' : 'text-gray-400'" />
-                        <span class="truncate">Expire: {{ formatRelativeDate(session.expiresAt, locale, 'N/A') }}</span>
+                        <span class="truncate">{{ $t('sessions.list.expires') }}: {{
+                          formatRelativeDate(session.expiresAt, locale, 'N/A') }}</span>
                       </div>
                     </div>
                   </div>
@@ -160,13 +161,14 @@
               <!-- Actions -->
               <div class="w-full flex justify-end mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                 <button v-if="!isCurrentSession(session) && !session.isRevoked" @click="confirmRevoke(session)"
-                  class="flex items-center btn btn-danger text-sm py-2 px-3 w-full sm:w-auto" :disabled="revokingSession === session.id">
+                  class="flex items-center btn btn-danger text-sm py-2 px-3 w-full sm:w-auto"
+                  :disabled="revokingSession === session.id">
                   <IconTrash class="w-4 h-4 mr-2" />
-                  <span v-if="revokingSession === session.id">Révocation...</span>
-                  <span v-else>Révoquer</span>
+                  <span v-if="revokingSession === session.id">{{ $t('sessions.actions.revoking') }}</span>
+                  <span v-else>{{ $t('sessions.actions.revoke') }}</span>
                 </button>
                 <span v-else-if="isCurrentSession(session)" class="text-sm text-gray-500 italic">
-                  Session actuelle
+                  {{ $t('sessions.current.badge') }}
                 </span>
               </div>
             </div>
@@ -180,15 +182,15 @@
           <div class="flex items-start">
             <IconAlertTriangle class="w-5 h-5 text-red-600 mr-3 mt-0.5 flex-shrink-0" />
             <div>
-              <p class="text-sm font-medium text-red-900">Révoquer toutes les autres sessions</p>
-              <p class="text-sm text-red-700 mt-1">Déconnectez-vous de tous les autres appareils en un clic.</p>
+              <p class="text-sm font-medium text-red-900">{{ $t('sessions.revokeAll.title') }}</p>
+              <p class="text-sm text-red-700 mt-1">{{ $t('sessions.revokeAll.description') }}</p>
             </div>
           </div>
           <button @click="confirmRevokeAll" class="btn btn-danger text-sm py-2 w-full sm:w-auto"
             :disabled="revokingAll">
             <IconShieldX class="w-4 h-4 mr-2" />
-            <span v-if="revokingAll">Révocation...</span>
-            <span v-else>Tout révoquer</span>
+            <span v-if="revokingAll">{{ $t('sessions.actions.revokingAll') }}</span>
+            <span v-else>{{ $t('sessions.actions.revokeAll') }}</span>
           </button>
         </div>
       </div>
@@ -197,12 +199,12 @@
       <div v-if="filteredSessions.length === 0" class="card">
         <div class="text-center py-12">
           <IconDevices class="mx-auto h-12 w-12 text-gray-400" />
-          <h3 class="mt-2 text-sm font-medium text-gray-900">Aucune session trouvée</h3>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">{{ $t('sessions.empty.title') }}</h3>
           <p class="mt-1 text-sm text-gray-500">
-            {{ hasActiveSearch ? 'Aucune session ne correspond à votre recherche.' : "Vous n'avez aucune session active pour le moment." }}
+            {{ hasActiveSearch ? $t('sessions.empty.noResults') : $t('sessions.empty.noSessions') }}
           </p>
           <button v-if="hasActiveSearch" @click="clearSearch" class="mt-4 btn btn-secondary">
-            Effacer la recherche
+            {{ $t('sessions.empty.clearSearch') }}
           </button>
         </div>
       </div>
@@ -220,21 +222,22 @@
             </div>
             <div class="ml-3 flex-1">
               <h3 class="text-lg font-medium text-gray-900">
-                {{ confirmAction === 'revoke' ? 'Révoquer cette session ?' : 'Révoquer toutes les autres sessions ?' }}
+                {{ confirmAction === 'revoke' ? $t('sessions.modal.revokeTitle') : $t('sessions.modal.revokeAllTitle')
+                }}
               </h3>
               <p class="mt-2 text-sm text-gray-500">
                 {{ confirmAction === 'revoke'
-                  ? 'Cette action déconnectera cet appareil. Cette action est irréversible.'
-                  : 'Cette action déconnectera tous vos autres appareils. Cette action est irréversible.' }}
+                  ? $t('sessions.modal.revokeDescription')
+                  : $t('sessions.modal.revokeAllDescription') }}
               </p>
             </div>
           </div>
           <div class="flex justify-end space-x-3">
             <button @click="cancelRevoke" class="btn btn-secondary">
-              Annuler
+              {{ $t('sessions.modal.cancel') }}
             </button>
             <button @click="executeRevoke" class="btn btn-danger">
-              Révoquer
+              {{ $t('sessions.modal.confirm') }}
             </button>
           </div>
         </div>
@@ -298,18 +301,20 @@ const isExpired = (session: Session) => {
 }
 
 const getDeviceName = (session: Session) => {
+  const { t } = useI18n()
+
   if (session.deviceInfo?.mobile) {
-    return 'Appareil mobile'
+    return t('sessions.device.mobile')
   }
 
   const ua = session.userAgent || ''
-  if (ua.includes('Windows')) return 'Ordinateur Windows'
-  if (ua.includes('Mac')) return 'Ordinateur Mac'
-  if (ua.includes('Linux')) return 'Ordinateur Linux'
-  if (ua.includes('Android')) return 'Appareil Android'
-  if (ua.includes('iPhone') || ua.includes('iPad')) return 'Appareil iOS'
+  if (ua.includes('Windows')) return t('sessions.device.windowsPC')
+  if (ua.includes('Mac')) return t('sessions.device.macPC')
+  if (ua.includes('Linux')) return t('sessions.device.linuxPC')
+  if (ua.includes('Android')) return t('sessions.device.android')
+  if (ua.includes('iPhone') || ua.includes('iPad')) return t('sessions.device.ios')
 
-  return 'Appareil inconnu'
+  return t('sessions.device.unknown')
 }
 
 const confirmRevoke = (session: Session) => {
