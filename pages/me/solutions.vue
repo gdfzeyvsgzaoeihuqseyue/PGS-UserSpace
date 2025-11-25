@@ -16,8 +16,8 @@
           <label for="search" class="block text-sm font-medium text-gray-700 mb-2">
             {{ $t('solutionsPage.filters.search') }}
           </label>
-          <input id="search" v-model="searchQuery" type="text"
-            :placeholder="$t('solutionsPage.filters.searchPlaceholder')" class="input" @input="debouncedSearch" />
+          <SearchInput id="search" v-model="searchQuery" :placeholder="$t('solutionsPage.filters.searchPlaceholder')"
+            @update:model-value="debouncedSearch" @clear="clearSearch" />
         </div>
 
         <!-- Category Filter -->
@@ -146,6 +146,7 @@
 
 <script setup lang="ts">
 import { IconArrowLeft, IconArrowRight, IconCircleCheck, IconFolders, IconLock, IconX } from '@tabler/icons-vue'
+import SearchInput from '~/components/SearchInput.vue'
 
 definePageMeta({
   layout: 'dashboard',

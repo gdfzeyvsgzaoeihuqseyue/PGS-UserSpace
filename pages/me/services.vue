@@ -1,15 +1,18 @@
 <template>
   <div class="space-y-8 max-w-5xl mx-auto">
     <!-- Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
         <h1 class="text-3xl font-bold text-gray-900">{{ $t('services.title') }}</h1>
         <p class="mt-2 text-gray-600">
           {{ $t('services.subtitle') }}
         </p>
       </div>
-      <div class="mt-4 sm:mt-0">
-        <div class="badge badge-info text-base">
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+        <div class="w-full sm:w-64">
+          <SearchInput v-model="searchQuery" :placeholder="$t('common.search')" @clear="clearSearch" />
+        </div>
+        <div class="badge badge-info text-base whitespace-nowrap">
           {{ servicesStore.activeServiceCount }} {{ $t('services.active') }}
         </div>
       </div>
@@ -33,10 +36,10 @@
     <!-- Services Grid -->
     <div v-else class="space-y-6">
       <!-- Active Services -->
-      <div v-if="servicesStore.activeServices.length > 0">
+      <div v-if="filteredActiveServices.length > 0">
         <h2 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.activeServices') }}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div v-for="service in servicesStore.activeServices" :key="service.serviceId"
+          <div v-for="service in filteredActiveServices" :key="service.serviceId"
             class="card hover:shadow-lg transition-shadow">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3">
@@ -81,10 +84,10 @@
       </div>
 
       <!-- Inactive Services -->
-      <div v-if="servicesStore.inactiveServices.length > 0">
+      <div v-if="filteredInactiveServices.length > 0">
         <h2 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.inactiveServices') }}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div v-for="service in servicesStore.inactiveServices" :key="service.serviceId" class="card opacity-60">
+          <div v-for="service in filteredInactiveServices" :key="service.serviceId" class="card opacity-60">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 bg-gray-400 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -111,6 +114,13 @@
             </p>
           </div>
         </div>
+      </div>
+
+      <!-- No Results -->
+      <div v-if="hasActiveSearch && filteredActiveServices.length === 0 && filteredInactiveServices.length === 0"
+        class="text-center py-12">
+        <p class="text-gray-500">Aucun service ne correspond à votre recherche.</p>
+        <button @click="clearSearch" class="mt-4 btn btn-secondary">Effacer la recherche</button>
       </div>
     </div>
 
@@ -176,6 +186,7 @@
 <script setup lang="ts">
 import { IconAlertCircle, IconClock, IconFolders, IconWorld, IconX } from '@tabler/icons-vue'
 import type { Service } from '~/types'
+import SearchInput from '~/components/SearchInput.vue'
 
 definePageMeta({
   layout: 'dashboard',
@@ -184,6 +195,16 @@ definePageMeta({
 
 const servicesStore = useServicesStore()
 const selectedService = ref<Service | null>(null)
+
+// Search Logic
+const allServices = computed(() => servicesStore.services)
+const { searchQuery, filteredItems: filteredServices, clearSearch, hasActiveSearch } = useSearch(
+  allServices,
+  ['serviceName', 'domain', 'role']
+)
+
+const filteredActiveServices = computed(() => filteredServices.value.filter(s => s.isActive))
+const filteredInactiveServices = computed(() => filteredServices.value.filter(s => !s.isActive))
 
 const getRoleBadgeClass = (role: string) => {
   const classes: Record<string, string> = {

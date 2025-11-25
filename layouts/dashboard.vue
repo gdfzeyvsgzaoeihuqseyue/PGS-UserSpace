@@ -45,11 +45,28 @@
       <!-- Navigation Links -->
       <div class="flex-1 overflow-y-auto px-3 py-4">
         <nav class="space-y-1">
+          <!-- Home Link (Return to Landing) -->
+          <NuxtLink :to="localePath('/')"
+            class="flex items-center px-3 py-3 rounded-lg transition-colors group relative text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            @click="showMobileMenu = false">
+            <IconHome2 class="w-6 h-6 flex-shrink-0" />
+            <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
+              :class="{ 'lg:opacity-0 lg:hidden': isSidebarCollapsed }">
+              {{ $t('common.home') || 'Accueil' }}
+            </span>
+            <div v-if="isSidebarCollapsed"
+              class="hidden lg:group-hover:block absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded shadow-lg whitespace-nowrap z-50">
+              {{ $t('common.home') || 'Accueil' }}
+            </div>
+          </NuxtLink>
+
+          <div class="my-2 border-t border-gray-200 dark:border-gray-700"></div>
+
           <NuxtLink :to="localePath('/me')"
             class="flex items-center px-3 py-3 rounded-lg transition-colors group relative"
             :class="isActive('/me') && isExactActive('/me') ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
             @click="showMobileMenu = false">
-            <IconHome class="w-6 h-6 flex-shrink-0" />
+            <IconDashboard class="w-6 h-6 flex-shrink-0" />
             <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
               :class="{ 'lg:opacity-0 lg:hidden': isSidebarCollapsed }">
               {{ $t('dashboard.menu.dashboard') }}
@@ -105,6 +122,9 @@
             <span class="ml-3 font-medium whitespace-nowrap transition-opacity duration-300"
               :class="{ 'lg:opacity-0 lg:hidden': isSidebarCollapsed }">
               {{ $t('dashboard.menu.sessions') }}
+            </span>
+            <span v-if="sessionsStore.activeSessionCount > 0" class="ml-auto badge badge-info">
+              {{ sessionsStore.activeSessionCount }}
             </span>
             <div v-if="isSidebarCollapsed"
               class="hidden lg:group-hover:block absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded shadow-lg whitespace-nowrap z-50">
@@ -226,7 +246,7 @@
 
 <script setup lang="ts">
 
-import { IconChevronDown, IconHome, IconLayout2, IconLayoutGridAdd, IconLock, IconMenu, IconUser, IconSettings, IconLayoutSidebarRightCollapse, IconLayoutSidebarLeftCollapse, IconX, IconSearch } from '@tabler/icons-vue'
+import { IconChevronDown, IconHome2, IconDashboard, IconLayout2, IconLayoutGridAdd, IconLock, IconMenu, IconUser, IconSettings, IconLayoutSidebarRightCollapse, IconLayoutSidebarLeftCollapse, IconX, IconSearch } from '@tabler/icons-vue'
 import { useSharedFiles } from '~/stores/sharedFiles';
 import GlobalSearch from '~/components/GlobalSearch.vue'
 import { prefLang2, prefTheme2 } from '~/components/pref'
@@ -235,6 +255,7 @@ const sharedFiles = useSharedFiles();
 const authStore = useAuthStore()
 const servicesStore = useServicesStore()
 const solutionsStore = useSolutionsStore()
+const sessionsStore = useSessionsStore()
 const route = useRoute()
 const localePath = useLocalePath()
 
@@ -288,5 +309,10 @@ onMounted(() => {
       showUserMenu.value = false
     }
   })
+
+  // Fetch data for badges
+  servicesStore.fetchServices()
+  solutionsStore.fetchSolutions()
+  sessionsStore.fetchSessions()
 })
 </script>

@@ -24,12 +24,50 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-4">
-          <NuxtLink :to="localePath('/auth/login')" class="hover:text-primary transition-colors font-medium">
-            {{ $t('navbar.signIn') }}
-          </NuxtLink>
-          <NuxtLink :to="localePath('/auth/register')" class="btn btn-primary">
-            {{ $t('navbar.signUp') }}
-          </NuxtLink>
+          <template v-if="!authStore.isAuthenticated">
+            <NuxtLink :to="localePath('/auth/login')" class="hover:text-primary transition-colors font-medium">
+              {{ $t('navbar.signIn') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/auth/register')" class="btn btn-primary">
+              {{ $t('navbar.signUp') }}
+            </NuxtLink>
+          </template>
+
+          <template v-else>
+            <div class="relative">
+              <button @click="toggleUserMenu"
+                class="flex items-center space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg px-3 py-2 transition-colors">
+                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-sm">
+                  <span class="text-white text-sm font-medium">
+                    {{ getInitials(authStore.user?.firstName || '', authStore.user?.lastName || '') }}
+                  </span>
+                </div>
+                <div class="hidden md:block text-left">
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+                </div>
+                <IconChevronDown class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+              </button>
+
+              <!-- User Dropdown -->
+              <div v-if="showUserMenu"
+                class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
+                <NuxtLink :to="localePath('/me')"
+                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  @click="showUserMenu = false">
+                  {{ $t('dashboard.menu.dashboard') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath('/me/profile')"
+                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  @click="showUserMenu = false">
+                  {{ $t('dashboard.userMenu.profileSettings') }}
+                </NuxtLink>
+                <button @click="handleLogout"
+                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                  {{ $t('dashboard.userMenu.signOut') }}
+                </button>
+              </div>
+            </div>
+          </template>
 
           <prefSettings />
         </div>
@@ -53,16 +91,38 @@
       <div v-show="isMobileMenuOpen" ref="mobileMenuRef"
         class="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-40">
         <div class="px-4 pt-2 pb-4 space-y-3">
-          <NuxtLink :to="localePath('/auth/login')"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
-            @click="isMobileMenuOpen = false">
-            {{ $t('navbar.signIn') }}
-          </NuxtLink>
-          <NuxtLink :to="localePath('/auth/register')"
-            class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
-            @click="isMobileMenuOpen = false">
-            {{ $t('navbar.signUp') }}
-          </NuxtLink>
+          <template v-if="!authStore.isAuthenticated">
+            <NuxtLink :to="localePath('/auth/login')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('navbar.signIn') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/auth/register')"
+              class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
+              @click="isMobileMenuOpen = false">
+              {{ $t('navbar.signUp') }}
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-700 mb-2">
+              <p class="font-medium text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+              <p class="text-sm text-gray-500">{{ authStore.user?.email }}</p>
+            </div>
+            <NuxtLink :to="localePath('/me')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('dashboard.menu.dashboard') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/me/profile')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('dashboard.userMenu.profileSettings') }}
+            </NuxtLink>
+            <button @click="handleLogout"
+              class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+              {{ $t('dashboard.userMenu.signOut') }}
+            </button>
+          </template>
 
           <div class="pt-2 border-t border-gray-200 dark:border-gray-700">
             <div class="px-3 py-2">
@@ -77,25 +137,45 @@
 
 <script setup>
 import { useSharedFiles } from '~/stores/sharedFiles';
-import { IconMenu, IconX } from '@tabler/icons-vue';
+import { IconMenu, IconX, IconChevronDown } from '@tabler/icons-vue';
 import { prefSettings } from '~/components/pref'
 
 const config = useRuntimeConfig();
 const sharedFiles = useSharedFiles();
+const authStore = useAuthStore();
 const isMobileMenuOpen = ref(false);
 const mobileMenuRef = ref(null);
 const localePath = useLocalePath();
+const showUserMenu = ref(false);
 
 const toggleMobileMenu = (event) => {
   event.stopPropagation();
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
+const toggleUserMenu = () => {
+  showUserMenu.value = !showUserMenu.value;
+}
+
 const closeMobileMenu = (event) => {
   if (isMobileMenuOpen.value && mobileMenuRef.value && !mobileMenuRef.value.contains(event.target)) {
     isMobileMenuOpen.value = false;
   }
+  // Close user menu if clicking outside
+  if (showUserMenu.value && !event.target.closest('.relative')) {
+    showUserMenu.value = false;
+  }
 };
+
+const getInitials = (firstName, lastName) => {
+  return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+}
+
+const handleLogout = async () => {
+  showUserMenu.value = false;
+  isMobileMenuOpen.value = false;
+  await authStore.logout();
+}
 
 onMounted(() => {
   document.addEventListener('click', closeMobileMenu);
@@ -109,5 +189,6 @@ onUnmounted(() => {
 const route = useRoute();
 watch(() => route.path, () => {
   isMobileMenuOpen.value = false;
+  showUserMenu.value = false;
 });
 </script>
