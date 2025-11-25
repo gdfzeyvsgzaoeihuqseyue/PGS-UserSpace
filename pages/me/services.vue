@@ -189,14 +189,25 @@
 
     <!-- Revoke Access Confirmation Modal -->
     <div v-if="serviceToRevoke" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-      @click.self="serviceToRevoke = null">
+      @click.self="cancelRevokeModal">
       <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
         <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.modal.revokeTitle') }}</h3>
+
+        <!-- Success Message -->
+        <div v-if="revokeSuccess" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <p class="text-sm text-green-800 font-medium">✓ {{ $t('services.success.revoked') }}</p>
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="revokeError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p class="text-sm text-red-800 font-medium">✗ {{ revokeError }}</p>
+        </div>
+
         <p class="text-gray-600 mb-6">
           {{ $t('services.modal.revokeDescription', { serviceName: serviceToRevoke.serviceName }) }}
         </p>
         <div class="flex space-x-3">
-          <button @click="serviceToRevoke = null" class="flex-1 btn btn-secondary">
+          <button @click="cancelRevokeModal" class="flex-1 btn btn-secondary" :disabled="revokingServiceId !== null">
             {{ $t('services.modal.cancel') }}
           </button>
           <button @click="revokeAccess" class="flex-1 btn btn-danger" :disabled="revokingServiceId !== null">
@@ -209,14 +220,26 @@
     <!-- Reactivate Access Confirmation Modal -->
     <div v-if="serviceToReactivate"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-      @click.self="serviceToReactivate = null">
+      @click.self="cancelReactivateModal">
       <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
         <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $t('services.modal.reactivateTitle') }}</h3>
+
+        <!-- Success Message -->
+        <div v-if="reactivateSuccess" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <p class="text-sm text-green-800 font-medium">✓ {{ $t('services.success.reactivated') }}</p>
+        </div>
+
+        <!-- Error Message -->
+        <div v-if="reactivateError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p class="text-sm text-red-800 font-medium">✗ {{ reactivateError }}</p>
+        </div>
+
         <p class="text-gray-600 mb-6">
           {{ $t('services.modal.reactivateDescription', { serviceName: serviceToReactivate.serviceName }) }}
         </p>
         <div class="flex space-x-3">
-          <button @click="serviceToReactivate = null" class="flex-1 btn btn-secondary">
+          <button @click="cancelReactivateModal" class="flex-1 btn btn-secondary"
+            :disabled="reactivatingServiceId !== null">
             {{ $t('services.modal.cancel') }}
           </button>
           <button @click="reactivateAccess" class="flex-1 btn btn-primary" :disabled="reactivatingServiceId !== null">
@@ -240,13 +263,18 @@ definePageMeta({
 
 const servicesStore = useServicesStore()
 const { t, locale } = useI18n()
-const { $toast } = useNuxtApp() as unknown as { $toast: { success: (msg: string) => void; error: (msg: string) => void } }
 
 const selectedService = ref<Service | null>(null)
 const serviceToRevoke = ref<Service | null>(null)
 const serviceToReactivate = ref<Service | null>(null)
 const revokingServiceId = ref<string | null>(null)
 const reactivatingServiceId = ref<string | null>(null)
+
+// Success and error states
+const revokeSuccess = ref(false)
+const revokeError = ref<string | null>(null)
+const reactivateSuccess = ref(false)
+const reactivateError = ref<string | null>(null)
 
 // Search Logic
 const allServices = computed(() => servicesStore.services)
@@ -267,8 +295,6 @@ const getRoleBadgeClass = (role: string) => {
   return classes[role] || 'badge-info'
 }
 
-
-
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString(locale.value, {
     year: 'numeric',
@@ -285,23 +311,50 @@ const viewServiceDetails = (service: Service) => {
 
 const confirmRevokeAccess = (service: Service) => {
   serviceToRevoke.value = service
+  revokeSuccess.value = false
+  revokeError.value = null
 }
 
 const confirmReactivateAccess = (service: Service) => {
   serviceToReactivate.value = service
+  reactivateSuccess.value = false
+  reactivateError.value = null
+}
+
+const cancelRevokeModal = () => {
+  serviceToRevoke.value = null
+  revokeSuccess.value = false
+  revokeError.value = null
+}
+
+const cancelReactivateModal = () => {
+  serviceToReactivate.value = null
+  reactivateSuccess.value = false
+  reactivateError.value = null
 }
 
 const revokeAccess = async () => {
   if (!serviceToRevoke.value) return
 
+  // Reset states
+  revokeSuccess.value = false
+  revokeError.value = null
+
   try {
     revokingServiceId.value = serviceToRevoke.value.serviceId
     await servicesStore.revokeServiceAccess(serviceToRevoke.value.serviceId)
 
-    $toast.success(t('services.success.revoked'))
-    serviceToRevoke.value = null
+    // Show success message
+    revokeSuccess.value = true
+
+    // Close modal after 1.5 seconds
+    setTimeout(() => {
+      serviceToRevoke.value = null
+      revokeSuccess.value = false
+    }, 1500)
   } catch (error: any) {
-    $toast.error(error.data?.message || 'Failed to revoke access')
+    // Show error message
+    revokeError.value = error.data?.message || 'Failed to revoke access'
   } finally {
     revokingServiceId.value = null
   }
@@ -310,14 +363,25 @@ const revokeAccess = async () => {
 const reactivateAccess = async () => {
   if (!serviceToReactivate.value) return
 
+  // Reset states
+  reactivateSuccess.value = false
+  reactivateError.value = null
+
   try {
     reactivatingServiceId.value = serviceToReactivate.value.serviceId
     await servicesStore.reactivateServiceAccess(serviceToReactivate.value.serviceId)
 
-    $toast.success(t('services.success.reactivated'))
-    serviceToReactivate.value = null
+    // Show success message
+    reactivateSuccess.value = true
+
+    // Close modal after 1.5 seconds
+    setTimeout(() => {
+      serviceToReactivate.value = null
+      reactivateSuccess.value = false
+    }, 1500)
   } catch (error: any) {
-    $toast.error(error.data?.message || 'Failed to reactivate access')
+    // Show error message
+    reactivateError.value = error.data?.message || 'Failed to reactivate access'
   } finally {
     reactivatingServiceId.value = null
   }
