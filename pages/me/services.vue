@@ -240,7 +240,7 @@ definePageMeta({
 
 const servicesStore = useServicesStore()
 const { t, locale } = useI18n()
-const { $toast } = useNuxtApp() as { $toast: { success: (msg: string) => void; error: (msg: string) => void } }
+const { $toast } = useNuxtApp() as unknown as { $toast: { success: (msg: string) => void; error: (msg: string) => void } }
 
 const selectedService = ref<Service | null>(null)
 const serviceToRevoke = ref<Service | null>(null)
