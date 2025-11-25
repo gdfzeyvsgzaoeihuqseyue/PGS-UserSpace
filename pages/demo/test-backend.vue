@@ -139,7 +139,8 @@
               <li>Testez les deux endpoints en cliquant sur les boutons ci-dessus</li>
               <li>Vérifiez si <code>lastLogin</code> est présent dans les réponses</li>
               <li>Si <code>/user/profile</code> retourne <code>lastLogin</code> mais pas
-                <code>/user/auth/session</code>, alors le backend doit être modifié</li>
+                <code>/user/auth/session</code>, alors le backend doit être modifié
+              </li>
               <li>Une fois le backend modifié, rafraîchissez cette page et testez à nouveau</li>
             </ol>
           </div>
@@ -156,14 +157,31 @@ definePageMeta({
   middleware: 'auth'
 })
 
+interface User {
+  id: string
+  email: string
+  lastLogin?: string
+  [key: string]: any
+}
+
+interface SessionResponse {
+  user?: User
+  [key: string]: any
+}
+
+interface ProfileResponse {
+  user?: User
+  [key: string]: any
+}
+
 const authStore = useAuthStore()
 const { locale, t } = useI18n()
 const config = useRuntimeConfig()
 
 const loadingSession = ref(false)
 const loadingProfile = ref(false)
-const sessionResponse = ref<any>(null)
-const profileResponse = ref<any>(null)
+const sessionResponse = ref<SessionResponse | null>(null)
+const profileResponse = ref<ProfileResponse | null>(null)
 const sessionError = ref<string | null>(null)
 const profileError = ref<string | null>(null)
 
@@ -174,11 +192,11 @@ const testSessionEndpoint = async () => {
 
   try {
     console.log('🧪 Test de /user/auth/session')
-    const response = await $fetch('/user/auth/session', {
+    const response = await $fetch<SessionResponse>('/user/auth/session', {
       method: 'GET',
       baseURL: config.public.pgsBaseAPI,
       credentials: 'include'
-    })
+    }) as SessionResponse
 
     sessionResponse.value = response
     console.log('✅ Réponse /user/auth/session:', response)
@@ -198,11 +216,11 @@ const testProfileEndpoint = async () => {
 
   try {
     console.log('🧪 Test de /user/profile')
-    const response = await $fetch('/user/profile', {
+    const response = await $fetch<ProfileResponse>('/user/profile', {
       method: 'GET',
       baseURL: config.public.pgsBaseAPI,
       credentials: 'include'
-    })
+    }) as ProfileResponse
 
     profileResponse.value = response
     console.log('✅ Réponse /user/profile:', response)

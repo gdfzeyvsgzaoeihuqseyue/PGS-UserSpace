@@ -89,7 +89,7 @@
                   <span class="absolute inset-0 rounded-lg"
                     :class="session.isRevoked ? 'bg-gray-200' : 'bg-primary opacity-10'"></span>
                   <IconDeviceDesktop v-if="!session.deviceInfo?.mobile" class="w-6 h-6"
-                    :class="session.isRevoked ? 'text-gray-500' : 'text-primary'" />
+                    :class="session.isRevoked ? 'text-red-500' : 'text-primary'" />
                   <IconDeviceMobile v-else class="w-6 h-6"
                     :class="session.isRevoked ? 'text-gray-500' : 'text-primary'" />
                 </div>
