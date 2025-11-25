@@ -119,6 +119,24 @@ export const useAuthStore = defineStore('auth', {
         const servicesStore = useServicesStore()
         servicesStore.setServices(response.services)
 
+        // ⚠️ WORKAROUND: Si lastLogin est manquant, le récupérer depuis /user/profile
+        if (!this.user.lastLogin) {
+          try {
+            const profileResponse = await $fetch<{ user: User }>('/user/profile', {
+              method: 'GET',
+              baseURL: config.public.pgsBaseAPI,
+              credentials: 'include'
+            })
+
+            if (profileResponse.user.lastLogin) {
+              this.user.lastLogin = profileResponse.user.lastLogin
+              console.log('✅ lastLogin récupéré depuis /user/profile:', this.user.lastLogin)
+            }
+          } catch (profileErr) {
+            console.warn('⚠️ Impossible de récupérer lastLogin depuis /user/profile:', profileErr)
+          }
+        }
+
         return response
       } catch (err: any) {
         this.user = null

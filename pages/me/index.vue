@@ -164,5 +164,10 @@ const handleLogout = async () => {
 onMounted(() => {
   servicesStore.fetchServices()
   greetingKey.value = getGreetingKey()
+
+  // Debug: vérifier la valeur de lastLogin
+  console.log('🔍 DEBUG - User data:', authStore.user)
+  console.log('🔍 DEBUG - LastLogin value:', authStore.user?.lastLogin)
+  console.log('🔍 DEBUG - LastLogin type:', typeof authStore.user?.lastLogin)
 })
 </script>
