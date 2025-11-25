@@ -1,7 +1,7 @@
 {
   "meta": {
     "indexPage": {
-      "title": "PGS MY SPACE - Centralized Authentication Platform",
+      "title": "Centralized Authentication Platform",
       "description": "Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services."
     }
   },
@@ -16,9 +16,24 @@
     "langEn": "English"
   },
   "navbar": {
-    "beta": "Beta",
-    "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "home": {
+      "beta": "Beta",
+      "solutions": "Solution",
+      "about": "About us",
+      "contact": "Contact us",
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    },
+    "db": {
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "services": "Services",
+      "solutions": "Solutions",
+      "sessions": "Sessions",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signOut": "Sign Out"
+    }
   },
   "footer": {
     "copyright": "© {year} PGS. All rights reserved.",
@@ -51,6 +66,7 @@
       }
     },
     "solutions": {
+      "badge": "PGS Ecosystem",
       "title": "PGS Ecosystem Solutions",
       "subtitle": "Discover our innovative solutions with integrated SSO authentication",
       "empty": "No SSO-enabled solution is currently available.",
@@ -161,18 +177,6 @@
     "never": "Never"
   },
   "dashboard": {
-    "menu": {
-      "dashboard": "Dashboard",
-      "services": "Services",
-      "solutions": "Solutions",
-      "sessions": "Sessions",
-      "profile": "Profile",
-      "settings": "Settings"
-    },
-    "userMenu": {
-      "profileSettings": "Profile Settings",
-      "signOut": "Sign Out"
-    },
     "overview": "Here's an overview of your PGS account",
     "stats": {
       "activeServices": {

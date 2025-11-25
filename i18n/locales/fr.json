@@ -1,7 +1,7 @@
 {
   "meta": {
     "indexPage": {
-      "title": "MON ESPACE PGS - Plateforme d'Authentification Centralisée",
+      "title": "Plateforme d'Authentification Centralisée",
       "description": "Votre plateforme d'authentification unique centralisée pour un accès transparent à tous les services de l'écosystème PGS."
     }
   },
@@ -16,9 +16,24 @@
     "langEn": "Anglais"
   },
   "navbar": {
-    "beta": "Bêta",
-    "signIn": "Se connecter",
-    "signUp": "S'inscrire"
+    "home": {
+      "beta": "Bêta",
+      "solutions": "Solution",
+      "about": "À propos",
+      "contact": "Contact",
+      "signIn": "Se connecter",
+      "signUp": "S'inscrire"
+    },
+     "db": {
+      "home": "Acceuil",
+      "dashboard": "Tableau de bord",
+      "services": "Services",
+      "solutions": "Solutions",
+      "sessions": "Sessions",
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "signOut": "Se déconnecter"
+    }
   },
   "footer": {
     "copyright": "© {year} PGS MON ESPACE. Tous droits réservés.",
@@ -51,6 +66,7 @@
       }
     },
     "solutions": {
+      "badge": "Écosystème PGS",
       "title": "Solutions de l'Écosystème PGS",
       "subtitle": "Découvrez nos solutions innovantes avec authentification SSO intégrée",
       "empty": "Aucune solution avec SSO n'est actuellement disponible.",
@@ -161,18 +177,6 @@
     "never": "Jamais"
   },
   "dashboard": {
-    "menu": {
-      "dashboard": "Tableau de bord",
-      "services": "Services",
-      "solutions": "Solutions",
-      "sessions": "Sessions",
-      "profile": "Profil",
-      "settings": "Paramètres"
-    },
-    "userMenu": {
-      "profileSettings": "Paramètres du profil",
-      "signOut": "Se déconnecter"
-    },
     "overview": "Voici un aperçu de votre compte PGS",
     "stats": {
       "activeServices": {

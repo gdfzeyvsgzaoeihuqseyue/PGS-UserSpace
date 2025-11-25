@@ -18,54 +18,99 @@
           <span v-if="config.public.betaMode"
             class="relative inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-primary">
             <span class="absolute inset-0 bg-primary opacity-10 dark:opacity-20 rounded-full"></span>
-            {{ $t('navbar.beta') }}
+            {{ $t('navbar.home.beta') }}
           </span>
         </NuxtLink>
 
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex items-center space-x-4">
+        <div class="hidden lg:flex items-center space-x-6">
+          <!-- Navigation Links -->
+          <a href="#"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium">
+            {{ $t('navbar.home.solutions') }}
+          </a>
+          <a href="#"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium">
+            {{ $t('navbar.home.about') }}
+          </a>
+          <a href="#"
+            class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium">
+            {{ $t('navbar.home.contact') }}
+          </a>
+
+          <!-- Divider -->
+          <div class="h-6 w-px bg-gray-300 dark:bg-gray-600"></div>
+
+          <!-- Auth Section -->
           <template v-if="!authStore.isAuthenticated">
             <NuxtLink :to="localePath('/auth/login')" class="hover:text-primary transition-colors font-medium">
-              {{ $t('navbar.signIn') }}
+              {{ $t('navbar.home.signIn') }}
             </NuxtLink>
             <NuxtLink :to="localePath('/auth/register')" class="btn btn-primary">
-              {{ $t('navbar.signUp') }}
+              {{ $t('navbar.home.signUp') }}
             </NuxtLink>
           </template>
 
           <template v-else>
             <div class="relative">
               <button @click="toggleUserMenu"
-                class="flex items-center space-x-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg px-3 py-2 transition-colors">
-                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-sm">
-                  <span class="text-white text-sm font-medium">
+                class="flex items-center space-x-3 hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg px-3 py-2 transition-all duration-300 group">
+                <div
+                  class="w-9 h-9 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 group-hover:shadow-xl group-hover:shadow-primary/40 transition-all duration-300">
+                  <span class="text-white text-sm font-bold">
                     {{ getInitials(authStore.user?.firstName || '', authStore.user?.lastName || '') }}
                   </span>
                 </div>
                 <div class="hidden md:block text-left">
-                  <p class="text-sm font-medium text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+                  <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">{{ authStore.user?.email }}</p>
                 </div>
-                <IconChevronDown class="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                <IconChevronDown class="w-4 h-4 text-gray-500 dark:text-gray-400 transition-transform duration-300"
+                  :class="{ 'rotate-180': showUserMenu }" />
               </button>
 
               <!-- User Dropdown -->
-              <div v-if="showUserMenu"
-                class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
-                <NuxtLink :to="localePath('/me')"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  @click="showUserMenu = false">
-                  {{ $t('dashboard.menu.dashboard') }}
-                </NuxtLink>
-                <NuxtLink :to="localePath('/me/profile')"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  @click="showUserMenu = false">
-                  {{ $t('dashboard.userMenu.profileSettings') }}
-                </NuxtLink>
-                <button @click="handleLogout"
-                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
-                  {{ $t('dashboard.userMenu.signOut') }}
-                </button>
-              </div>
+              <Transition enter-active-class="transition duration-200 ease-out"
+                enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-150 ease-in" leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0">
+                <div v-if="showUserMenu"
+                  class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 py-2 z-50 backdrop-blur-xl">
+                  <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ authStore.user?.email }}</p>
+                  </div>
+
+                  <NuxtLink :to="localePath('/me')"
+                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 hover:text-primary dark:hover:text-primary transition-all duration-200"
+                    @click="showUserMenu = false">
+                    <IconDashboard class="w-4 h-4" />
+                    {{ $t('navbar.db.dashboard') }}
+                  </NuxtLink>
+
+                  <NuxtLink :to="localePath('/me/profile')"
+                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 hover:text-primary dark:hover:text-primary transition-all duration-200"
+                    @click="showUserMenu = false">
+                    <IconUser class="w-4 h-4" />
+                    {{ $t('navbar.db.profile') }}
+                  </NuxtLink>
+
+                  <NuxtLink :to="localePath('/me/setting')"
+                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 hover:text-primary dark:hover:text-primary transition-all duration-200"
+                    @click="showUserMenu = false">
+                    <IconSettings class="w-4 h-4" />
+                    {{ $t('navbar.db.settings') }}
+                  </NuxtLink>
+
+                  <div class="my-1 border-t border-gray-200 dark:border-gray-700"></div>
+
+                  <button @click="handleLogout"
+                    class="flex items-center gap-3 w-full text-left px-4 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200">
+                    <IconLogout class="w-4 h-4" />
+                    {{ $t('navbar.db.signOut') }}
+                  </button>
+                </div>
+              </Transition>
             </div>
           </template>
 
@@ -89,38 +134,77 @@
       leave-active-class="transition duration-150 ease-in" leave-from-class="transform translate-y-0 opacity-100"
       leave-to-class="transform -translate-y-2 opacity-0">
       <div v-show="isMobileMenuOpen" ref="mobileMenuRef"
-        class="lg:hidden absolute top-16 left-0 right-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg z-40">
-        <div class="px-4 pt-2 pb-4 space-y-3">
+        class="lg:hidden absolute top-16 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-2xl z-40">
+        <div class="px-4 pt-2 pb-4 space-y-2">
+          <!-- Navigation Links (when not authenticated) -->
           <template v-if="!authStore.isAuthenticated">
+            <NuxtLink :to="localePath('/pricing')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('navbar.pricing') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/about')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('navbar.about') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/contact')"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              @click="isMobileMenuOpen = false">
+              {{ $t('navbar.contact') }}
+            </NuxtLink>
+
+            <div class="pt-2 border-t border-gray-200 dark:border-gray-700"></div>
+
             <NuxtLink :to="localePath('/auth/login')"
               class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
               @click="isMobileMenuOpen = false">
               {{ $t('navbar.signIn') }}
             </NuxtLink>
             <NuxtLink :to="localePath('/auth/register')"
-              class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-primary text-white hover:bg-primary/90"
+              class="block w-full text-center px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-primary to-primary/90 text-white hover:shadow-lg hover:shadow-primary/30"
               @click="isMobileMenuOpen = false">
               {{ $t('navbar.signUp') }}
             </NuxtLink>
           </template>
           <template v-else>
-            <div class="px-3 py-2 border-b border-gray-200 dark:border-gray-700 mb-2">
-              <p class="font-medium text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
-              <p class="text-sm text-gray-500">{{ authStore.user?.email }}</p>
+            <div
+              class="px-3 py-3 border-b border-gray-200 dark:border-gray-700 mb-2 bg-gradient-to-r from-primary/5 to-transparent rounded-lg">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg shadow-primary/30">
+                  <span class="text-white text-sm font-bold">
+                    {{ getInitials(authStore.user?.firstName || '', authStore.user?.lastName || '') }}
+                  </span>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">{{ authStore.fullName }}</p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 truncate">{{ authStore.user?.email }}</p>
+                </div>
+              </div>
             </div>
             <NuxtLink :to="localePath('/me')"
-              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              class="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5"
               @click="isMobileMenuOpen = false">
-              {{ $t('dashboard.menu.dashboard') }}
+              <IconDashboard class="w-5 h-5" />
+              {{ $t('navbar.db.dashboard') }}
             </NuxtLink>
             <NuxtLink :to="localePath('/me/profile')"
-              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800"
+              class="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5"
               @click="isMobileMenuOpen = false">
-              {{ $t('dashboard.userMenu.profileSettings') }}
+              <IconUser class="w-5 h-5" />
+              {{ $t('navbar.db.profile') }}
+            </NuxtLink>
+            <NuxtLink :to="localePath('/me/setting')"
+              class="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-primary hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5"
+              @click="isMobileMenuOpen = false">
+              <IconSettings class="w-5 h-5" />
+              {{ $t('navbar.db.settings') }}
             </NuxtLink>
             <button @click="handleLogout"
-              class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
-              {{ $t('dashboard.userMenu.signOut') }}
+              class="flex items-center gap-3 w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+              <IconLogout class="w-5 h-5" />
+              {{ $t('navbar.db.signOut') }}
             </button>
           </template>
 
@@ -137,7 +221,7 @@
 
 <script setup>
 import { useSharedFiles } from '~/stores/sharedFiles';
-import { IconMenu, IconX, IconChevronDown } from '@tabler/icons-vue';
+import { IconMenu, IconX, IconChevronDown, IconDashboard, IconUser, IconSettings, IconLogout } from '@tabler/icons-vue';
 import { prefSettings } from '~/components/pref'
 
 const config = useRuntimeConfig();

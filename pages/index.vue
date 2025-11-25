@@ -194,7 +194,7 @@
         <!-- Section Header -->
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-semibold mb-4">
-            Écosystème PGS
+            {{ $t('indexPage.solutions.badge') }}
           </span>
           <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             {{ $t('indexPage.solutions.title') }}
@@ -240,7 +240,7 @@
               <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                 <a :href="solution.ctaLink" target="_blank" rel="noopener noreferrer"
                   class="text-sm font-medium text-primary hover:text-secondary transition-colors flex items-center">
-                  {{ solution.ctaText || 'Découvrir' }}
+                  {{ solution.ctaText }}
                   <IconArrowRight class="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
@@ -330,8 +330,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 definePageMeta({
-  layout: 'default',
-  middleware: 'guest'
+  layout: 'default'
 })
 
 const solutionsStore = useSolutionsStore()

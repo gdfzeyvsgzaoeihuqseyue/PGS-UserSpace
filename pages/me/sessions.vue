@@ -160,7 +160,7 @@
               <!-- Actions -->
               <div class="w-full flex justify-end mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                 <button v-if="!isCurrentSession(session) && !session.isRevoked" @click="confirmRevoke(session)"
-                  class="btn btn-danger text-sm py-2 px-3 w-full sm:w-auto" :disabled="revokingSession === session.id">
+                  class="flex items-center btn btn-danger text-sm py-2 px-3 w-full sm:w-auto" :disabled="revokingSession === session.id">
                   <IconTrash class="w-4 h-4 mr-2" />
                   <span v-if="revokingSession === session.id">Révocation...</span>
                   <span v-else>Révoquer</span>
