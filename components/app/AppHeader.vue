@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 shadow-sm z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+    class="fixed top-0 left-0 right-0 shadow-sm z-50 bg-WtB/70 border-b border-gray-200 backdrop-blur-md  supports-[backdrop-filter]:bg-white/60 transition-colors duration-300">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo avec Badge Beta -->
