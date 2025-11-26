@@ -390,4 +390,8 @@ const reactivateAccess = async () => {
 onMounted(() => {
   servicesStore.fetchServices()
 })
+
+useHead({
+  title: t('services.title')
+})
 </script>

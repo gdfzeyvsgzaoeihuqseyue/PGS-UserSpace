@@ -258,7 +258,7 @@ definePageMeta({
   middleware: 'auth'
 })
 
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const sessionsStore = useSessionsStore()
 
 const revokingSession = ref<string | null>(null)
@@ -367,5 +367,9 @@ const revokeAllOtherSessions = async () => {
 
 onMounted(() => {
   sessionsStore.fetchSessions()
+})
+
+useHead({
+  title: t('sessions.title')
 })
 </script>

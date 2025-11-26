@@ -364,17 +364,17 @@ const features = computed(() => [
 
 const stats = computed(() => [
   {
+    value: `${solutionsStore.totalSolutions}`,
+    label: t('indexPage.stats.totalSolutions')
+  },
+  {
     value: `${solutionsStore.authEnabledSolutions.length}+`,
     label: t('indexPage.stats.integratedSolutions')
   },
-  // {
-  //   value: '10k+',
-  //   label: t('indexPage.stats.users')
-  // },
-  // {
-  //   value: '15+',
-  //   label: t('indexPage.stats.countries')
-  // },
+  {
+    value: `${solutionsStore.categories.length}`,
+    label: t('indexPage.stats.categories')
+  },
   {
     value: '24/7',
     label: t('indexPage.stats.support')

@@ -153,6 +153,7 @@ definePageMeta({
   middleware: 'auth'
 })
 
+const { t, locale } = useI18n()
 const solutionsStore = useSolutionsStore()
 
 const searchQuery = ref('')
@@ -232,5 +233,9 @@ const nextPage = async () => {
 
 onMounted(() => {
   fetchSolutions()
+})
+
+useHead({
+  title: t('solutionsPage.title')
 })
 </script>

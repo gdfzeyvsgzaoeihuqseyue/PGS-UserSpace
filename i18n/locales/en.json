@@ -82,8 +82,8 @@
     "stats": {
       "integratedSolutions": "Integrated Solutions",
       "support": "Support",
-      "users": "Active Users",
-      "countries": "Countries Covered"
+      "totalSolutions": "Total Solutions",
+      "categories": "Categories"
     },
     "visual": {
       "secureConnection": "Secure Connection",
