@@ -24,15 +24,16 @@
       <div class="flex-shrink-0 flex gap-1">
         <span v-if="solution.allowAuth" class="badge badge-success" :title="$t('solutionCard.ssoAvailable')">
           <IconShieldCheck class="w-3 h-3 mr-1" />
-          SSO
+          {{ $t('solutionCard.badges.sso') }}
         </span>
-        <span v-if="solution.authType === 'all'" class="badge badge-warning" title="Multiple">
+        <span v-if="solution.authType === 'all'" class="badge badge-warning"
+          :title="$t('solutionCard.badges.multiple')">
           <IconUsers class="w-3 h-3 mr-1" />
-          Multiple
+          {{ $t('solutionCard.badges.multiple') }}
         </span>
-        <span v-if="!solution.authType" class="badge badge-info" title="Libre">
+        <span v-if="!solution.authType" class="badge badge-info" :title="$t('solutionCard.badges.free')">
           <IconLockOpen class="w-3 h-3 mr-1" />
-          Libre
+          {{ $t('solutionCard.badges.free') }}
         </span>
       </div>
     </div>
@@ -65,8 +66,8 @@
         {{ solution.updatedAt }}
       </div>
       <div class="flex items-center space-x-2">
-        <a :href="`https://progestionsoft.netlify.app/apps/${solution.slug}`" target="_blank"
-          rel="noopener noreferrer" class="text-sm text-primary hover:text-secondary font-medium transition-colors">
+        <a :href="`https://progestionsoft.netlify.app/apps/${solution.slug}`" target="_blank" rel="noopener noreferrer"
+          class="text-sm text-primary hover:text-secondary font-medium transition-colors">
           {{ $t('solutionCard.viewDetails') }}
         </a>
         <a :href="solution.ctaLink" target="_blank" rel="noopener noreferrer"

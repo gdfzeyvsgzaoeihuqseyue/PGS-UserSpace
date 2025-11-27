@@ -473,6 +473,11 @@
     "others": "+{count} autre | +{count} autres",
     "ssoAvailable": "Authentification SSO disponible",
     "viewDetails": "Voir détails",
-    "open": "Ouvrir"
+    "open": "Ouvrir",
+    "badges": {
+      "sso": "SSO",
+      "multiple": "Multiple",
+      "free": "Libre"
+    }
   }
 }
