@@ -27,8 +27,8 @@ export const useSolutionsStore = defineStore('solutions', {
   }),
 
   getters: {
-    authEnabledSolutions: (state) => state.solutions.filter((s) => s.allowAuth && !s.disabled),
-    activeSolutions: (state) => state.solutions.filter((s) => !s.disabled),
+    authEnabledSolutions: (state) => state.solutions.filter((s) => s.allowAuth && !s.disabled && s.authType !== 'learner'),
+    activeSolutions: (state) => state.solutions.filter((s) => !s.disabled && s.authType !== 'learner'),
     categories: (state) => {
       const categories = new Set(state.solutions.map((s) => s.category))
       return Array.from(categories)
@@ -54,7 +54,8 @@ export const useSolutionsStore = defineStore('solutions', {
         }
 
         if (data.value) {
-          this.solutions = Array.isArray(data.value) ? data.value : (data.value.data || [])
+          const rawSolutions = Array.isArray(data.value) ? data.value : (data.value.data || [])
+          this.solutions = rawSolutions.filter((s: Solution) => s.authType !== 'learner')
 
           if (data.value.meta) {
             this.pagination = data.value.meta

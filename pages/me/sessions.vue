@@ -148,7 +148,7 @@
 
                       <!-- Expires At -->
                       <div class="flex items-center" :class="isExpired(session) ? 'text-red-600' : 'text-gray-600'">
-                        <IconClockHour4 class="w-4 h-4 mr-2 flex-shrink-0"
+                        <IconClockX class="w-4 h-4 mr-2 flex-shrink-0"
                           :class="isExpired(session) ? 'text-red-400' : 'text-gray-400'" />
                         <span class="truncate">{{ $t('sessions.list.expires') }}: {{
                           formatRelativeDate(session.expiresAt, locale, 'N/A') }}</span>
@@ -186,7 +186,7 @@
               <p class="text-sm text-red-700 mt-1">{{ $t('sessions.revokeAll.description') }}</p>
             </div>
           </div>
-          <button @click="confirmRevokeAll" class="btn btn-danger text-sm py-2 w-full sm:w-auto"
+          <button @click="confirmRevokeAll" class="flex items-center btn btn-danger text-sm py-2 w-full sm:w-auto"
             :disabled="revokingAll">
             <IconShieldX class="w-4 h-4 mr-2" />
             <span v-if="revokingAll">{{ $t('sessions.actions.revokingAll') }}</span>
@@ -251,7 +251,7 @@ import { ref, computed, onMounted } from 'vue'
 import type { Session } from '~/types'
 import { formatRelativeDate } from '~/utils/dateFormatter'
 import SearchInput from '~/components/SearchInput.vue'
-import { IconLoader2, IconAlertCircle, IconDevices, IconShieldCheck, IconX, IconInfoCircle, IconDeviceDesktop, IconDeviceMobile, IconMapPin, IconClock, IconClockHour4, IconTrash, IconAlertTriangle, IconShieldX } from '@tabler/icons-vue'
+import { IconLoader2, IconAlertCircle, IconDevices, IconShieldCheck, IconX, IconInfoCircle, IconDeviceDesktop, IconDeviceMobile, IconMapPin, IconClock, IconClockX, IconTrash, IconAlertTriangle, IconShieldX } from '@tabler/icons-vue'
 
 definePageMeta({
   layout: 'dashboard',

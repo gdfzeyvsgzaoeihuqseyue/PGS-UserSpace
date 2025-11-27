@@ -21,10 +21,18 @@
       </div>
 
       <!-- Auth Badge -->
-      <div v-if="solution.allowAuth" class="flex-shrink-0">
-        <span class="badge badge-success" :title="$t('solutionCard.ssoAvailable')">
+      <div class="flex-shrink-0 flex gap-1">
+        <span v-if="solution.allowAuth" class="badge badge-success" :title="$t('solutionCard.ssoAvailable')">
           <IconShieldCheck class="w-3 h-3 mr-1" />
           SSO
+        </span>
+        <span v-if="solution.authType === 'all'" class="badge badge-warning" title="Multiple">
+          <IconUsers class="w-3 h-3 mr-1" />
+          Multiple
+        </span>
+        <span v-if="!solution.authType" class="badge badge-info" title="Libre">
+          <IconLockOpen class="w-3 h-3 mr-1" />
+          Libre
         </span>
       </div>
     </div>
@@ -57,7 +65,7 @@
         {{ solution.updatedAt }}
       </div>
       <div class="flex items-center space-x-2">
-        <a :href="`https://progestionsoft.netlify.app/solutions/${solution.slug}`" target="_blank"
+        <a :href="`https://progestionsoft.netlify.app/apps/${solution.slug}`" target="_blank"
           rel="noopener noreferrer" class="text-sm text-primary hover:text-secondary font-medium transition-colors">
           {{ $t('solutionCard.viewDetails') }}
         </a>
@@ -73,7 +81,7 @@
 
 <script setup lang="ts">
 import type { Solution } from '~/types'
-import { IconArrowRight, IconCheck, IconShieldCheck } from '@tabler/icons-vue'
+import { IconArrowRight, IconCheck, IconShieldCheck, IconLockOpen, IconUsers } from '@tabler/icons-vue'
 
 interface Props {
   solution: Solution

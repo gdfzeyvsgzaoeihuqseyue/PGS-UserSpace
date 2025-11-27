@@ -89,6 +89,7 @@ export interface Solution {
   content: string
   disabled: boolean
   allowAuth: boolean
+  authType?: 'user' | 'learner' | 'all'
   ctaText: string
   ctaLink: string
   features: string[]
