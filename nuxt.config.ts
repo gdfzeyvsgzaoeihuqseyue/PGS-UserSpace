@@ -74,7 +74,7 @@ export default defineNuxtConfig({
     configPath: '~/tailwind.config.ts'
   },
 
-   googleFonts: {
+  googleFonts: {
     display: 'swap',
     families: {
       'Kedebideri': [400, 500, 600, 700, 800, 900],
