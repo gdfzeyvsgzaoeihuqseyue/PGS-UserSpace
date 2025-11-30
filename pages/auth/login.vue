@@ -110,7 +110,7 @@ const handleLogin = async () => {
   try {
     await authStore.login(form)
 
-    // Si un serviceId est présent, rediriger vers le callback SSO
+    // Si un serviceId est présent, rediriger vers le callback
     if (serviceId) {
       const queryParams = new URLSearchParams({
         serviceId,
@@ -120,7 +120,16 @@ const handleLogin = async () => {
         queryParams.set('returnUrl', returnUrl)
       }
       await router.push(`/auth/authorize?${queryParams.toString()}`)
-    } else {
+    }
+    // Si returnUrl est présent sans serviceId, rediriger vers le check
+    else if (returnUrl) {
+      const queryParams = new URLSearchParams({
+        returnUrl
+      })
+      await router.push(`/auth/check?${queryParams.toString()}`)
+    }
+    // Sinon redirection par défaut
+    else {
       await router.push('/me')
     }
   } catch (error) {

@@ -104,6 +104,14 @@
       "statusConnecting": "Connexion à {service}...",
       "retry": "Réessayer"
     },
+    "check": {
+      "loadingTitle": "Authentification en cours...",
+      "statusChecking": "Vérification de votre authentification...",
+      "statusVerifying": "Vérification de votre session...",
+      "statusRedirecting": "Redirection vers la page de connexion...",
+      "statusConnecting": "Connexion au service...",
+      "retry": "Réessayer"
+    },
     "login": {
       "welcome": "Bon retour",
       "subtitle": "Connectez-vous pour accéder à votre compte",

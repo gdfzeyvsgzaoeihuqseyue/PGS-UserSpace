@@ -160,7 +160,7 @@ const handleRegister = async () => {
   try {
     await authStore.register(form)
 
-    // Si un serviceId est présent, connecter automatiquement et rediriger
+    // Si un serviceId est présent, connecter automatiquement et rediriger vers le callback
     if (serviceId) {
       // Connecter l'utilisateur automatiquement
       await authStore.login({
@@ -168,7 +168,7 @@ const handleRegister = async () => {
         password: form.password
       })
 
-      // Rediriger vers le callback SSO
+      // Rediriger vers le callback
       const queryParams = new URLSearchParams({
         serviceId,
         action: 'login'
@@ -177,7 +177,23 @@ const handleRegister = async () => {
         queryParams.set('returnUrl', returnUrl)
       }
       await router.push(`/auth/authorize?${queryParams.toString()}`)
-    } else {
+    }
+    // Si returnUrl est présent sans serviceId, connecter et rediriger vers le check
+    else if (returnUrl) {
+      // Connecter l'utilisateur automatiquement
+      await authStore.login({
+        email: form.email,
+        password: form.password
+      })
+
+      // Rediriger vers le callback
+      const queryParams = new URLSearchParams({
+        returnUrl
+      })
+      await router.push(`/auth/check?${queryParams.toString()}`)
+    }
+    // Sinon afficher le succès
+    else {
       registrationSuccess.value = true
     }
   } catch (error) {

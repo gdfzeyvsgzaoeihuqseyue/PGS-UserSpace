@@ -104,6 +104,14 @@
       "statusConnecting": "Connecting to {service}...",
       "retry": "Retry"
     },
+    "check": {
+      "loadingTitle": "Authentication in progress...",
+      "statusChecking": "Checking your authentication...",
+      "statusVerifying": "Verifying your session...",
+      "statusRedirecting": "Redirecting to login page...",
+      "statusConnecting": "Connecting to service...",
+      "retry": "Retry"
+    },
     "login": {
       "welcome": "Welcome back",
       "subtitle": "Sign in to access your account",
