@@ -114,6 +114,8 @@
             </div>
           </template>
 
+          <PGSAppSwitcher container-id="header-app-switcher" :on-app-click="handleAppClick" />
+
           <prefSettings />
         </div>
 
@@ -275,4 +277,11 @@ watch(() => route.path, () => {
   isMobileMenuOpen.value = false;
   showUserMenu.value = false;
 });
+
+// Handle app click from App Switcher
+const handleAppClick = (app) => {
+  console.log('🚀 Application sélectionnée:', app.name)
+  if (window.gtag) window.gtag('event', 'app_click', { app_name: app.name })
+}
+
 </script>
