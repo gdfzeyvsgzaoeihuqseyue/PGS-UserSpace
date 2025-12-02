@@ -120,7 +120,8 @@
         </div>
 
         <!-- Mobile Menu Button -->
-        <div class="lg:hidden flex items-center">
+        <div class="lg:hidden flex items-center gap-2">
+          <PGSAppSwitcher container-id="mobile-app-switcher" :on-app-click="handleAppClick" />
           <button @click="toggleMobileMenu"
             class="p-2 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none">
             <IconMenu v-if="!isMobileMenuOpen" class="h-6 w-6" />
