@@ -61,16 +61,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import {
-  IconSearch,
-  IconHome,
-  IconLayout2,
-  IconLayoutGridAdd,
-  IconLock,
-  IconUser,
-  IconSettings,
-  IconChevronRight
-} from '@tabler/icons-vue'
+import { IconSearch, IconHome, IconLayout2, IconLayoutGridAdd, IconLock, IconUser, IconSettings, IconChevronRight, } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
