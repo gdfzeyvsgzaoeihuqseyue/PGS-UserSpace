@@ -166,7 +166,7 @@
             <!-- Right Side: User Menu & Preferences -->
             <div class="flex items-center space-x-2 sm:space-x-4">
               <!-- Mobile Search Toggle -->
-              <button
+              <button @click="showMobileSearch = true"
                 class="sm:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-colors">
                 <IconSearch class="w-5 h-5" />
               </button>
@@ -225,6 +225,26 @@
         <slot />
       </main>
     </div>
+
+    <!-- Mobile Search Modal -->
+    <Transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0"
+      enter-to-class="opacity-100" leave-active-class="transition duration-150 ease-in" leave-from-class="opacity-100"
+      leave-to-class="opacity-0">
+      <div v-if="showMobileSearch"
+        class="sm:hidden fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex flex-col p-4"
+        @click.self="showMobileSearch = false">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-white">{{ $t('dashboard.search.title', 'Recherche') }}</h2>
+          <button @click="showMobileSearch = false"
+            class="p-2 rounded-lg hover:bg-white/10 text-white transition-colors">
+            <IconX class="w-6 h-6" />
+          </button>
+        </div>
+        <div class="flex-shrink-0" @click.stop>
+          <GlobalSearch />
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -245,6 +265,7 @@ const localePath = useLocalePath()
 
 const showUserMenu = ref(false)
 const showMobileMenu = ref(false)
+const showMobileSearch = ref(false)
 const isSidebarCollapsed = ref(false)
 
 const toggleUserMenu = () => {

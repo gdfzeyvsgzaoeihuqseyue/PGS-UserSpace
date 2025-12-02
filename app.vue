@@ -12,6 +12,16 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const sharedFilesUrl = runtimeConfig.public.pgsSharedFiles;
+const authStore = useAuthStore();
+
+// Initialize authentication state
+onMounted(async () => {
+  try {
+    await authStore.checkSession();
+  } catch (error) {
+    console.log('No active session');
+  }
+});
 
 const heroImagePath = `${sharedFilesUrl}/SuitOps_Landing/Hero/index.png`;
 const baseUrl = "https://pgs-user.netlify.app/";
