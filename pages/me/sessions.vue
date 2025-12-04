@@ -163,7 +163,7 @@
                         'text-warning': isExpired(session) && !session.isRevoked,
                         'text-gray-600': !session.isRevoked && !isExpired(session)
                       }">
-                        <IconClockX class="w-4 h-4 mr-2 flex-shrink-0" />
+                        <IconClockX class="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
                         <span class="truncate">{{ $t('sessions.list.expires') }}: {{
                           formatRelativeDate(session.expiresAt, locale, 'N/A') }}</span>
                       </div>
