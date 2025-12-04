@@ -75,9 +75,7 @@
     },
     "cta": {
       "title": "Prêt à commencer ?",
-      "subtitle": "Créez votre compte gratuitement et accédez à tout l'écosystème PGS en quelques secondes",
-      "createAccount": "Créer un compte gratuit",
-      "viewDemo": "Voir la démo SSO"
+      "subtitle": "Créez votre compte gratuitement et accédez à tout l'écosystème PGS en quelques secondes"
     },
     "stats": {
       "integratedSolutions": "Solutions intégrées",

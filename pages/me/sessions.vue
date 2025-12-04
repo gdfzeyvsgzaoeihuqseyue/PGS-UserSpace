@@ -84,8 +84,11 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div v-for="session in filteredSessions" :key="session.id"
-            class="card border-l-4 hover:shadow-lg transition-shadow h-full"
-            :class="{ 'bg-red-50 border-l-danger': session.isRevoked, 'bg-blue-50 border-l-primary': isCurrentSession(session) }">
+            class="card border-l-4 hover:shadow-lg transition-shadow h-full" :class="{
+              'bg-red-50 border-l-danger': session.isRevoked,
+              'bg-yellow-50 border-l-warning': isExpired(session) && !session.isRevoked,
+              'bg-blue-50 border-l-primary': isCurrentSession(session) && !session.isRevoked && !isExpired(session),
+            }">
             <div class="flex items-start justify-between h-full flex-col">
               <!-- Session Info -->
               <div class="w-full">
@@ -93,12 +96,21 @@
                 <div class="flex items-start gap-3 mb-4">
                   <!-- Device Icon -->
                   <div class="relative w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <span class="absolute inset-0 rounded-lg"
-                      :class="session.isRevoked ? 'bg-danger opacity-10' : 'bg-primary opacity-10'"></span>
-                    <IconDeviceDesktop v-if="!session.deviceInfo?.mobile" class="w-6 h-6"
-                      :class="session.isRevoked ? 'text-danger' : 'text-primary'" />
-                    <IconDeviceMobile v-else class="w-6 h-6"
-                      :class="session.isRevoked ? 'text-danger' : 'text-primary'" />
+                    <span class="absolute inset-0 rounded-lg" :class="{
+                      'bg-danger opacity-10': session.isRevoked,
+                      'bg-warning opacity-10': isExpired(session) && !session.isRevoked,
+                      'bg-primary opacity-10': !session.isRevoked && !isExpired(session),
+                    }"></span>
+                    <IconDeviceDesktop v-if="!session.deviceInfo?.mobile" class="w-6 h-6" :class="{
+                      'text-danger': session.isRevoked,
+                      'text-warning': isExpired(session) && !session.isRevoked,
+                      'text-primary': !session.isRevoked && !isExpired(session),
+                    }" />
+                    <IconDeviceMobile v-else class="w-6 h-6" :class="{
+                      'text-danger': session.isRevoked,
+                      'text-warning': isExpired(session) && !session.isRevoked,
+                      'text-primary': !session.isRevoked && !isExpired(session),
+                    }" />
                   </div>
 
                   <!-- Device Info -->
@@ -146,10 +158,16 @@
                           formatRelativeDate(session.createdAt, locale, 'N/A') }}</span>
                       </div>
 
-                      <!-- Expires At -->
-                      <div class="flex items-center" :class="isExpired(session) ? 'text-red-600' : 'text-gray-600'">
-                        <IconClockX class="w-4 h-4 mr-2 flex-shrink-0"
-                          :class="isExpired(session) ? 'text-red-400' : 'text-gray-400'" />
+                      <div class="flex items-center" :class="{
+                        'text-danger': session.isRevoked,
+                        'text-warning': isExpired(session) && !session.isRevoked,
+                        'text-gray-600': !session.isRevoked && !isExpired(session)
+                      }">
+                        <IconClockX class="w-4 h-4 mr-2 flex-shrink-0" :class="{
+                          'text-red-400': session.isRevoked,
+                          'text-yellow-400': isExpired(session) && !session.isRevoked,
+                          'text-gray-400': !session.isRevoked && !isExpired(session)
+                        }" />
                         <span class="truncate">{{ $t('sessions.list.expires') }}: {{
                           formatRelativeDate(session.expiresAt, locale, 'N/A') }}</span>
                       </div>
@@ -169,6 +187,12 @@
                 </button>
                 <span v-else-if="isCurrentSession(session)" class="text-sm text-gray-500 italic">
                   {{ $t('sessions.current.badge') }}
+                </span>
+                <span v-else-if="session.isRevoked" class="text-sm text-red-500 italic">
+                  {{ $t('sessions.badges.revoked') }}
+                </span>
+                <span v-else-if="isExpired(session)" class="text-sm text-yellow-500 italic">
+                  {{ $t('sessions.badges.expired') }}
                 </span>
               </div>
             </div>
@@ -274,9 +298,13 @@ const sortedSessions = computed(() => {
     if (isCurrentSession(a)) return -1
     if (isCurrentSession(b)) return 1
 
-    // Active sessions before revoked
-    if (!a.isRevoked && b.isRevoked) return -1
-    if (a.isRevoked && !b.isRevoked) return 1
+    // Active sessions before revoked or expired
+    if (!a.isRevoked && !isExpired(a) && (b.isRevoked || isExpired(b))) return -1
+    if ((a.isRevoked || isExpired(a)) && !b.isRevoked && !isExpired(b)) return 1
+
+    // Expired sessions before revoked
+    if (isExpired(a) && !a.isRevoked && b.isRevoked) return -1
+    if (isRevoked(a) && isExpired(b) && !b.isRevoked) return 1
 
     // Most recent first
     return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()
@@ -287,6 +315,8 @@ const { searchQuery, filteredItems: filteredSessions, clearSearch, hasActiveSear
   sortedSessions,
   ['userAgent', 'ipAddress']
 )
+
+const isRevoked = (session: Session) => session.isRevoked
 
 const otherSessions = computed(() =>
   sessionsStore.sessions.filter(s => s.token !== sessionsStore.currentSessionToken && !s.isRevoked && !isExpired(s))

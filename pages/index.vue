@@ -289,19 +289,6 @@
         <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
           {{ $t('indexPage.cta.subtitle') }}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <NuxtLink to="/auth/register"
-            class="btn bg-white text-primary hover:bg-gray-100 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <span class="flex items-center justify-center">
-              {{ $t('indexPage.cta.createAccount') }}
-              <IconArrowRight class="ml-2 w-5 h-5" />
-            </span>
-          </NuxtLink>
-          <NuxtLink to="/sso-demo"
-            class="btn border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-4 backdrop-blur-sm transform hover:scale-105 transition-all duration-300">
-            {{ $t('indexPage.cta.viewDemo') }}
-          </NuxtLink>
-        </div>
       </div>
     </section>
 
