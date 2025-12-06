@@ -56,6 +56,11 @@ export const useAppSwitcher = () => {
   const config = useRuntimeConfig()
 
   const loadResources = () => {
+    // Polyfill process for the CDN script which seems to incorrectly rely on it
+    if (typeof window !== 'undefined' && !(window as any).process) {
+      ; (window as any).process = { env: { NODE_ENV: 'production' } }
+    }
+
     // Inject styles
     useHead({
       link: [
