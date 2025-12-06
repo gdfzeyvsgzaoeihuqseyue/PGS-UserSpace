@@ -112,12 +112,10 @@
         <!-- Mobile Menu Button -->
         <div class="lg:hidden flex items-center space-x-2">
           <!-- App Switcher -->
-          <template v-if="!authStore.isAuthenticated">
-            <PGSAppSwitcher container-id="mobile-app-switcher" :on-app-click="handleAppClick" />
-          </template>
-          
-          <button @click="toggleMobileMenu"
-            class="p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none" aria-label="Menu">
+          <PGSAppSwitcher container-id="mobile-app-switcher" :on-app-click="handleAppClick" />
+
+          <button @click="toggleMobileMenu" class="p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none"
+            aria-label="Menu">
             <IconMenu v-if="!isMobileMenuOpen" class="h-6 w-6" />
             <IconX v-else class="h-6 w-6" />
           </button>
@@ -155,8 +153,7 @@
               <!-- User Profile -->
               <div class="px-4 py-3 mb-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <div class="flex items-center space-x-3">
-                  <div
-                    class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+                  <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
                     {{ getInitials(authStore.user?.firstName || '', authStore.user?.lastName || '') }}
                   </div>
                   <div>
@@ -275,6 +272,7 @@ const handleAppClick = (app) => {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
