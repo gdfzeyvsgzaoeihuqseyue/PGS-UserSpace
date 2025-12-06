@@ -49,7 +49,9 @@
       "title": "MON ESPACE PGS",
       "subtitle": "Votre plateforme d'authentification unique centralisée pour un accès transparent à tous les services de l'écosystème PGS",
       "getStarted": "Commencer",
-      "signIn": "Se connecter"
+      "signIn": "Se connecter",
+      "welcomeUser": "Bonjour, {name} !",
+      "goToDashboard": "Aller au tableau de bord"
     },
     "features": {
       "secureAuth": {

@@ -40,21 +40,41 @@
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <NuxtLink to="/auth/register"
-                class="group relative btn btn-primary text-lg px-8 py-4 overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                <span class="relative z-10 flex items-center justify-center">
-                  {{ $t('indexPage.hero.getStarted') }}
-                  <IconArrowRight class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </NuxtLink>
+              <template v-if="authStore.isAuthenticated && authStore.user">
+                <div class="flex flex-col items-center lg:items-start gap-3">
+                  <div class="text-xl font-medium text-gray-700">
+                    <i18n-t keypath="indexPage.hero.welcomeUser" tag="span">
+                      <template #name>
+                        <span class="text-primary font-bold">{{ authStore.user.firstName }}</span>
+                      </template>
+                    </i18n-t>
+                  </div>
+                  <NuxtLink to="/dashboard"
+                    class="group relative btn btn-primary text-lg px-8 py-3 overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <span class="relative z-10 flex items-center justify-center">
+                      {{ $t('indexPage.hero.goToDashboard') }}
+                      <IconArrowRight class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </NuxtLink>
+                </div>
+              </template>
+              <template v-else>
+                <NuxtLink to="/auth/register"
+                  class="group relative btn btn-primary text-lg px-8 py-4 overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  <span class="relative z-10 flex items-center justify-center">
+                    {{ $t('indexPage.hero.getStarted') }}
+                    <IconArrowRight class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </NuxtLink>
 
-              <NuxtLink to="/auth/login"
-                class="group btn btn-outline text-lg px-8 py-4 backdrop-blur-sm bg-white/80 hover:bg-white transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
-                <span class="flex items-center justify-center">
-                  {{ $t('indexPage.hero.signIn') }}
-                  <IconLogin class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </NuxtLink>
+                <NuxtLink to="/auth/login"
+                  class="group btn btn-outline text-lg px-8 py-4 backdrop-blur-sm bg-white/80 hover:bg-white transform hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg">
+                  <span class="flex items-center justify-center">
+                    {{ $t('indexPage.hero.signIn') }}
+                    <IconLogin class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </NuxtLink>
+              </template>
             </div>
 
             <!-- Social Proof -->
@@ -321,6 +341,7 @@ definePageMeta({
 })
 
 const solutionsStore = useSolutionsStore()
+const authStore = useAuthStore()
 
 // Randomize solutions for Social Proof section
 const shuffledSolutions = ref<any[]>([])

@@ -79,21 +79,24 @@ export const useAppSwitcher = () => {
     const checkAndInit = () => {
       if (typeof window === 'undefined') return
 
-      // @ts-ignore
-      let AppSwitcher = window.PGSAppSwitcher
+      let AppSwitcher: any = (window as any).PGSAppSwitcher
 
-      // Handle IIFE export object vs class
-      // @ts-ignore
+      if (!AppSwitcher) {
+        console.debug('PGSAppSwitcher not found, retrying...')
+        setTimeout(checkAndInit, 100)
+        return
+      }
+
       if (AppSwitcher && typeof AppSwitcher !== 'function' && AppSwitcher.default) {
-        // @ts-ignore
         AppSwitcher = AppSwitcher.default
       }
 
       if (AppSwitcher && typeof AppSwitcher === 'function') {
-        // Default API URL if not provided
         const defaultApiUrl = config.public.pgsBaseAPI
           ? `${config.public.pgsBaseAPI}/solution/platform`
           : undefined
+
+        console.log('Initializing AppSwitcher with API:', options.apiUrl || defaultApiUrl)
 
         // Merge userData
         const userData = options.userData || (options.profileUrl || options.accountUrl || options.logoutUrl ? {
@@ -102,28 +105,31 @@ export const useAppSwitcher = () => {
           logoutUrl: options.logoutUrl
         } : undefined)
 
-        new AppSwitcher({
-          target: options.target || '#app-switcher',
-          apiUrl: options.apiUrl || defaultApiUrl,
-          customApps: options.customApps,
-          viewMode: options.viewMode || 'grid',
-          itemsPerRow: options.itemsPerRow ?? 3,
-          sortAlphabetically: options.sortAlphabetically ?? false,
-          enableFilters: options.enableFilters ?? true,
-          enableViewSwitch: options.enableViewSwitch ?? true,
-          enableSettings: options.enableSettings ?? true,
-          openInNewTab: options.openInNewTab ?? false,
-          userLinksOpenInNewTab: options.userLinksOpenInNewTab ?? false,
-          triggerIconColor: options.triggerIconColor || 'currentColor',
-          userData,
-          profileUrl: options.profileUrl,
-          accountUrl: options.accountUrl,
-          logoutUrl: options.logoutUrl,
-          onAppClick: options.onAppClick
-        })
-        initialized.value = true
-      } else {
-        setTimeout(checkAndInit, 100)
+        try {
+          new AppSwitcher({
+            target: options.target || '#app-switcher',
+            apiUrl: options.apiUrl || defaultApiUrl,
+            customApps: options.customApps,
+            viewMode: options.viewMode || 'grid',
+            itemsPerRow: options.itemsPerRow ?? 3,
+            sortAlphabetically: options.sortAlphabetically ?? false,
+            enableFilters: options.enableFilters ?? true,
+            enableViewSwitch: options.enableViewSwitch ?? true,
+            enableSettings: options.enableSettings ?? true,
+            openInNewTab: options.openInNewTab ?? false,
+            userLinksOpenInNewTab: options.userLinksOpenInNewTab ?? false,
+            triggerIconColor: options.triggerIconColor || 'currentColor',
+            userData,
+            profileUrl: options.profileUrl,
+            accountUrl: options.accountUrl,
+            logoutUrl: options.logoutUrl,
+            onAppClick: options.onAppClick
+          })
+          console.log('AppSwitcher initialized successfully')
+          initialized.value = true
+        } catch (error) {
+          console.error('Failed to initialize AppSwitcher:', error)
+        }
       }
     }
 

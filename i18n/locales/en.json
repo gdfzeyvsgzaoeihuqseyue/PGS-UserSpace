@@ -49,7 +49,9 @@
       "title": "PGS MY SPACE",
       "subtitle": "Your centralized Single Sign-On platform for seamless access to all PGS ecosystem services",
       "getStarted": "Get Started",
-      "signIn": "Sign In"
+      "signIn": "Sign In",
+      "welcomeUser": "Hello, {name}!",
+      "goToDashboard": "Go to Dashboard"
     },
     "features": {
       "secureAuth": {
