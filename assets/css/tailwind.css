@@ -20,7 +20,7 @@
 }
 
 .dark {
-   --color-primary: #02358B;
+  --color-primary: #02358B;
   --color-secondary: #082f49;
   --color-text: #d8d6d6;
   --color-danger: #ef4444;
@@ -52,7 +52,11 @@
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary hover:bg-secondary focus:ring-secondary;
+    @apply bg-secondary text-white hover:bg-primary focus:ring-secondary;
+  }
+
+  .btn-gray {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-200;
   }
 
   .btn-danger {

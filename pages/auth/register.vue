@@ -2,7 +2,7 @@
   <div class="flex min-h-screen bg-gray-50">
     <!-- Section Interactive (Carousel) -->
     <div
-      class="hidden lg:block lg:w-1/2 relative h-screen sticky top-0 overflow-hidden bg-gray-900 border-r border-gray-800">
+      class="hidden lg:block lg:w-2/3 relative h-screen sticky top-0 overflow-hidden bg-gray-900 border-r border-gray-800">
       <AuthCarousel />
     </div>
 
