@@ -1,78 +1,96 @@
 <template>
-  <div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full">
-      <!-- Header -->
-      <div class="text-center mb-8">
-        <!-- Logo -->
-        <div class="flex justify-center">
-          <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-12 w-auto sm:h-16 dark:hidden" />
-          <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-12 w-auto sm:h-16 hidden dark:block" />
+  <div class="flex min-h-screen bg-gray-50">
+    <!-- Section Interactive (Carousel) -->
+    <div
+      class="hidden lg:block lg:w-1/2 relative h-screen sticky top-0 overflow-hidden bg-gray-900 border-r border-gray-800">
+      <AuthCarousel />
+    </div>
+
+    <!-- Section Formulaire -->
+    <div
+      class="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24 w-full max-w-2xl mx-auto lg:mx-0 lg:max-w-none bg-white">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <!-- Logo & Header -->
+        <div class="mb-10">
+          <div class="flex justify-start mb-8">
+            <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-10 w-auto sm:h-12 request-logo dark:hidden" />
+            <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-10 w-auto sm:h-12 request-logo hidden" />
+          </div>
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900">{{ $t('auth.login.welcome') }}
+          </h2>
+          <p class="mt-2 text-base text-gray-500">{{ $t('auth.login.subtitle') }}</p>
         </div>
 
-        <h2 class="text-3xl font-bold text-gray-900">{{ $t('auth.login.welcome') }}</h2>
-        <p class="mt-2 text-gray-600">{{ $t('auth.login.subtitle') }}</p>
-      </div>
-
-      <!-- Login Form -->
-      <div class="card">
+        <!-- Form -->
         <form @submit.prevent="handleLogin" class="space-y-6">
-          <!-- Error Message -->
-          <div v-if="authStore.error" class="bg-red-50 border border-red-200 rounded-lg p-4">
-            <div class="flex items-center">
-              <IconAlertCircle class="w-5 h-5 text-red-600 mr-2" />
+          <!-- Error -->
+          <div v-if="authStore.error"
+            class="bg-red-50 border border-red-200 rounded-lg p-4 transition-all duration-300">
+            <div class="flex items-start">
+              <IconAlertCircle class="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
               <span class="text-sm text-red-800">{{ authStore.error }}</span>
             </div>
           </div>
 
-          <!-- Email Field -->
+          <!-- Email -->
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-              {{ $t('auth.login.emailLabel') }}
-            </label>
-            <input id="email" v-model="form.email" type="email" required class="input"
-              :placeholder="$t('auth.login.emailPlaceholder')" :disabled="authStore.loading" />
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">{{
+              $t('auth.login.emailLabel') }}</label>
+            <div>
+              <input id="email" v-model="form.email" type="email" required
+                class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-secondary sm:text-sm py-2.5 px-3 transition-colors"
+                :placeholder="$t('auth.login.emailPlaceholder')" :disabled="authStore.loading" />
+            </div>
           </div>
 
-          <!-- Password Field -->
+          <!-- Password -->
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-              {{ $t('auth.login.passwordLabel') }}
-            </label>
-            <div class="relative">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1.5">{{
+              $t('auth.login.passwordLabel') }}</label>
+            <div class="relative rounded-lg shadow-sm">
               <input id="password" v-model="form.password" :type="showPassword ? 'text' : 'password'" required
-                class="input pr-10" :placeholder="$t('auth.login.passwordPlaceholder')" :disabled="authStore.loading" />
+                class="block w-full rounded-lg border-gray-300 focus:border-primary focus:ring-secondary sm:text-sm py-2.5 px-3 pr-10 transition-colors"
+                :placeholder="$t('auth.login.passwordPlaceholder')" :disabled="authStore.loading" />
               <button type="button" @click="showPassword = !showPassword"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none cursor-pointer">
                 <IconEye v-if="!showPassword" class="h-5 w-5" />
                 <IconEyeOff v-else class="h-5 w-5" />
               </button>
             </div>
           </div>
 
-          <!-- Submit Button -->
-          <button type="submit" class="w-full btn btn-primary" :disabled="authStore.loading">
-            <span v-if="!authStore.loading">{{ $t('auth.login.submitButton') }}</span>
-            <span v-else class="flex items-center justify-center">
-              <IconLoader2 class="animate-spin h-5 w-5 mr-2" />
-              {{ $t('auth.login.submittingButton') }}
-            </span>
-          </button>
+          <!-- Button -->
+          <div class="pt-2">
+            <button type="submit"
+              class="flex w-full justify-center rounded-lg border border-transparent bg-primary py-2.5 px-4 text-sm font-semibold text-white shadow-sm hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:translate-y-px active:translate-y-0"
+              :disabled="authStore.loading">
+              <span v-if="!authStore.loading">{{ $t('auth.login.submitButton') }}</span>
+              <span v-else class="flex items-center">
+                <IconLoader2 class="animate-spin h-5 w-5 mr-2" />
+                {{ $t('auth.login.submittingButton') }}
+              </span>
+            </button>
+          </div>
         </form>
 
-        <!-- Divider -->
-        <div class="relative my-6">
-          <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-300"></div>
+        <!-- Divider & Register -->
+        <div class="mt-8">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="bg-white px-2 text-gray-500">{{ $t('auth.login.noAccount') }}</span>
+            </div>
           </div>
-          <div class="relative flex justify-center text-sm">
-            <span class="px-2 bg-white text-gray-500">{{ $t('auth.login.noAccount') }}</span>
+
+          <div class="mt-6">
+            <NuxtLink to="/auth/register"
+              class="flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white py-2.5 px-4 text-sm font-medium text-primary shadow-sm hover:bg-gray-50 transition-colors">
+              {{ $t('auth.login.createAccount') }}
+            </NuxtLink>
           </div>
         </div>
-
-        <!-- Register Link -->
-        <NuxtLink to="/auth/register" class="block text-center text-primary hover:text-secondary font-medium">
-          {{ $t('auth.login.createAccount') }}
-        </NuxtLink>
       </div>
     </div>
   </div>

@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "nb": 2,
+  "message": "Diapositives récupérées avec succès.",
+  "slides": [
+    {
+      "createdAt": 1752586290382,
+      "updatedAt": 1752586290382,
+      "id": "68765832792fdcd842e215ea",
+      "order": 1,
+      "type": "text",
+      "mainTitle": "Optimisez vos opérations",
+      "mainDescription": "Centralisez RH, facturation et documents avec facilité.",
+      "content": "<p>Avec <b>PGS</b>, la gestion de vos ressources humaines et de votre facturation n'a jamais été aussi simple et intégrée.</p>",
+      "author": null,
+      "image": "https://placehold.co/600x400/E0F2FE/0284C7?text=Optimisez+vos+opérations",
+      "backgroundImage": null,
+      "isActive": true
+    },
+    {
+      "createdAt": 1752586579607,
+      "updatedAt": 1752586579607,
+      "id": "68765953792fdcd842e215eb",
+      "order": 2,
+      "type": "quote",
+      "mainTitle": "Transformez votre gestion",
+      "mainDescription": "Découvrez l'efficacité et la simplicité avec PGS.",
+      "content": "J'ai réduit mes coûts de 30% grâce à PGS. Un vrai game changer pour mon business!",
+      "author": "Aminata D., Gérante de PME",
+      "image": null,
+      "backgroundImage": "https://placehold.co/600x400/E0F2FE/0284C7?text=Transformez+votre+gestion",
+      "isActive": true
+    }
+  ]
+}
