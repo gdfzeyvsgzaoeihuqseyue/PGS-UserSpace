@@ -1,0 +1,8 @@
+export { default as CtaSection } from './CtaSection.vue'
+export { default as FaqSection } from './FaqSection.vue'
+export { default as FeaturesSection } from './FeaturesSection.vue'
+export { default as HeroSection } from './HeroSection.vue'
+export { default as SolutionsSection } from './SolutionsSection.vue'
+export { default as StatsSection } from './StatsSection.vue'
+export { default as TestimonialsSection } from './TestimonialsSection.vue'
+export { default as TrustedBySection } from './TrustedBySection.vue'

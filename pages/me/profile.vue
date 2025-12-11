@@ -22,7 +22,7 @@
                 </div>
               </div>
             </div>
-            <div class="mt-14">
+            <div class="mt-20">
               <h2 class="text-xl font-bold text-gray-900">{{ fullName }}</h2>
               <p class="text-sm text-gray-500">@{{ authStore.user?.username || 'user' }}</p>
               <div class="mt-4 flex flex-wrap gap-2">
