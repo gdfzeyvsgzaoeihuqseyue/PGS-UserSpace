@@ -96,6 +96,10 @@
     },
     "trustedBy": {
       "title": "Ils nous font confiance"
+    },
+    "testimonials": {
+      "title": "Témoigneges",
+      "subtitle": "A modern, secure, and easy-to-integrate authentication platform"
     }
   },
   "auth": {

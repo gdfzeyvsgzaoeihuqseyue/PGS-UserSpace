@@ -105,7 +105,8 @@ module.exports = {
           lastName: newUser.lastName,
           username: newUser.username,
           email: newUser.email,
-          emailVerified: newUser.emailVerified
+          emailVerified: newUser.emailVerified,
+          createdAt: newUser.createdAt
         }
       });
 

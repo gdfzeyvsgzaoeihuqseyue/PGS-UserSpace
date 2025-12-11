@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 bg-white">
+  <section class="py-20 bg-WtB">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">{{ $t('indexPage.testimonials.title') }}</h2>
@@ -14,7 +14,17 @@
 
       <div v-else-if="currentTestimonials.length > 0" class="grid md:grid-cols-3 gap-8">
         <div v-for="(testimonial, index) in currentTestimonials" :key="testimonial.id || index"
-          class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition-shadow">
+          class="bg-gray-50 rounded-2xl p-8 border hover:shadow-lg transition-shadow relative"
+          :class="testimonial.isFeatured ? 'border-primary shadow-md' : 'border-gray-100'">
+
+          <!-- Platform Badge -->
+          <div v-if="testimonial.platform" class="absolute top-4 right-4">
+            <span
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary/10 text-secondary">
+              {{ testimonial.platform.name }}
+            </span>
+          </div>
+
           <div class="flex items-center space-x-1 mb-4 text-yellow-400">
             <IconStarFilled v-for="i in 5" :key="i" class="w-5 h-5"
               :class="{ 'text-gray-300': i > (testimonial.note || 5) }" />
@@ -30,7 +40,7 @@
             <div>
               <p class="font-bold text-gray-900">{{ testimonial.author }}</p>
               <p class="text-sm text-gray-500">{{ testimonial.role }} <span v-if="testimonial.company">, {{
-                  testimonial.company }}</span></p>
+                testimonial.company }}</span></p>
             </div>
           </div>
         </div>
