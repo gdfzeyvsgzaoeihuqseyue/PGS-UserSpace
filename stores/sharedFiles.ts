@@ -16,6 +16,7 @@ export const useSharedFiles = defineStore('sharedFiles', () => {
   const GNR_IMG = `${SHARED_URL}/_General/Images`;
   const GNR_DOC = `${SHARED_URL}/_General/Docs`;
   const APP_IMG = `${SHARED_URL}/Space`;
+  const FAQ_IMG = `${SHARED_URL}//SuitOps_Landing/Others/faq.png`;
 
   // Chemins des fichiers
   const paths = {
@@ -32,7 +33,8 @@ export const useSharedFiles = defineStore('sharedFiles', () => {
       error403: `${GNR_IMG}/Error/403.png`,
       error404: `${GNR_IMG}/Error/404.png`,
       error500: `${GNR_IMG}/Error/500.png`,
-      indexHero: `${APP_IMG}/indexHero.png`
+      indexHero: `${APP_IMG}/indexHero.png`,
+      faq: `${FAQ_IMG}`
     },
 
     //JSON

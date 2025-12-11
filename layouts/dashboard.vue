@@ -24,7 +24,7 @@
             </div>
             <!-- Expanded State: Show full logo (larger) -->
             <div v-else>
-              <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-16 w-auto dark:hidden" />
+              <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-10 w-auto dark:hidden" />
               <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-10 w-auto hidden dark:block" />
             </div>
           </div>

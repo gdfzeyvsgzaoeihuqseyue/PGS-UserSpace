@@ -25,9 +25,14 @@
             </span>
           </div>
 
-          <div class="flex items-center space-x-1 mb-4 text-yellow-400">
-            <IconStarFilled v-for="i in 5" :key="i" class="w-5 h-5"
-              :class="{ 'text-gray-300': i > (testimonial.note || 5) }" />
+          <div class="flex items-center space-x-1 mb-4 text-warning">
+            <template v-for="i in 5" :key="i">
+              <IconStarFilled v-if="i <= (testimonial.note || 5)" class="w-5 h-5 text-yellow-400" />
+              <IconStarHalfFilled
+                v-else-if="i === Math.ceil(testimonial.note || 5) && (testimonial.note || 5) % 1 !== 0"
+                class="w-5 h-5 text-yellow-400" />
+              <IconStarFilled v-else class="w-5 h-5 text-gray-300" />
+            </template>
           </div>
           <p class="text-gray-700 mb-6 italic line-clamp-4">"{{ testimonial.content }}"</p>
           <div class="flex items-center space-x-4">
@@ -39,7 +44,9 @@
             </div>
             <div>
               <p class="font-bold text-gray-900">{{ testimonial.author }}</p>
-              <p class="text-sm text-gray-500">{{ testimonial.role }} <span v-if="testimonial.company">, {{ testimonial.company }}</span></p>
+              <p class="text-sm text-gray-500">{{ testimonial.role }} <span v-if="testimonial.company">, {{
+                testimonial.company
+              }}</span></p>
             </div>
           </div>
         </div>
@@ -49,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconStarFilled } from '@tabler/icons-vue'
+import { IconStarFilled, IconStarHalfFilled } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n'
 import SkeletonLoading from '~/components/ui/SkeletonLoading.vue'
 

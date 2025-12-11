@@ -31,7 +31,7 @@ import { IconInfoCircle } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n';
 
 definePageMeta({
-  layout: 'default',
+  layout: 'auth',
   middleware: []
 })
 
