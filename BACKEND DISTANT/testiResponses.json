@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "message": "Liste des témoignages récupérée avec succès.",
+  "nb": 6,
+  "nbOnPage": 6,
+  "currentPage": 1,
+  "totalPages": 1,
+  "data": [
+    {
+      "id": "68d601f4dd8de140dcc8e8ce",
+      "author": "Ulrich",
+      "company": "Toye's Farm",
+      "role": "Gérant",
+      "content": "PGS nous a aidés à optimiser notre suivi des ventes et des achats. Grâce aux rapports automatiques et à la facturation centralisée, nous avons augmenté nos revenus de 15 % en seulement six mois.",
+      "note": 5,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/z5IrnbKe8uO",
+      "isPublished": true,
+      "isFeatured": true,
+      "createdAt": 1758855668749,
+      "updatedAt": 1759202255640,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    },
+    {
+      "id": "68d601b4dd8de140dcc8e8cd",
+      "author": "Delluc",
+      "company": "Cabinet HODD Gobal",
+      "role": "CEO",
+      "content": "Je n'avais jamais utilisé un outil de gestion aussi complet et abordable. En tant qu'entrepreneur, j'ai enfin trouvé une solution qui m'accompagne dans la croissance de mon entreprise sans casser mon budget.",
+      "note": 4,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/xSb4PnedRvh",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": 1758855604197,
+      "updatedAt": 1758855604197,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    },
+    {
+      "id": "68d60185dd8de140dcc8e8cc",
+      "author": "Alphonsine",
+      "company": "Al'vow",
+      "role": "Responsable RH",
+      "content": "Depuis que nous avons intégré PGS dans notre gestion des ressources humaines, tout est plus fluide. La centralisation des contrats, des présences et des paies nous a permis de réduire les erreurs de 30 % et de gagner un temps précieux.!",
+      "note": 4,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/PPu8LlBlmsT",
+      "isPublished": true,
+      "isFeatured": true,
+      "createdAt": 1758855557468,
+      "updatedAt": 1758855557468,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    },
+    {
+      "id": "68d6013ddd8de140dcc8e8cb",
+      "author": "Vincent",
+      "company": "Quick Life",
+      "role": "Développeur",
+      "content": "En tant que développeur, l'intégration des API PGS a été un jeu d'enfant. Les documentations sont claires, et la compatibilité avec nos outils existants est parfaite. Mes clients sont satisfaits des résultats, et moi aussi !",
+      "note": 5,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/hIpp6NWuehH",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": 1758855485116,
+      "updatedAt": 1758855485116,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    },
+    {
+      "id": "68d600e8dd8de140dcc8e8ca",
+      "author": "Archimède",
+      "company": "Univers Plus",
+      "role": "Responsable des Ventes",
+      "content": "PGS nous a aidés à optimiser notre suivi des ventes et des achats. Grâce aux rapports automatiques et à la facturation centralisée, nous avons augmenté nos revenus de 15 % en seulement six mois.",
+      "note": 4.5,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/SBaxuhjp8LK",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": 1758855400918,
+      "updatedAt": 1758855400918,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    },
+    {
+      "id": "68d60098dd8de140dcc8e8c9",
+      "author": "Raymondo",
+      "company": "Wood Picture",
+      "role": "Recruteur",
+      "content": "La fonctionnalité de recrutement de PGS a complètement transformé notre processus. Publier des offres, organiser des tests en ligne et suivre les candidatures n’a jamais été aussi simple. Nous attirons maintenant des talents plus rapidement.",
+      "note": 4,
+      "avatar": "https://api.pgs.ctrlengine.com/api/v1/superadmin/document/gwCDpeZr8cy",
+      "isPublished": true,
+      "isFeatured": false,
+      "createdAt": 1758855320268,
+      "updatedAt": 1758855320268,
+      "platform": {
+        "id": "68d5fe36dd8de140dcc8e8c8",
+        "name": "SuitOps",
+        "slug": "suitops"
+      }
+    }
+  ]
+}

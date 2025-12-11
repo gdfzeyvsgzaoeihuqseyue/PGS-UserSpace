@@ -13,7 +13,7 @@
         <div class="bg-white shadow-sm rounded-xl overflow-hidden border border-gray-200">
           <div class="h-32 bg-gradient-to-r from-primary to-secondary"></div>
           <div class="px-6 pb-6 relative">
-            <div class="absolute -top-12 left-6">
+            <div class="absolute -top-24 left-6">
               <div
                 class="h-24 w-24 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center overflow-hidden">
                 <div
@@ -22,7 +22,7 @@
                 </div>
               </div>
             </div>
-            <div class="mt-20">
+            <div class="mt-12">
               <h2 class="text-xl font-bold text-gray-900">{{ fullName }}</h2>
               <p class="text-sm text-gray-500">@{{ authStore.user?.username || 'user' }}</p>
               <div class="mt-4 flex flex-wrap gap-2">
@@ -50,6 +50,13 @@
               <p class="text-sm font-mono text-gray-700 break-all bg-gray-50 p-2 rounded border border-gray-100">
                 {{ authStore.user?.id }}
               </p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 uppercase mb-1">{{ $t('profile.account.createdAt') }}</p>
+              <div class="flex items-center text-sm text-gray-700">
+                <IconCalendar class="w-4 h-4 mr-2 text-gray-400" />
+                {{ formatDate(authStore.user?.createdAt, locale) }}
+              </div>
             </div>
             <div>
               <p class="text-xs text-gray-500 uppercase mb-1">{{ $t('profile.account.lastLogin') }}</p>

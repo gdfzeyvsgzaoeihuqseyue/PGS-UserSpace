@@ -7,6 +7,7 @@ export interface User {
   emailVerified: boolean
   isActive?: boolean
   lastLogin?: string
+  createdAt?: string
 }
 
 export interface Service {

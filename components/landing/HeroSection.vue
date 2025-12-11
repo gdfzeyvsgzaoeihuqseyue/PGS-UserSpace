@@ -47,7 +47,7 @@
                     </template>
                   </i18n-t>
                 </div>
-                <NuxtLink to="/dashboard"
+                <NuxtLink to="/me"
                   class="group relative btn btn-primary text-lg px-8 py-3 overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                   <span class="relative z-10 flex items-center justify-center">
                     {{ $t('indexPage.hero.goToDashboard') }}
@@ -76,7 +76,8 @@
           </div>
 
           <!-- Social Proof -->
-          <div class="flex items-center space-x-4 justify-center lg:justify-start pt-4">
+          <div v-if="shuffledSolutions.length > 0"
+            class="flex items-center space-x-4 justify-center lg:justify-start pt-4">
             <div class="flex -space-x-2">
               <template v-if="shuffledSolutions.length > 0">
                 <div v-for="solution in shuffledSolutions.slice(0, 3)" :key="solution.id"

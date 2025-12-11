@@ -3,7 +3,7 @@
     <HeroSection />
     <TrustedBySection />
     <FeaturesSection />
-    <SolutionsSection />
+    <SolutionsSection v-if="!solutionsStore.loading && solutionsStore.activeSolutions.length > 0" />
     <StatsSection />
     <TestimonialsSection />
     <FaqSection />

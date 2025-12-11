@@ -93,6 +93,9 @@
       "badge": "Fonctionnalités",
       "title": "PGS MY SPACE",
       "subtitle": "Une plateforme d'authentification moderne, sécurisée et facile à intégrer"
+    },
+    "trustedBy": {
+      "title": "Ils nous font confiance"
     }
   },
   "auth": {
@@ -278,7 +281,8 @@
       "id": "ID du compte",
       "status": "Statut du compte",
       "active": "Actif",
-      "lastLogin": "Dernière connexion"
+      "lastLogin": "Dernière connexion",
+      "createdAt": "Réjoint le"
     }
   },
   "services": {

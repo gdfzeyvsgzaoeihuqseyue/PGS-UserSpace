@@ -21,22 +21,34 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const solutionsStore = useSolutionsStore()
 
-const stats = computed(() => [
-  {
-    value: `${solutionsStore.totalSolutions}`,
-    label: t('indexPage.stats.totalSolutions')
-  },
-  {
-    value: `${solutionsStore.authEnabledSolutions.length}+`,
-    label: t('indexPage.stats.integratedSolutions')
-  },
-  {
-    value: `${solutionsStore.categories.length}`,
-    label: t('indexPage.stats.categories')
-  },
-  {
-    value: '24/7',
-    label: t('indexPage.stats.support')
+const stats = computed(() => {
+  const allStats = [
+    {
+      value: `${solutionsStore.totalSolutions}`,
+      label: t('indexPage.stats.totalSolutions'),
+      requiresData: true
+    },
+    {
+      value: `${solutionsStore.authEnabledSolutions.length}+`,
+      label: t('indexPage.stats.integratedSolutions'),
+      requiresData: true
+    },
+    {
+      value: `${solutionsStore.categories.length}`,
+      label: t('indexPage.stats.categories'),
+      requiresData: true
+    },
+    {
+      value: '24/7',
+      label: t('indexPage.stats.support'),
+      requiresData: false
+    }
+  ]
+
+  if (solutionsStore.loading || solutionsStore.activeSolutions.length === 0) {
+    return allStats.filter(stat => !stat.requiresData)
   }
-])
+
+  return allStats
+})
 </script>
