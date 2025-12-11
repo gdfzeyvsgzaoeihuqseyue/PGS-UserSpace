@@ -1,13 +1,17 @@
 <template>
-  <section class="py-20 bg-WtBAct border-t border-ash">
+  <section v-if="faqStore.loading || faqStore.hasFaqs" class="py-20 bg-WtBAct border-t border-ash">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900">{{ $t('indexPage.faq.title') }}</h2>
         <p class="mt-4 text-gray-600">{{ $t('indexPage.faq.subtitle') }}</p>
       </div>
 
-      <div class="space-y-4">
-        <div v-for="(item, index) in faqItems" :key="index"
+      <div v-if="faqStore.loading" class="flex justify-center py-12">
+        <IconLoader2 class="w-8 h-8 animate-spin text-primary" />
+      </div>
+
+      <div v-else class="space-y-4">
+        <div v-for="(item, index) in faqStore.activeFaqs" :key="item.id || index"
           class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <button @click="toggle(index)"
             class="flex items-center justify-between w-full px-6 py-4 text-left focus:outline-none">
@@ -25,30 +29,19 @@
 </template>
 
 <script setup lang="ts">
-import { IconChevronDown } from '@tabler/icons-vue'
+import { IconChevronDown, IconLoader2 } from '@tabler/icons-vue'
 import { useI18n } from 'vue-i18n'
+import { useFaqStore } from '~/stores/faq'
 
 const { t } = useI18n()
+const faqStore = useFaqStore()
 const openIndex = ref<number | null>(0)
 
-const faqItems = computed(() => [
-  {
-    question: t('indexPage.faq.item1.question'),
-    answer: t('indexPage.faq.item1.answer')
-  },
-  {
-    question: t('indexPage.faq.item2.question'),
-    answer: t('indexPage.faq.item2.answer')
-  },
-  {
-    question: t('indexPage.faq.item3.question'),
-    answer: t('indexPage.faq.item3.answer')
-  },
-  {
-    question: t('indexPage.faq.item4.question'),
-    answer: t('indexPage.faq.item4.answer')
+onMounted(async () => {
+  if (faqStore.faqs.length === 0) {
+    await faqStore.fetchFaqs()
   }
-])
+})
 
 const toggle = (index: number) => {
   openIndex.value = openIndex.value === index ? null : index
