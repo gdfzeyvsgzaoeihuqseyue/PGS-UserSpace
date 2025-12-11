@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl mx-auto">
     <div class="mb-8">
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $t('dashboard.menu.settings') }}</h1>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $t('settings.interface.title') }}</h1>
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
         {{ $t('prefSettings.preferences') }}
       </p>
@@ -96,5 +96,9 @@ import { prefLang2, prefTheme2 } from '~/components/pref'
 definePageMeta({
   layout: 'dashboard',
   middleware: 'auth'
+})
+
+useHead({
+  title: $t('settings.interface.title')
 })
 </script>

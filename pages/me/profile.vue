@@ -320,4 +320,8 @@ watch(() => profileStore.updateSuccess, (success) => {
     }, 3000)
   }
 })
+
+useHead({
+  title: t('profile.title')
+})
 </script>
