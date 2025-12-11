@@ -1,132 +1,131 @@
 import { defineStore } from 'pinia'
-import type { Faq, FaqResponse } from '~/types'
-import { useSolutionsStore } from './solutions'
+import type { Faq, FaqTopic, FaqResponse, FaqTopicResponse } from '~/types/faq'
+
+interface FaqState {
+  faqs: Faq[]
+  topics: FaqTopic[]
+  loading: boolean
+  error: string | null
+  activeTopic: FaqTopic | null
+}
 
 export const useFaqStore = defineStore('faq', {
-  state: () => ({
-    faqs: [] as Faq[],
+  state: (): FaqState => ({
+    faqs: [],
+    topics: [],
     loading: false,
-    error: null as string | null
+    error: null,
+    activeTopic: null,
   }),
 
   getters: {
-    activeFaqs: (state) => state.faqs.filter(faq => faq.status === 'active'),
-    hasFaqs: (state) => state.faqs.length > 0
+    // Get distinct platforms from the loaded topics
+    availablePlatforms: (state) => {
+      const platforms = new Map()
+      state.topics.forEach(topic => {
+        if (topic.platform) {
+          platforms.set(topic.platform.id, topic.platform)
+        }
+      })
+      return Array.from(platforms.values())
+    }
   },
 
   actions: {
-    async fetchFaqs(limit: number = 5) {
+    async fetchTopics() {
       this.loading = true
       this.error = null
-
       try {
-        const config = useRuntimeConfig()
-        const response = await $fetch<FaqResponse>('/solution/faq', {
-          baseURL: config.public.pgsBaseAPI,
+        const { apiFetch } = useApi()
+        const { data, error } = await apiFetch<FaqTopicResponse>('/solution/faq-topic', {
           params: {
-            limit,
+            limit: 100, // Fetch enough to get a good variety
             status: 'active'
           }
         })
 
-        if (response.success) {
-          this.faqs = response.data
+        if (error.value) throw new Error(error.value.message || 'Failed to fetch topics')
+        if (data.value && data.value.data) {
+          this.topics = data.value.data
         }
       } catch (err: any) {
-        this.error = err.data?.message || 'Failed to load FAQs'
+        this.error = err.message
+        console.error('Error fetching FAQ topics:', err)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    async fetchFaqsByTopic(topicId: string) {
+      this.loading = true
+      this.error = null
+      try {
+        const { apiFetch } = useApi()
+        const { data, error } = await apiFetch<FaqResponse>('/solution/faq', {
+          params: {
+            topicId,
+            limit: 100, // Fetch potentially all to randomize client side
+            status: 'active'
+          }
+        })
+
+        if (error.value) throw new Error(error.value.message || 'Failed to fetch FAQs')
+        if (data.value && data.value.data) {
+          this.faqs = data.value.data
+        }
+      } catch (err: any) {
+        this.error = err.message
         console.error('Error fetching FAQs:', err)
       } finally {
         this.loading = false
       }
     },
 
-    async fetchRandomFaqs() {
-      this.loading = true
-      this.error = null
-
-      try {
-        // 1. Fetch Platforms (Solutions)
-        const solutionsStore = useSolutionsStore()
-        if (solutionsStore.activeSolutions.length === 0) {
-          await solutionsStore.fetchSolutions({ disabled: false })
-        }
-
-        const platforms = solutionsStore.activeSolutions
-        if (platforms.length === 0) {
-          this.faqs = []
-          return
-        }
-
-        // 2. Pick random platform
-        const randomPlatform = platforms[Math.floor(Math.random() * platforms.length)]
-
-        // 3. Fetch Topics for that platform
-        const config = useRuntimeConfig()
-        const topicsResponse = await $fetch<any>('/solution/get-topics-platform', {
-          baseURL: config.public.pgsBaseAPI,
-          params: {
-            platformId: randomPlatform.id,
-            includeFaqs: true,
-            status: 'active'
-          }
-        })
-
-        if (!topicsResponse.success || !topicsResponse.data || topicsResponse.data.length === 0) {
-          // Fallback or retry? For now, empty.
-          this.faqs = []
-          return
-        }
-
-        // 4. Pick random topic
-        const topics = topicsResponse.data
-        const randomTopic = topics[Math.floor(Math.random() * topics.length)]
-
-        // 5. Pick 4 random FAQs
-        const allFaqs = randomTopic.faqs || []
-        if (allFaqs.length === 0) {
-          this.faqs = []
-          return
-        }
-
-        const shuffled = [...allFaqs].sort(() => 0.5 - Math.random())
-        this.faqs = shuffled.slice(0, 4)
-
-      } catch (err: any) {
-        this.error = err.data?.message || 'Failed to load random FAQs'
-        console.error('Error in fetchRandomFaqs:', err)
-      } finally {
-        this.loading = false
+    // Logic to pick random solution -> random topic -> fetch and slice 4 FAQs
+    async loadRandomFaqs() {
+      if (this.topics.length === 0) {
+        await this.fetchTopics()
       }
-    },
 
-    async voteUseful(id: string) {
-      const config = useRuntimeConfig()
-      try {
-        await $fetch(`/solution/vote-useful/${id}`, {
-          method: 'PATCH',
-          baseURL: config.public.pgsBaseAPI
-        })
-        // Update local state if needed
-        const faq = this.faqs.find(f => f.id === id)
-        if (faq) faq.isUseful++
-      } catch (err) {
-        console.error('Vote useful failed', err)
-      }
-    },
+      if (this.topics.length === 0) return // No topics available
 
-    async voteUseless(id: string) {
-      const config = useRuntimeConfig()
-      try {
-        await $fetch(`/solution/vote-useless/${id}`, {
-          method: 'PATCH',
-          baseURL: config.public.pgsBaseAPI
-        })
-        // Update local state
-        const faq = this.faqs.find(f => f.id === id)
-        if (faq) faq.isUseless++
-      } catch (err) {
-        console.error('Vote useless failed', err)
+      // 1. Filter topics that have FAQs (if we can know count, otherwise try our best)
+      // The backend response for topics includes `faqCount` based on my updated type and finding.
+      const validTopics = this.topics.filter(t => (t.faqCount || 0) > 0)
+
+      if (validTopics.length === 0) return
+
+      // 2. Group by Platform to select a random platform first
+      const topicsByPlatform: Record<string, FaqTopic[]> = {}
+      validTopics.forEach(t => {
+        const pid = t.platform?.id || 'unknown'
+        if (!topicsByPlatform[pid]) topicsByPlatform[pid] = []
+        topicsByPlatform[pid].push(t)
+      })
+
+      const platformIds = Object.keys(topicsByPlatform)
+      if (platformIds.length === 0) return
+
+      // Pick Random Platform
+      const randomPlatformId = platformIds[Math.floor(Math.random() * platformIds.length)]
+      const platformTopics = topicsByPlatform[randomPlatformId]
+
+      // Pick Random Topic from that Platform
+      const randomTopic = platformTopics[Math.floor(Math.random() * platformTopics.length)]
+      this.activeTopic = randomTopic
+
+      // 3. Fetch FAQs for this topic
+      await this.fetchFaqsByTopic(randomTopic.id)
+
+      // 4. Randomize FAQs and take 4
+      // Fisher-Yates shuffle
+      const shuffled = [...this.faqs]
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
+
+      this.faqs = shuffled.slice(0, 4)
     }
   }
 })

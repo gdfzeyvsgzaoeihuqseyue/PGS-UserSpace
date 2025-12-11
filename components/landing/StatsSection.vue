@@ -1,8 +1,8 @@
 <template>
   <section class="py-16 bg-WtB border-t border-ash">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-center gap-8 md:gap-16">
-        <div v-for="stat in stats" :key="stat.label" class="text-center min-w-[150px]">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 justify-items-center">
+        <div v-for="stat in stats" :key="stat.label" class="text-center w-full">
           <div class="text-4xl md:text-5xl font-bold text-primary mb-2">
             {{ stat.value }}
           </div>

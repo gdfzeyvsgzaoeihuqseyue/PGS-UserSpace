@@ -59,7 +59,19 @@ module.exports = {
         ? { id: inputs.platformId }
         : { slug: inputs.platformSlug };
 
-      const platform = await Solution.findOne(criteria);
+      let platform;
+      if (typeof Solution !== 'undefined') {
+        platform = await Solution.findOne(criteria);
+      } else if (sails.models.solution) {
+        platform = await sails.models.solution.findOne(criteria);
+      } else {
+        // Fallback if Solution model is not globally available
+        if (inputs.platformId) {
+          platform = { id: inputs.platformId };
+        } else {
+          throw new Error('Solution model not accessible');
+        }
+      }
 
       if (!platform) {
         return exits.platformNotFound({
