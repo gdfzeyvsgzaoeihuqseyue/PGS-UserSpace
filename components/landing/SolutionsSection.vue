@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+  <section class="py-20 bg-WtBAct">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">

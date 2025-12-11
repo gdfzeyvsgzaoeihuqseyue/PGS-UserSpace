@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 bg-gray-50 border-t border-gray-100">
+  <section class="py-20 bg-WtBAct border-t border-ash">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900">{{ $t('indexPage.faq.title') }}</h2>

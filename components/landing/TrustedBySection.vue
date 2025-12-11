@@ -1,5 +1,5 @@
 <template>
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-WtBAct">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h2 class="text-base font-semibold text-primary tracking-wide uppercase">{{ $t('indexPage.trustedBy.title') }}
