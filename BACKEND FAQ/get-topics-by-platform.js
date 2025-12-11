@@ -55,12 +55,12 @@ module.exports = {
       }
 
       // Trouver la solution
-      const criteria = inputs.platformId 
+      const criteria = inputs.platformId
         ? { id: inputs.platformId }
         : { slug: inputs.platformSlug };
-      
+
       const platform = await Solution.findOne(criteria);
-      
+
       if (!platform) {
         return exits.platformNotFound({
           message: 'Solution non trouvée.'
@@ -68,7 +68,7 @@ module.exports = {
       }
 
       // Récupérer les topics
-      const topics = await SolutionFaqTopic.find({ 
+      const topics = await SolutionFaqTopic.find({
         platform: platform.id,
         status: inputs.status
       }).sort('order ASC');
@@ -85,11 +85,11 @@ module.exports = {
         };
 
         if (inputs.includeFaqs) {
-          const faqs = await SolutionFaqs.find({ 
+          const faqs = await SolutionFaqs.find({
             topic: topic.id,
             status: 'active'
           }).sort('order ASC');
-          
+
           formatted.faqs = faqs.map(faq => ({
             id: faq.id,
             question: faq.question,
@@ -97,10 +97,11 @@ module.exports = {
             order: faq.order,
             isUseful: faq.isUseful,
             isUseless: faq.isUseless,
+            status: faq.status,
           }));
         }
 
-        formatted.faqCount = await SolutionFaqs.count({ 
+        formatted.faqCount = await SolutionFaqs.count({
           topic: topic.id,
           status: 'active'
         });

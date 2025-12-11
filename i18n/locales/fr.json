@@ -152,7 +152,8 @@
       "submittingButton": "Création du compte...",
       "hasAccount": "Vous avez déjà un compte ?",
       "signIn": "Se connecter"
-    }
+    },
+    "back": "Retour à l'acceuil"
   },
   "common": {
     "loadError": "Impossible de charger les {object}.",

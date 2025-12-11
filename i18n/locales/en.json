@@ -152,7 +152,8 @@
       "submittingButton": "Creating account...",
       "hasAccount": "Already have an account?",
       "signIn": "Sign in instead"
-    }
+    },
+    "back": "Back to home"
   },
   "common": {
     "loadError": "Unable to load {object}.",
