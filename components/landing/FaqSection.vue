@@ -1,7 +1,7 @@
 <template>
   <section class="relative py-20 bg-WtBAct overflow-hidden">
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
         <!-- Left Column (2/3) -->
         <div class="lg:col-span-2 space-y-8">
           <!-- Header -->
@@ -32,10 +32,8 @@
                     {{ faq.question }}
                   </span>
                   <span class="flex-shrink-0 ml-2">
-                    <svg class="w-6 h-6 text-slate-400 transform transition-transform duration-300"
-                      :class="{ 'rotate-180': isOpen(index) }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+                    <IconChevronDown class="w-6 h-6 text-slate-400 transform transition-transform duration-300"
+                      :class="{ 'rotate-180': isOpen(index) }" />
                   </span>
                 </button>
                 <div v-show="isOpen(index)"
@@ -71,10 +69,7 @@
             <div v-else class="text-center py-12">
               <div
                 class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
-                <svg class="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <IconHelpCircle class="w-8 h-8 text-slate-400" />
               </div>
               <p class="text-slate-500">{{ t('indexPage.faq.empty') }}</p>
               <button @click="faqStore.loadRandomFaqs()" class="mt-4 text-indigo-600 hover:text-indigo-500 font-medium">
@@ -87,10 +82,7 @@
           <div v-if="!faqStore.loading && faqStore.faqs.length > 0" class="text-left">
             <button @click="randomize"
               class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-indigo-500/50 transition-all duration-300 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
+              <IconRefresh class="w-4 h-4" />
               {{ t('indexPage.faq.discoverMore') }}
             </button>
           </div>
@@ -113,7 +105,7 @@ import { ref, onMounted } from 'vue'
 import { useFaqStore } from '~/stores/faq'
 import SkeletonLoading from '~/components/ui/SkeletonLoading.vue'
 import { useSharedFiles } from '~/stores/sharedFiles';
-import { IconThumbUp, IconThumbDown } from '@tabler/icons-vue'
+import { IconThumbUp, IconThumbDown, IconChevronDown, IconHelpCircle, IconRefresh } from '@tabler/icons-vue'
 
 const { t } = useI18n()
 const sharedFiles = useSharedFiles();
