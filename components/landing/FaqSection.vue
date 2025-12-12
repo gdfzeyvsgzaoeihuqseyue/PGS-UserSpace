@@ -11,7 +11,7 @@
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center mb-16">
         <h2 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-5xl mb-4">
-          <span class="text-primary">
+          <span class="text-primary text-3xl font-bold">
             Questions Fréquentes
           </span>
         </h2>
@@ -29,9 +29,9 @@
         </p>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-12 items-start max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         <!-- Left Column: FAQ List (2/3) -->
-        <div class="w-full lg:w-2/3 space-y-8">
+        <div class="lg:col-span-2 space-y-4">
           <SkeletonLoading :loading="faqStore.loading" :count="4" type="list">
             <!-- FAQs -->
             <div v-if="faqStore.faqs.length > 0" class="space-y-4">
@@ -81,7 +81,7 @@
                 Essayer un autre sujet
               </button>
             </div>
-          </SkeletonLoading> <!-- End SkeletonLoading -->
+          </SkeletonLoading>
 
           <!-- Refresh Action -->
           <div v-if="!faqStore.loading && faqStore.faqs.length > 0" class="text-center sm:text-left">
@@ -97,16 +97,10 @@
         </div>
 
         <!-- Right Column: Illustration (1/3) -->
-        <div class="hidden lg:block lg:w-1/3 sticky top-24">
-          <div class="relative group">
-            <div
-              class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200">
-            </div>
-            <div
-              class="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/50">
-              <img src="/img/faq_illustration.png" alt="FAQ AI Illustration"
-                class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" />
-            </div>
+        <div class="hidden lg:block lg:col-span-1">
+          <div class="sticky top-24">
+            <img :src="sharedFiles.paths.general.faq" alt="FAQ Illustration"
+              class="w-full h-auto object-contain drop-shadow-xl" />
           </div>
         </div>
       </div>
@@ -118,7 +112,9 @@
 import { ref, onMounted } from 'vue'
 import { useFaqStore } from '~/stores/faq'
 import SkeletonLoading from '~/components/ui/SkeletonLoading.vue'
+import { useSharedFiles } from '~/stores/sharedFiles';
 
+const sharedFiles = useSharedFiles();
 const faqStore = useFaqStore()
 const openIndex = ref<number | null>(0) // Open first one by default
 

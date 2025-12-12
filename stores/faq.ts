@@ -39,7 +39,7 @@ export const useFaqStore = defineStore('faq', {
         const { apiFetch } = useApi()
         const { data, error } = await apiFetch<FaqTopicResponse>('/solution/faq-topic', {
           params: {
-            limit: 100, // Fetch enough to get a good variety
+            limit: 100,
             status: 'active'
           }
         })
@@ -64,7 +64,7 @@ export const useFaqStore = defineStore('faq', {
         const { data, error } = await apiFetch<FaqResponse>('/solution/faq', {
           params: {
             topicId,
-            limit: 100, // Fetch potentially all to randomize client side
+            limit: 100,
             status: 'active'
           }
         })
@@ -81,16 +81,15 @@ export const useFaqStore = defineStore('faq', {
       }
     },
 
-    // Logic to pick random solution -> random topic -> fetch and slice 4 FAQs
+    // Ftch and slice 4 FAQs
     async loadRandomFaqs() {
       if (this.topics.length === 0) {
         await this.fetchTopics()
       }
 
-      if (this.topics.length === 0) return // No topics available
+      if (this.topics.length === 0) return
 
       // 1. Filter topics that have FAQs (if we can know count, otherwise try our best)
-      // The backend response for topics includes `faqCount` based on my updated type and finding.
       const validTopics = this.topics.filter(t => (t.faqCount || 0) > 0)
 
       if (validTopics.length === 0) return
