@@ -8,23 +8,28 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useSharedFiles } from '~/stores/sharedFiles';
 
 const { t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const sharedFilesUrl = runtimeConfig.public.pgsSharedFiles;
 const authStore = useAuthStore();
+const sharedFiles = useSharedFiles();
+const { data: customData } = await useAsyncData('customData', () => sharedFiles.getCustomData());
 
-// Initialize authentication state
 onMounted(async () => {
   try {
     await authStore.checkSession();
+    if (!customData.value) {
+      await refreshNuxtData('customData');
+    }
   } catch (error) {
     console.log('No active session');
   }
 });
 
 const heroImagePath = `${sharedFilesUrl}/SuitOps_Landing/Hero/index.png`;
-const baseUrl = "https://pgs-user.netlify.app/";
+const baseUrl = computed(() => customData.value?.space?.url);
 
 useHead({
   titleTemplate: '%s | PGS MY SPACE',

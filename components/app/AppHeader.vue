@@ -226,23 +226,26 @@ const isMobileMenuOpen = ref(false);
 const localePath = useLocalePath();
 const showUserMenu = ref(false);
 
-const NavLink = [
+const { data: customData } = await useAsyncData('customData', () => sharedFiles.getCustomData());
+const pgsUrl = computed(() => customData.value?.pgs?.url);
+
+const NavLink = computed(() => [
   {
     label: 'navbar.home.solutions',
-    url: 'https://progestionsoft.netlify.app/apps',
+    url: `${pgsUrl.value}/apps`,
     external: true
   },
   {
     label: 'navbar.home.about',
-    url: 'https://progestionsoft.netlify.app/about',
+    url: `${pgsUrl.value}/about`,
     external: true
   },
   {
     label: 'navbar.home.contact',
-    url: 'https://progestionsoft.netlify.app/contact',
+    url: `${pgsUrl.value}/contact`,
     external: true
   }
-];
+]);
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;

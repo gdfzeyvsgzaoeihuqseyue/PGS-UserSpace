@@ -66,7 +66,7 @@
         {{ solution.updatedAt }}
       </div>
       <div class="flex items-center space-x-2">
-        <a :href="`https://progestionsoft.netlify.app/apps/${solution.slug}`" target="_blank" rel="noopener noreferrer"
+        <a :href="`${pgsUrl}/apps/${solution.slug}`" target="_blank" rel="noopener noreferrer"
           class="text-sm text-primary hover:text-secondary font-medium transition-colors">
           {{ $t('solutionCard.viewDetails') }}
         </a>
@@ -83,6 +83,7 @@
 <script setup lang="ts">
 import type { Solution } from '~/types'
 import { IconArrowRight, IconCheck, IconShieldCheck, IconLockOpen, IconUsers } from '@tabler/icons-vue'
+import { useSharedFiles } from '~/stores/sharedFiles';
 
 interface Props {
   solution: Solution
@@ -92,4 +93,8 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   showFeatures: false
 })
+
+const sharedFiles = useSharedFiles();
+const { data: customData } = await useAsyncData('customData', () => sharedFiles.getCustomData());
+const pgsUrl = computed(() => customData.value?.pgs?.url);
 </script>

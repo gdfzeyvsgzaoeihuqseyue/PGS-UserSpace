@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://pgs-user.netlify.app//sitemap.xml
+Sitemap: https://pgs-user.netlify.app/sitemap.xml
