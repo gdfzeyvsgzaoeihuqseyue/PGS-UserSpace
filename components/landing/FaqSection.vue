@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-20 bg-WtBAct overflow-hidden">
+  <section v-if="faqStore.loading || faqStore.faqs.length > 0" class="relative py-20 bg-WtBAct overflow-hidden">
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
         <!-- Left Column (2/3) -->
@@ -65,17 +65,6 @@
               </div>
             </div>
 
-            <!-- Empty State -->
-            <div v-else class="text-center py-12">
-              <div
-                class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
-                <IconHelpCircle class="w-8 h-8 text-slate-400" />
-              </div>
-              <p class="text-slate-500">{{ t('indexPage.faq.empty') }}</p>
-              <button @click="faqStore.loadRandomFaqs()" class="mt-4 text-indigo-600 hover:text-indigo-500 font-medium">
-                {{ t('indexPage.faq.tryAnother') }}
-              </button>
-            </div>
           </SkeletonLoading>
 
           <!-- Refresh Action -->

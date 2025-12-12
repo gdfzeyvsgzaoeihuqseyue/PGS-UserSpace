@@ -3,8 +3,14 @@
     <!-- Logo & Header -->
     <div class="mb-10">
       <div class="flex justify-start mb-8">
-        <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-10 w-auto sm:h-12 request-logo dark:hidden" />
-        <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-10 w-auto sm:h-12 request-logo hidden" />
+        <div class="hidden lg:block">
+          <img :src="sharedFiles.paths.logo.dc" alt="Logo" class="h-10 w-auto sm:h-12 request-logo dark:hidden" />
+          <img :src="sharedFiles.paths.logo.dw" alt="Logo" class="h-10 w-auto sm:h-12 request-logo hidden dark:block" />
+        </div>
+        <div class="lg:hidden">
+          <img :src="sharedFiles.paths.logo.mc" alt="Logo" class="h-10 w-auto sm:h-12 request-logo dark:hidden" />
+          <img :src="sharedFiles.paths.logo.mw" alt="Logo" class="h-10 w-auto sm:h-12 request-logo hidden dark:block" />
+        </div>
       </div>
       <h2 class="text-3xl font-bold tracking-tight text-gray-900">{{ $t('auth.login.welcome') }}
       </h2>

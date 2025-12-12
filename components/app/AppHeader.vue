@@ -205,6 +205,13 @@
       </div>
     </nav>
   </header>
+
+  <Teleport to="body">
+    <div v-if="isMobileMenuOpen"
+      class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden transition-opacity duration-300"
+      @click="isMobileMenuOpen = false">
+    </div>
+  </Teleport>
 </template>
 
 <script setup>

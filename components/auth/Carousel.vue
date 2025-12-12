@@ -97,11 +97,32 @@ const { data, pending } = await useFetch<any>(`/carousel-slide`, {
 })
 
 const slides = computed<Slide[]>(() => {
-  if (data.value && Array.isArray(data.value.slides)) {
+  if (data.value && Array.isArray(data.value.slides) && data.value.slides.length > 0) {
     return data.value.slides
   }
-  return []
+  return fallbackSlides
 })
+
+const fallbackSlides: Slide[] = [
+  {
+    id: 'f1',
+    type: 'text',
+    mainTitle: 'Sécurité Avancée',
+    mainDescription: 'Protection de vos données',
+    content: 'Nous utilisons les dernières technologies de chiffrement pour garantir la confidentialité et la sécurité de vos informations sensibles.',
+    backgroundImage: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
+  },
+  {
+    id: 'f2',
+    type: 'quote',
+    mainTitle: 'Témoignage',
+    mainDescription: 'Directeur Technique',
+    content: 'Une solution innovante qui a transformé notre gestion quotidienne. L\'interface est intuitive et les fonctionnalités sont puissantes.',
+    author: 'Jean Dupont',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    backgroundImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
+  }
+]
 
 const setSlide = (index: number) => {
   currentSlide.value = index
