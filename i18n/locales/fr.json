@@ -100,6 +100,15 @@
     "testimonials": {
       "title": "Témoignages",
       "subtitle": "Découvrez ce que nos utilisateurs disent de leur expérience"
+    },
+    "faq": {
+      "title": "Questions Fréquentes",
+      "subtitle": "Trouvez les réponses à vos questions",
+      "empty": "Aucune question trouvée pour le moment.",
+      "tryAnother": "Essayer un autre sujet",
+      "discoverMore": "Découvrir d'autres questions",
+      "usefulQuestion": "Cet article vous a-t-il été utile ?",
+      "useful": "utile(s)"
     }
   },
   "auth": {

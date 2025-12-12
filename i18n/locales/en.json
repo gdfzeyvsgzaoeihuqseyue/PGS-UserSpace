@@ -100,6 +100,15 @@
     "testimonials": {
       "title": "Testimonials",
       "subtitle": "See what our users have to say about their experience"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to your questions",
+      "empty": "No questions found at the moment.",
+      "tryAnother": "Try another topic",
+      "discoverMore": "Discover more questions",
+      "usefulQuestion": "Was this article useful?",
+      "useful": "useful"
     }
   },
   "auth": {

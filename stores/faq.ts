@@ -125,6 +125,54 @@ export const useFaqStore = defineStore('faq', {
       }
 
       this.faqs = shuffled.slice(0, 4)
+    },
+
+    async voteUseful(id: string) {
+      try {
+        const { apiFetch } = useApi()
+        const { data, error } = await apiFetch<any>(`/solution/vote-useful/${id}`, {
+          method: 'PATCH'
+        })
+
+        if (error.value) throw new Error(error.value.message || 'Failed to vote')
+
+        // Update local state from response if available, otherwise increment
+        const faq = this.faqs.find(f => f.id === id)
+        if (faq) {
+          if (data.value && data.value.data) {
+            faq.isUseful = data.value.data.isUseful
+            faq.isUseless = data.value.data.isUseless
+          } else {
+            faq.isUseful = (faq.isUseful || 0) + 1
+          }
+        }
+      } catch (err: any) {
+        console.error('Error voting useful:', err)
+      }
+    },
+
+    async voteUseless(id: string) {
+      try {
+        const { apiFetch } = useApi()
+        const { data, error } = await apiFetch<any>(`/solution/vote-useless/${id}`, {
+          method: 'PATCH'
+        })
+
+        if (error.value) throw new Error(error.value.message || 'Failed to vote')
+
+        // Update local state from response if available, otherwise increment
+        const faq = this.faqs.find(f => f.id === id)
+        if (faq) {
+          if (data.value && data.value.data) {
+            faq.isUseful = data.value.data.isUseful
+            faq.isUseless = data.value.data.isUseless
+          } else {
+            faq.isUseless = (faq.isUseless || 0) + 1
+          }
+        }
+      } catch (err: any) {
+        console.error('Error voting useless:', err)
+      }
     }
   }
 })
