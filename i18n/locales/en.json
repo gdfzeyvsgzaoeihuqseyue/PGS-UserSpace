@@ -36,11 +36,30 @@
     }
   },
   "footer": {
-    "copyright": "© {year} PGS. All rights reserved.",
-    "description": "Centralized authentication platform for the PGS ecosystem.",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "support": "Support"
+    "tagline": "Centralized authentication platform <br> for the PGS ecosystem.",
+    "copyright": "© {year} PGS MY SPACE. All rights reserved.",
+    "madeBy": "by",
+    "brandSectionTitle": "Brand",
+    "aboutLink": "About",
+    "roadmapLink": "Roadmap",
+    "nextSummitLink": "Next Summit",
+    "supportUsLink": "Support us",
+    "legalSectionTitle": "Legal",
+    "faqLink": "FAQ",
+    "legalNoticeLink": "Legal notice",
+    "termsOfUseLink": "Terms of use",
+    "gdprLink": "Privacy",
+    "resourcesSectionTitle": "Resources",
+    "blogLink": "Blog",
+    "forumLink": "Forum",
+    "documentationLink": "Documentation",
+    "trainingLink": "Training",
+    "devHubSectionTitle": "Dev Hub",
+    "apiReferenceLink": "API Reference",
+    "studioLink": "Studio",
+    "codeSphereLink": "CodeSphere",
+    "templateLink": "Template",
+    "unavailableTooltip": "{name} is unavailable for now"
   },
   "indexPage": {
     "hero": {

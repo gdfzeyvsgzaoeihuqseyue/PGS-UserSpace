@@ -36,11 +36,30 @@
     }
   },
   "footer": {
+    "tagline": "Plateforme d'authentification <br> centralisée de l'écosystème PGS.",
     "copyright": "© {year} PGS MON ESPACE. Tous droits réservés.",
-    "description": "Plateforme d'authentification centralisée de l'écosystème PGS.",
-    "terms": "Conditions d'utilisation",
-    "privacy": "Politique de confidentialité",
-    "support": "Support"
+    "madeBy": "par",
+    "brandSectionTitle": "Marque",
+    "aboutLink": "A propos",
+    "roadmapLink": "Roadmap",
+    "nextSummitLink": "Next Summit",
+    "supportUsLink": "Nous soutenir",
+    "legalSectionTitle": "Légal",
+    "faqLink": "FAQ",
+    "legalNoticeLink": "Mentions légales",
+    "termsOfUseLink": "CGU",
+    "gdprLink": "RGPD",
+    "resourcesSectionTitle": "Ressources",
+    "blogLink": "Blog",
+    "forumLink": "Forum",
+    "documentationLink": "Documentation",
+    "trainingLink": "Formation",
+    "devHubSectionTitle": "Dev Hub",
+    "apiReferenceLink": "API référence",
+    "studioLink": "Studio",
+    "codeSphereLink": "CodeSphère",
+    "templateLink": "Template",
+    "unavailableTooltip": "{name} est indisponible pour le moment"
   },
   "indexPage": {
     "hero": {

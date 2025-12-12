@@ -1,0 +1,17 @@
+{
+  "axiom": {
+    "url": "https://pgs-axiom.netlify.app/"
+  },
+  "eqt": {
+    "url": "https://eqt.netlify.app/"
+  },
+  "hire": {
+    "url": "https://hire-suitops.netlify.app/"
+  },
+  "pgs": {
+    "url": "https://progestionsoft.netlify.app"
+  },
+  "suitops": {
+    "url": "https://suitops.netlify.app"
+  }
+}
